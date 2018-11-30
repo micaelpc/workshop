@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace VolunteerManagementBL.Log
+namespace GymBL.Log
 {
     /// <summary>
     /// this class is an abstract class for all of the system loggers

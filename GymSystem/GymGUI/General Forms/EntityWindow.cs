@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using VolunteerManagementGUI.Entities;
-using VolunteerManagementBL.Log;
+using GymBL.Log;
 
 namespace VolunteerManagementGUI
 {

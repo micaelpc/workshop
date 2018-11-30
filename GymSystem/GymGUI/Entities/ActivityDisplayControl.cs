@@ -6,9 +6,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using VolunteerManagementBL;
-using VolunteerManagementBL.Entities;
-using VolunteerManagementBL.Log;
+using GymBL;
+using GymBL.Entities;
+using GymBL.Log;
 
 namespace VolunteerManagementGUI.Entities
 {
@@ -297,13 +297,13 @@ namespace VolunteerManagementGUI.Entities
                 VolunteerFacade volunteerFacade = new VolunteerFacade(MainWindow.ConnectedUser);
                 try
                 {
-                    Volunteer[] availableVolunteers = volunteerFacade.GetVolunteerList("", "", entity.Type, new VolunteerAvailabilityTime(entity.StartDate.DayOfWeek, entity.StartDate.Hour, entity.EndDate.Hour), new DateTime(1, 1, 1), new DateTime(1, 1, 1), true);
+                    Volunteer[] availableVolunteers = volunteerFacade.GetVolunteerList("", "", entity.Type, new TimeSpanOfWeek(entity.StartDate.DayOfWeek, entity.StartDate.Hour, entity.EndDate.Hour), new DateTime(1, 1, 1), new DateTime(1, 1, 1), true);
                     listBoxAvailableVolunteers.Items.Clear();
                     foreach (Volunteer volunteer in availableVolunteers)
                     {
                         listBoxAvailableVolunteers.Items.Add(volunteer);
                     }
-                    Volunteer[] unAvailableVolunteers = volunteerFacade.GetVolunteerList("", "", entity.Type, new VolunteerAvailabilityTime(entity.StartDate.DayOfWeek, entity.StartDate.Hour, entity.EndDate.Hour), new DateTime(1, 1, 1), new DateTime(1, 1, 1), false);
+                    Volunteer[] unAvailableVolunteers = volunteerFacade.GetVolunteerList("", "", entity.Type, new TimeSpanOfWeek(entity.StartDate.DayOfWeek, entity.StartDate.Hour, entity.EndDate.Hour), new DateTime(1, 1, 1), new DateTime(1, 1, 1), false);
                     listBoxNotAvailableVolunteers.Items.Clear();
                     foreach (Volunteer volunteer in unAvailableVolunteers)
                     {
@@ -582,7 +582,7 @@ namespace VolunteerManagementGUI.Entities
             Volunteer[] availableVolunteers = new Volunteer[1];
             try
             {
-                availableVolunteers = volunteerFacade.GetVolunteerList("", textBoxFindAvailableVolunteer.Text, entity.Type, new VolunteerAvailabilityTime(entity.StartDate.DayOfWeek, entity.StartDate.Hour, entity.EndDate.Hour), new DateTime(1, 1, 1), new DateTime(1, 1, 1), true);
+                availableVolunteers = volunteerFacade.GetVolunteerList("", textBoxFindAvailableVolunteer.Text, entity.Type, new TimeSpanOfWeek(entity.StartDate.DayOfWeek, entity.StartDate.Hour, entity.EndDate.Hour), new DateTime(1, 1, 1), new DateTime(1, 1, 1), true);
             }
             catch (Exception ex)
             {
@@ -611,7 +611,7 @@ namespace VolunteerManagementGUI.Entities
             Volunteer[] unAvailableVolunteers = new Volunteer[1];
             try
             {
-                unAvailableVolunteers = volunteerFacade.GetVolunteerList("", "", entity.Type, new VolunteerAvailabilityTime(entity.StartDate.DayOfWeek, entity.StartDate.Hour, entity.EndDate.Hour), new DateTime(1, 1, 1), new DateTime(1, 1, 1), false);
+                unAvailableVolunteers = volunteerFacade.GetVolunteerList("", "", entity.Type, new TimeSpanOfWeek(entity.StartDate.DayOfWeek, entity.StartDate.Hour, entity.EndDate.Hour), new DateTime(1, 1, 1), new DateTime(1, 1, 1), false);
             }
             catch (Exception ex)
             {

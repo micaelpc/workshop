@@ -144,7 +144,7 @@
             // 
             // bindingSourceActivities
             // 
-            this.bindingSourceActivities.DataSource = typeof(VolunteerManagementBL.Entities.Activity);
+            this.bindingSourceActivities.DataSource = typeof(GymBL.Entities.Activity);
             this.bindingSourceActivities.Sort = "";
             // 
             // ReminderDisplayControl

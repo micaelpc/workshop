@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VolunteerManagementBL.Entities;
+using GymBL.Entities;
 using VolunteerManagementDAL;
 using System.Data;
 
-namespace VolunteerManagementBL
+namespace GymBL
 {
     /// <summary>
     /// this class provides the logic and methods needed for an activity in the system.
@@ -182,16 +182,16 @@ namespace VolunteerManagementBL
                 throw new Exception("כשלון בשליפת נתונים ממאגר הנתונים");
             }
             // get the volunteers assigned to the activity
-            Volunteer[] array = new Volunteer[result.Rows.Count];
+            Person[] array = new Person[result.Rows.Count];
 
             for (int i = 0; i < result.Rows.Count; i++)
             {
                 DataRow row = result.Rows[i];
-                Volunteer current = new Volunteer(row["IDNumber"].ToString(),
+                Person current = new Person(row["IDNumber"].ToString(),
                     row["Firstname"].ToString(), row["Surname"].ToString(), row["Address"].ToString(),
                     row["HomePhone"].ToString(), row["CellPhone"].ToString(), row["EMail"].ToString(),
                     Convert.ToDateTime(row["Birthdate"].ToString()), row["Comment"].ToString(),
-                    (Volunteer.VolunteerTypeEnum)row["VolunteerType"]);
+                    (Person.VolunteerTypeEnum)row["VolunteerType"]);
                 array[i] = current;
             }
 
@@ -254,7 +254,7 @@ namespace VolunteerManagementBL
             if (result == -1)
                 throw new Exception("כשלון במחיקת נתונים ממאגר הנתונים");
 
-            foreach (Volunteer current in entity.Volunteers)
+            foreach (Person current in entity.Volunteers)
             {
                 result = DBActions.ExecuteNonQuery("insert into volunteeractivitylog(VolunteerID,ActivityID) "
                 + "values('" + current.IDNumber + "',"
@@ -417,7 +417,7 @@ namespace VolunteerManagementBL
                 }
 
                 // add the assigned volunteers data
-                foreach (Volunteer current in entity.Volunteers)
+                foreach (Person current in entity.Volunteers)
                 {
                     result = DBActions.ExecuteNonQuery("insert into volunteeractivitylog(VolunteerID,ActivityID) "
                     + "values('" + current.IDNumber + "',"

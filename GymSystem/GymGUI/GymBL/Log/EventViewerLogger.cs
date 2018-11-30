@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace VolunteerManagementBL.Log
+namespace GymBL.Log
 {
     /// <summary>
     /// this logger writes the log data to the computer`s event viewer
