@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Collections;
-using VolunteerManagementBL;
-using VolunteerManagementBL.Entities;
+using GymBL;
+using GymBL.Entities;
 
-namespace VolunteerManagementBL.Reports
+namespace GymBL.Reports
 {
     /// <summary>
     /// this report counts how many activities has each of the volunteers
@@ -51,7 +51,7 @@ namespace VolunteerManagementBL.Reports
             foreach (Activity current in activityList)
             {
                 Activity fullDataActivity = afacade.GetSingleActivityData(current.ID);
-                foreach (Volunteer v in fullDataActivity.Volunteers)
+                foreach (Person v in fullDataActivity.Volunteers)
                 {
                     if (!volunteerTable.Contains(v.IDNumber))
                         volunteerTable.Add(v.IDNumber,v);
@@ -66,12 +66,12 @@ namespace VolunteerManagementBL.Reports
                 }
             }
 
-            m_VolunteerList = new Volunteer[volunteerTable.Values.Count];
+            m_VolunteerList = new Person[volunteerTable.Values.Count];
             IEnumerator e = volunteerTable.Values.GetEnumerator();
             int i =0;
             while (e.MoveNext())
             {
-                m_VolunteerList[i] = (Volunteer)e.Current;
+                m_VolunteerList[i] = (Person)e.Current;
                 i++;
             }
         }
@@ -79,8 +79,8 @@ namespace VolunteerManagementBL.Reports
         /// <summary>
         /// the list of volunteers who have executed at least one activity in the given time period
         /// </summary>
-        private Volunteer[] m_VolunteerList;
-        public Volunteer[] VolunteerList
+        private Person[] m_VolunteerList;
+        public Person[] VolunteerList
         {
             get { return m_VolunteerList; }
             set {  }

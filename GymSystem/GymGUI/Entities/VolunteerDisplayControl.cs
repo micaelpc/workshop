@@ -6,9 +6,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using VolunteerManagementBL;
-using VolunteerManagementBL.Entities;
-using VolunteerManagementBL.Log;
+using GymBL;
+using GymBL.Entities;
+using GymBL.Log;
 
 namespace VolunteerManagementGUI.Entities
 {
@@ -93,10 +93,10 @@ namespace VolunteerManagementGUI.Entities
         public bool AddEntity()
         {
             // create the new object
-            VolunteerAvailabilityTime[] vatArray = new VolunteerAvailabilityTime[listBoxAvailability.Items.Count];
+            TimeSpanOfWeek[] vatArray = new TimeSpanOfWeek[listBoxAvailability.Items.Count];
             for (int i = 0; i < listBoxAvailability.Items.Count; i++)
             {
-                vatArray[i] = (VolunteerAvailabilityTime)listBoxAvailability.Items[i];
+                vatArray[i] = (TimeSpanOfWeek)listBoxAvailability.Items[i];
             }
 
             ActivityType[] actArray = new ActivityType[checkedListBoxActivityTypes.CheckedItems.Count];
@@ -159,10 +159,10 @@ namespace VolunteerManagementGUI.Entities
             if (!IsNewEntity)
             {
                 // create the updated object
-                VolunteerAvailabilityTime[] vatArray = new VolunteerAvailabilityTime[listBoxAvailability.Items.Count];
+                TimeSpanOfWeek[] vatArray = new TimeSpanOfWeek[listBoxAvailability.Items.Count];
                 for(int i =0; i< listBoxAvailability.Items.Count;i++)
                 {
-                    vatArray[i] = (VolunteerAvailabilityTime)listBoxAvailability.Items[i];
+                    vatArray[i] = (TimeSpanOfWeek)listBoxAvailability.Items[i];
                 }
 
                 ActivityType[] actArray = new ActivityType[checkedListBoxActivityTypes.CheckedItems.Count];
@@ -270,7 +270,7 @@ namespace VolunteerManagementGUI.Entities
                 textBoxSurname.Text = entity.Surname;
                 dateTimePickerBirthdate.Value = entity.Birthdate;
                 comboBoxVolunteerType.SelectedItem = entity.VolunteerType;
-                foreach(VolunteerAvailabilityTime time in entity.VolunteerAvailability)
+                foreach(TimeSpanOfWeek time in entity.VolunteerAvailability)
                 {
                     listBoxAvailability.Items.Add(time);
                 }
@@ -381,7 +381,7 @@ namespace VolunteerManagementGUI.Entities
         /// <param name="e"></param>
         private void buttonAddAvailabilityRecord_Click(object sender, EventArgs e)
         {
-            VolunteerAvailabilityTime newAvailabilityTime = new VolunteerAvailabilityTime((DayOfWeek)comboBoxAvailabilityDay.SelectedItem,
+            TimeSpanOfWeek newAvailabilityTime = new TimeSpanOfWeek((DayOfWeek)comboBoxAvailabilityDay.SelectedItem,
                                                                 Convert.ToInt32(comboBoxAvailabilityStartHour.SelectedItem),
                                                                 Convert.ToInt32(comboBoxAvailabilityEndHour.SelectedItem));
             listBoxAvailability.Items.Add(newAvailabilityTime);

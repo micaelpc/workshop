@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using VolunteerManagementDAL;
-using VolunteerManagementBL.Entities;
+using GymBL.Entities;
 
-namespace VolunteerManagementBL.Reports
+namespace GymBL.Reports
 {
     /// <summary>
     /// this report gets the number of activities in each month of the last year

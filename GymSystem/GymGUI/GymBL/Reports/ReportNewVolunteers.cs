@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VolunteerManagementBL;
-using VolunteerManagementBL.Entities;
+using GymBL;
+using GymBL.Entities;
 
-namespace VolunteerManagementBL.Reports
+namespace GymBL.Reports
 {
     /// <summary>
     /// this report gets all the new volunteers in a given date range 
@@ -40,8 +40,8 @@ namespace VolunteerManagementBL.Reports
         /// <summary>
         /// the result of the report query 
         /// </summary>
-        private Volunteer[] m_VolunteerList;
-        public Volunteer[] VolunteerList
+        private Person[] m_VolunteerList;
+        public Person[] VolunteerList
         {
             get { return m_VolunteerList; }
             set { m_VolunteerList = value; }

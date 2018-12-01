@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VolunteerManagementBL;
+using GymBL;
 
-namespace VolunteerManagementBL.Log
+namespace GymBL.Log
 {
     /// <summary>
     /// this class is a singleton that enables all of the other classes

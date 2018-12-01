@@ -6,9 +6,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using VolunteerManagementBL;
-using VolunteerManagementBL.Entities;
-using VolunteerManagementBL.Log;
+using GymBL;
+using GymBL.Entities;
+using GymBL.Log;
 
 namespace VolunteerManagementGUI.Entities
 {

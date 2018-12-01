@@ -731,7 +731,7 @@
             // 
             // bindingSourceVolunteersList
             // 
-            this.bindingSourceVolunteersList.DataSource = typeof(VolunteerManagementBL.Entities.Volunteer);
+            this.bindingSourceVolunteersList.DataSource = typeof(GymBL.Entities.Volunteer);
             // 
             // userNameDataGridViewTextBoxColumn
             // 
@@ -759,7 +759,7 @@
             // 
             // bindingSourceUsersList
             // 
-            this.bindingSourceUsersList.DataSource = typeof(VolunteerManagementBL.Entities.User);
+            this.bindingSourceUsersList.DataSource = typeof(GymBL.Entities.Person);
             // 
             // MainWindow
             // 

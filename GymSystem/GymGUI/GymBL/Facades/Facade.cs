@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using VolunteerManagementDAL;
-using VolunteerManagementBL.Entities;
+using GymBL.Entities;
 
-namespace VolunteerManagementBL
+namespace GymBL
 {
     /// <summary>
     /// this class defines a entity facade that contains all of the 

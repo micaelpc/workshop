@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VolunteerManagementBL;
-using VolunteerManagementBL.Entities;
-using VolunteerManagementBL.Log;
+using GymBL;
+using GymBL.Entities;
+using GymBL.Log;
 
-namespace VolunteerManagementBL.Reports
+namespace GymBL.Reports
 {
     /// <summary>
     /// this report gets all the activities in a given date range 

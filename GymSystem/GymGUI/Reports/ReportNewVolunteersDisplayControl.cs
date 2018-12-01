@@ -6,8 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using VolunteerManagementBL.Reports;
-using VolunteerManagementBL.Log;
+using GymBL.Reports;
+using GymBL.Log;
 
 namespace VolunteerManagementGUI.Reports
 {

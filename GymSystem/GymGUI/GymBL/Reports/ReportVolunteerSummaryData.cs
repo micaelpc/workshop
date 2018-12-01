@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using VolunteerManagementDAL;
-using VolunteerManagementBL.Entities;
+using GymBL.Entities;
 
-namespace VolunteerManagementBL.Reports
+namespace GymBL.Reports
 {
     /// <summary>
     /// this report summarizes the data for all of the volunteers in the system.

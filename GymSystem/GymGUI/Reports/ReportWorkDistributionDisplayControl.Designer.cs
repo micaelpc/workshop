@@ -299,7 +299,7 @@
             // 
             // bindingSourceVolunteersList
             // 
-            this.bindingSourceVolunteersList.DataSource = typeof(VolunteerManagementBL.Entities.Volunteer);
+            this.bindingSourceVolunteersList.DataSource = typeof(GymBL.Entities.Volunteer);
             // 
             // ReportWorkDistributionDisplayControl
             // 

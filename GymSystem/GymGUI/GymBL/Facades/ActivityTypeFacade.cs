@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VolunteerManagementBL.Entities;
+using GymBL.Entities;
 using VolunteerManagementDAL;
 using System.Data;
 
-namespace VolunteerManagementBL
+namespace GymBL
 {
     /// <summary>
     /// this class provides the logic and methods needed for an activityType in the system.

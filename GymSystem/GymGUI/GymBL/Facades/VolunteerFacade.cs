@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VolunteerManagementBL.Entities;
+using GymBL.Entities;
 using System.Data;
 using System.Collections;
 using VolunteerManagementDAL;
 
-namespace VolunteerManagementBL
+namespace GymBL
 {
     /// <summary>
     /// this class provides the logic and methods needed for an volunteer in the system.
@@ -53,10 +53,10 @@ namespace VolunteerManagementBL
         /// <param name="RegistrationFinishDate">return only volunteers that were registared before this date</param>
         /// <param name="match">true returns the volunteers that match the filters and false return the other volunteers</param>
         /// <returns>the volunteers list</returns>
-        public Volunteer[] GetVolunteerList(string ID, string Name, ActivityType activityType, VolunteerAvailabilityTime availabilityTime, DateTime RegistrationStartDate, DateTime RegistrationFinishDate, bool match)
+        public Person[] GetVolunteerList(string ID, string Name, ActivityType activityType, TimeSpanOfWeek availabilityTime, DateTime RegistrationStartDate, DateTime RegistrationFinishDate, bool match)
         {
             // build the select query with filters
-            Volunteer[] array = new Volunteer[0];
+            Person[] array = new Person[0];
             string sql = "";
             if (ID == "" && Name == "" && activityType == null && availabilityTime == null
                 && RegistrationFinishDate.Year == 1 && RegistrationStartDate.Year == 1)
@@ -91,12 +91,12 @@ namespace VolunteerManagementBL
                 throw new Exception("כשלון בשליפת נתונים ממאגר הנתונים");
 
             //parse the results to an array
-            array = new Volunteer[result.Rows.Count];
+            array = new Person[result.Rows.Count];
 
             for (int i = 0; i < result.Rows.Count; i++)
             {
                 DataRow row = result.Rows[i];
-                Volunteer current = GetSingleVolunteerData(row[0].ToString());
+                Person current = GetSingleVolunteerData(row[0].ToString());
                 array[i] = current;
             }
 
@@ -107,9 +107,9 @@ namespace VolunteerManagementBL
                 return m_ActiveUser.FilterResults(array);
             else
             {
-                Volunteer[] allVolunteers = GetVolunteerList("", "", null, null, new DateTime(1, 1, 1), new DateTime(1, 1, 1), true);
+                Person[] allVolunteers = GetVolunteerList("", "", null, null, new DateTime(1, 1, 1), new DateTime(1, 1, 1), true);
                 ArrayList finalList = new ArrayList();
-                foreach (Volunteer v in allVolunteers)
+                foreach (Person v in allVolunteers)
                 {
                     bool found = false;
                     for (int i = 0; i < array.Length; i++)
@@ -122,7 +122,7 @@ namespace VolunteerManagementBL
                     if (!found)
                         finalList.Add(v);
                 }
-                Volunteer[] finalArray = (Volunteer[])finalList.ToArray(typeof(Volunteer));
+                Person[] finalArray = (Person[])finalList.ToArray(typeof(Person));
                 // filter the array before returning the results
                 return m_ActiveUser.FilterResults(finalArray);
             }
@@ -133,7 +133,7 @@ namespace VolunteerManagementBL
         /// </summary>
         /// <param name="ID">the requested volunteer id</param>
         /// <returns>the requested volunteer object</returns>
-        public Volunteer GetSingleVolunteerData(string ID)
+        public Person GetSingleVolunteerData(string ID)
         {
             //run the select query
             Init();
@@ -220,12 +220,12 @@ namespace VolunteerManagementBL
                 throw new Exception("כשלון בשליפת נתונים ממאגר הנתונים");
             }
 
-            VolunteerAvailabilityTime[] availabilityTimeArray = new VolunteerAvailabilityTime[result.Rows.Count];
+            TimeSpanOfWeek[] availabilityTimeArray = new TimeSpanOfWeek[result.Rows.Count];
             for (int i = 0; i < result.Rows.Count; i++)
             {
                 DataRow availabilityTimeDataRow = result.Rows[i];
 
-                VolunteerAvailabilityTime currentAvailabilityTime = new VolunteerAvailabilityTime(
+                TimeSpanOfWeek currentAvailabilityTime = new TimeSpanOfWeek(
                     (DayOfWeek)Enum.Parse(typeof(DayOfWeek), availabilityTimeDataRow["DayOfWeek"].ToString()),
                     Convert.ToInt32(availabilityTimeDataRow["StartTime"].ToString()),
                     Convert.ToInt32(availabilityTimeDataRow["EndTime"].ToString()));
@@ -233,11 +233,11 @@ namespace VolunteerManagementBL
                 availabilityTimeArray[i] = currentAvailabilityTime;
             }
             
-            Volunteer current = new Volunteer(generalDataRow["IDNumber"].ToString(),
+            Person current = new Person(generalDataRow["IDNumber"].ToString(),
                 generalDataRow["Firstname"].ToString(), generalDataRow["Surname"].ToString(), generalDataRow["Address"].ToString(),
                 generalDataRow["HomePhone"].ToString(), generalDataRow["CellPhone"].ToString(), generalDataRow["EMail"].ToString(),
                 Convert.ToDateTime(generalDataRow["Birthdate"].ToString()), generalDataRow["Comment"].ToString(),
-                (Volunteer.VolunteerTypeEnum)Enum.Parse(typeof(Volunteer.VolunteerTypeEnum), generalDataRow["VolunteerTypeName"].ToString()),
+                (Person.VolunteerTypeEnum)Enum.Parse(typeof(Person.VolunteerTypeEnum), generalDataRow["VolunteerTypeName"].ToString()),
                 availabilityTimeArray,activityTypes,activityLog);
             Close();
             return current;
@@ -248,7 +248,7 @@ namespace VolunteerManagementBL
         /// </summary>
         /// <param name="entity">the updated entity</param>
         /// <returns>number of rows affected</returns>
-        public int UpdateVolunteerData(Volunteer entity)
+        public int UpdateVolunteerData(Person entity)
         {
             // check if the user has permissions to update entities
             if (!CheckPermissions(User.ActionTypeEnum.UpdateEntity))
@@ -285,7 +285,7 @@ namespace VolunteerManagementBL
 
             if (entity.VolunteerAvailability != null)
             {
-                foreach (VolunteerAvailabilityTime current in entity.VolunteerAvailability)
+                foreach (TimeSpanOfWeek current in entity.VolunteerAvailability)
                 {
                     result = DBActions.ExecuteNonQuery("insert into volunteeravailabilitytime(VolunteerID,DayOfWeek,StartTime,EndTime) "
                     + "values('" + entity.IDNumber + "',"
@@ -334,7 +334,7 @@ namespace VolunteerManagementBL
         /// </summary>
         /// <param name="entity">the new entity to add</param>
         /// <returns>number of rows affected</returns>
-        public int AddNewVolunteer(Volunteer entity)
+        public int AddNewVolunteer(Person entity)
         {
             // check if the user has permissions to create entities
             if (!CheckPermissions(User.ActionTypeEnum.CreateEntity))
@@ -363,7 +363,7 @@ namespace VolunteerManagementBL
             // add the volunteer availability records
             if (entity.VolunteerAvailability != null)
             {
-                foreach (VolunteerAvailabilityTime current in entity.VolunteerAvailability)
+                foreach (TimeSpanOfWeek current in entity.VolunteerAvailability)
                 {
                     result = DBActions.ExecuteNonQuery("insert into volunteeravailabilitytime(VolunteerID,DayOfWeek,StartTime,EndTime) "
                     + "values('" + entity.IDNumber + "',"

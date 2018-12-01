@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using VolunteerManagementDAL;
 
-namespace VolunteerManagementBL.Log
+namespace GymBL.Log
 { 
     /// <summary>
     /// thia logger writes the log data to the log table in the system`s db

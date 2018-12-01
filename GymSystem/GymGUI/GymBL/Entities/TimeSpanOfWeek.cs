@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace VolunteerManagementBL.Entities
+namespace GymBL.Entities
 {
     /// <summary>
-    /// this class describes a time and day in the week. 
-    /// this time is a time in which the volunteer is available
-    /// to be assigned to activities. if the activity`s start time if after
-    /// the availability start time and the activity`s end time if before
-    /// the availability end time and it`s the same day of the week,
-    /// then the volunteer is considere available
+    /// this class describes a time and day in the week.
     /// </summary>
-    public class VolunteerAvailabilityTime
+    public class TimeSpanOfWeek
     {
         /// <summary>
-        /// the constructor for the VolunteerAvailabilityTime object
+        /// the constructor for the TimeSpanOfWeek object
         /// </summary>
-        /// <param name="Day">the day of the week in which the volunteer is available</param>
-        /// <param name="StartTime">the start time in which the volunteer is available</param>
-        /// <param name="EndTime">the end time in which the volunteer is available</param>
-        public VolunteerAvailabilityTime(DayOfWeek Day, int StartTime, int EndTime)
+        /// <param name="Day">the day of the week</param>
+        /// <param name="StartTime">the start time</param>
+        /// <param name="EndTime">the end time</param>
+        public TimeSpanOfWeek(DayOfWeek Day, int StartTime, int EndTime)
         {
             m_Day = Day;
             m_StartTime = StartTime;
@@ -29,7 +24,7 @@ namespace VolunteerManagementBL.Entities
         }
 
         /// <summary>
-        /// the day of the week in which the volunteer is available
+        /// the day of the week
         /// </summary>
         public DayOfWeek Day
         {
@@ -39,7 +34,7 @@ namespace VolunteerManagementBL.Entities
         private DayOfWeek m_Day;
 
         /// <summary>
-        /// the start time in which the volunteer is available
+        /// the start time
         /// </summary>
         public int StartTime
         {
@@ -49,7 +44,7 @@ namespace VolunteerManagementBL.Entities
         private int m_StartTime;
 
         /// <summary>
-        /// the end time in which the volunteer is available
+        /// the end time
         /// </summary>
         public int EndTime
         {
@@ -60,7 +55,7 @@ namespace VolunteerManagementBL.Entities
         /// <summary>
         /// return a textual description of the object data
         /// </summary>
-        /// <returns>the time and day of the availability</returns>
+        /// <returns>the time and day</returns>
         public override string ToString()
         {
             return m_Day.ToString() + ", משעה " + m_StartTime + " עד שעה " + m_EndTime;

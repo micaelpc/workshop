@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VolunteerManagementBL.Entities;
+using GymBL.Entities;
 using System.Data;
 using System.Collections;
 using VolunteerManagementDAL;
 
-namespace VolunteerManagementBL
+namespace GymBL
 {
     /// <summary>
     /// this class provides the logic and methods needed for an reminder in the system.

@@ -8,8 +8,8 @@
     <ProjectGuid>{89D1096D-6E3D-492A-B38F-A0CCAD0D4032}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VolunteerManagementBL</RootNamespace>
-    <AssemblyName>VolunteerManagementBL</AssemblyName>
+    <RootNamespace>GymBL</RootNamespace>
+    <AssemblyName>GymBL</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -51,7 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="Entities\PrivateTraining.cs" />
     <Compile Include="Entities\Reminder.cs" />
+    <Compile Include="Entities\Subscription.cs" />
+    <Compile Include="Entities\Trainee.cs" />
+    <Compile Include="Entities\Trainer.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserAdmin.cs" />
     <Compile Include="Entities\UserVolunteer.cs" />
@@ -64,7 +68,7 @@
     <Compile Include="Facades\UserFacade.cs" />
     <Compile Include="Facades\VolunteerFacade.cs" />
     <Compile Include="Entities\Activity.cs" />
-    <Compile Include="Entities\Volunteer.cs" />
+    <Compile Include="Entities\Person.cs" />
     <Compile Include="Facades\Facade.cs" />
     <Compile Include="Log\DBLogger.cs" />
     <Compile Include="Log\EventViewerLogger.cs" />

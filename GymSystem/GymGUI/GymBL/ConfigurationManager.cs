@@ -4,7 +4,7 @@ using System.Text;
 using System.Collections;
 using System.IO;
 
-namespace VolunteerManagementBL
+namespace GymBL
 {
     /// <summary>
     /// this class reads the system configuration file and

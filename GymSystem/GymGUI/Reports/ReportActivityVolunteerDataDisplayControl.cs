@@ -6,10 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using VolunteerManagementBL.Reports;
-using VolunteerManagementBL;
-using VolunteerManagementBL.Entities;
-using VolunteerManagementBL.Log;
+using GymBL.Reports;
+using GymBL;
+using GymBL.Entities;
+using GymBL.Log;
 
 namespace VolunteerManagementGUI.Reports
 {
