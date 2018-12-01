@@ -1,0 +1,38 @@
+﻿<Window x:Class="GymClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GymClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="0,1,0,-1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="1" FontSize="30" Margin="143,0,142,53">חדר כושר מ.ט</Label>
+        <TabControl Grid.Column="0" FlowDirection="RightToLeft" Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="334" Margin="24,54,0,0" Grid.Row="1" Grid.RowSpan="4" VerticalAlignment="Top" Width="742">
+            <TabItem Header="מתאמן">
+                <Grid>
+                    <DataGrid HorizontalAlignment="Left" Height="229" Margin="10,57,0,0" VerticalAlignment="Top" Width="703"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="שליפת מתאמן">
+                <Grid Background="Green"/>
+            </TabItem>
+            <Label Content="Label" Height="100" Width="100"/>
+        </TabControl>
+    </Grid>
+</Window>
