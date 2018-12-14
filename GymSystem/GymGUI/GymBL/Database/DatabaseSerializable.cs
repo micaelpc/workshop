@@ -8,8 +8,8 @@ namespace GymBL.Database
 {
     interface DatabaseSerializable
     {
-        string getDatabaseName();
-        void serialize(IDatabaseStream stream);
-        void load(DataRow row);
+        string GetDatabaseName();
+        void Serialize(IDatabaseStream stream);
+        void Load(DataRow row);
     }
 }

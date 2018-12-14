@@ -8,14 +8,6 @@ namespace GymBL.Database
 {
     class Database
     {
-        /// <summary>
-        /// the connection object
-        /// </summary>
-        public OleDbConnection Connection
-        {
-            get { return m_connection; }
-        }
-        private OleDbConnection m_connection;
 
         /// <summary>
         /// the constructor for this class
@@ -27,12 +19,22 @@ namespace GymBL.Database
             m_connection.Open();
         }
 
+        /// <summary>
+        /// the connection object
+        /// </summary>
+        public OleDbConnection Connection
+        {
+            get { return m_connection; }
+        }
+        private OleDbConnection m_connection;
+
+
         void Update<T>(T value) where T : DatabaseSerializable, new()
         {
             var name = typeof(T).Name;
         
             DatabaseStream st = new DatabaseStream();
-            value.serialize(st);
+            value.Serialize(st);
             string columnsValue = string.Join(", ", st.Columns.Zip(st.Values, (first, second) => first + "=" + second).ToArray());
             var id = st.Values[st.Columns.IndexOf("id")];
             ExecuteNonQuery($"UPDATE {name} SET {columnsValue} WHERE id={id};");
@@ -45,7 +47,7 @@ namespace GymBL.Database
             var result = ExecuteQuery($"Select * from {name} where id='{id}'");
             if (result.Rows.Count != 1)
                 throw new Exception($"Failed to get {name} with id {id}");
-            value.load(result.Rows[0]);
+            value.Load(result.Rows[0]);
             return value;
         }
 
@@ -58,7 +60,7 @@ namespace GymBL.Database
             foreach (DataRow row in result.Rows)
             {
                 T temp = new T();
-                temp.load(row);
+                temp.Load(row);
                 retValue.Add(temp);
             }
             return retValue;
@@ -68,7 +70,7 @@ namespace GymBL.Database
         {
             var name = typeof(T).Name;
             DatabaseStream st = new DatabaseStream();
-            value.serialize(st);
+            value.Serialize(st);
             var columns = string.Join(", ", st.Columns.ToArray());
             var values = string.Join(", ", st.Values.ToArray());
             ExecuteNonQuery($"INSERT INTO {name}({columns}) VALUES({values});");
@@ -103,6 +105,5 @@ namespace GymBL.Database
             OleDbCommand command = new OleDbCommand(sqlString, Connection);
             return command.ExecuteNonQuery();
         }
-
     }
 }
