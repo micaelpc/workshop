@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymBL", "GymGUI\GymBL\GymBL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymDAL", "GymDAL\GymDAL.csproj", "{2FD63A99-558B-4B04-A855-37FDF7E8E642}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymClient", "GymClient\GymClient.csproj", "{1821104D-C329-4615-AD5B-9587E1CFD887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2FD63A99-558B-4B04-A855-37FDF7E8E642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FD63A99-558B-4B04-A855-37FDF7E8E642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FD63A99-558B-4B04-A855-37FDF7E8E642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1821104D-C329-4615-AD5B-9587E1CFD887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1821104D-C329-4615-AD5B-9587E1CFD887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1821104D-C329-4615-AD5B-9587E1CFD887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1821104D-C329-4615-AD5B-9587E1CFD887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
