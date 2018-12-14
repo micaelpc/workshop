@@ -15,6 +15,5 @@ namespace GymBL.Entities
 
             public string Description { get; private set; }
         }
-        Gym(IList<TimeSpanOfWeek> openTime, )
     }
 }
