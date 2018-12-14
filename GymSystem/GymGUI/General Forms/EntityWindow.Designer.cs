@@ -117,6 +117,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "EntityWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EntityWindow_FormClosing);
+            this.Load += new System.EventHandler(this.EntityWindow_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

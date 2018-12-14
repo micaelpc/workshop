@@ -210,5 +210,10 @@ namespace VolunteerManagementGUI
                 }
             }
         }
+
+        private void EntityWindow_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
