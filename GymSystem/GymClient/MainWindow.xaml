@@ -56,15 +56,28 @@
                     <Label Grid.Column="7" Grid.Row="1">שם משפחה</Label>
                     <TextBox Grid.Column="8" Grid.Row="1"></TextBox>
                     <Button Grid.Column="13" Grid.Row="1">בצע שליפה</Button>
-                    <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                    <Button Grid.Column="100" Grid.Row="5">מתאמן חדש</Button>
+                    <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" 
+                               HorizontalAlignment="Stretch" ItemsSource="{Binding Source=trainees}" 
+                               SelectionChanged="DataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="תעודת זהות" Binding="{Binding ID}"/>
+                            <DataGridTextColumn Header="תאריך לידה" Binding="{Binding Date}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+             
+                    <StackPanel  Grid.Column="100" Grid.Row="5" Orientation="Horizontal">
+                        <Button Margin="0,0,10,0">יצא תוצאות לאקסל</Button>
+                        <Button >מתאמן חדש</Button>
+                    </StackPanel>
+
                 </Grid>
             </TabItem>
-            <TabItem Header="שליפת מתאמן">
+            <TabItem Header="מאמן">
                 <Grid Background="Green"/>
             </TabItem>
             <Label Content="Label" Height="100" Width="100"/>
             <TextBox Height="21" TextWrapping="Wrap" Text="TextBox" Width="133"/>
         </TabControl>
+        <ContentControl Grid.Row="1" Content="{Binding Path=MyContent}" />
     </Grid>
 </Window>
