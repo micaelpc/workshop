@@ -13,5 +13,10 @@ namespace GymBL.Entities
             this.Date = date;
             this.Duration = duration;
         }
+
+        public Trainer Trainer { get; private set; }
+        public Trainee Trainee { get; private set; }
+        public DateTime Date { get; private set; }
+        public TimeSpan Duration { get; private set; }
     }
 }
