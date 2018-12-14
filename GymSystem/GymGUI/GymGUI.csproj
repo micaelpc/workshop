@@ -53,12 +53,110 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ActivityDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entities\ActivityDisplayControl.Designer.cs">
+      <DependentUpon>ActivityDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ActivityTypeDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entities\ActivityTypeDisplayControl.Designer.cs">
+      <DependentUpon>ActivityTypeDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ReminderDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entities\ReminderDisplayControl.Designer.cs">
+      <DependentUpon>ReminderDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UserDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entities\UserDisplayControl.Designer.cs">
+      <DependentUpon>UserDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EntityDisplayControlFactory.cs" />
+    <Compile Include="Entities\IGeneralEntityDisplayControl.cs" />
+    <Compile Include="Entities\VolunteerDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entities\VolunteerDisplayControl.Designer.cs">
+      <DependentUpon>VolunteerDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="General Forms\EntityWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="General Forms\EntityWindow.Designer.cs">
+      <DependentUpon>EntityWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="General Forms\LoginScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="General Forms\LoginScreen.Designer.cs">
+      <DependentUpon>LoginScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="General Forms\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="General Forms\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Entities\ActivityDisplayControl.resx">
+      <DependentUpon>ActivityDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ActivityTypeDisplayControl.resx">
+      <DependentUpon>ActivityTypeDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\ReminderDisplayControl.resx">
+      <DependentUpon>ReminderDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\UserDisplayControl.resx">
+      <DependentUpon>UserDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entities\VolunteerDisplayControl.resx">
+      <DependentUpon>VolunteerDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General Forms\EntityWindow.resx">
+      <DependentUpon>EntityWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General Forms\LoginScreen.resx">
+      <DependentUpon>LoginScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General Forms\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportActivityLogDisplayControl.resx">
+      <DependentUpon>ReportActivityLogDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportActivitySummaryDataDisplayControl.resx">
+      <DependentUpon>ReportActivitySummaryDataDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportActivityVolunteerDataDisplayControl.resx">
+      <DependentUpon>ReportActivityVolunteerDataDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportNewVolunteersDisplayControl.resx">
+      <DependentUpon>ReportNewVolunteersDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportNewVolunteerSummaryDataDisplayControl.resx">
+      <DependentUpon>ReportNewVolunteerSummaryDataDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportVolunteerActivityLogDisplayControl.resx">
+      <DependentUpon>ReportVolunteerActivityLogDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportVolunteerSummaryDataDisplayControl.resx">
+      <DependentUpon>ReportVolunteerSummaryDataDisplayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportWorkDistributionDisplayControl.resx">
+      <DependentUpon>ReportWorkDistributionDisplayControl.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -77,6 +175,56 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Reports\ReportDisplayControlFactory.cs" />
+    <Compile Include="Reports\ReportActivityVolunteerDataDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportActivityVolunteerDataDisplayControl.Designer.cs">
+      <DependentUpon>ReportActivityVolunteerDataDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportWorkDistributionDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportWorkDistributionDisplayControl.Designer.cs">
+      <DependentUpon>ReportWorkDistributionDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportActivitySummaryDataDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportActivitySummaryDataDisplayControl.Designer.cs">
+      <DependentUpon>ReportActivitySummaryDataDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportVolunteerSummaryDataDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportVolunteerSummaryDataDisplayControl.Designer.cs">
+      <DependentUpon>ReportVolunteerSummaryDataDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportNewVolunteerSummaryDataDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportNewVolunteerSummaryDataDisplayControl.Designer.cs">
+      <DependentUpon>ReportNewVolunteerSummaryDataDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportActivityLogDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportActivityLogDisplayControl.Designer.cs">
+      <DependentUpon>ReportActivityLogDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportNewVolunteersDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportNewVolunteersDisplayControl.Designer.cs">
+      <DependentUpon>ReportNewVolunteersDisplayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\IGeneralReportDisplayControl.cs" />
+    <Compile Include="Reports\ReportVolunteerActivityLogDisplayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportVolunteerActivityLogDisplayControl.Designer.cs">
+      <DependentUpon>ReportVolunteerActivityLogDisplayControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GymBL\GymBL.csproj">
@@ -86,9 +234,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dog.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
