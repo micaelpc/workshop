@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="GymClient.Trainee"
+﻿<UserControl x:Class="GymClient.TraineeUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -40,7 +40,7 @@
         <Button Grid.Column="13" Grid.Row="1">בצע שליפה</Button>
         <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" 
                                HorizontalAlignment="Stretch" ItemsSource="{Binding Source=trainees}" 
-                               SelectionChanged="DataGrid_SelectionChanged">
+                               >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="תעודת זהות" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="תאריך לידה" Binding="{Binding Date}"/>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace GymClient
 {
     /// <summary>
-    /// Interaction logic for Trainee.xaml
+    /// Interaction logic for UserControlTest.xaml
     /// </summary>
-    public partial class Trainee : UserControl
+    public partial class UserControlTest : UserControl
     {
-        public Trainee()
+        public UserControlTest()
         {
             InitializeComponent();
         }

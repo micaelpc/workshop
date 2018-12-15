@@ -57,11 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Trainee.xaml.cs">
-      <DependentUpon>Trainee.xaml</DependentUpon>
+    <Compile Include="TraineeUC.xaml.cs">
+      <DependentUpon>TraineeUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="TrainerUC.xaml.cs">
       <DependentUpon>TrainerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlTest.xaml.cs">
+      <DependentUpon>UserControlTest.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -75,11 +78,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Trainee.xaml">
+    <Page Include="TraineeUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TrainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
