@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GymBL.Database;
+using System;
+using System.Data;
 
 namespace GymBL.Entities
 {
@@ -7,10 +9,12 @@ namespace GymBL.Entities
     /// person that is registered as volunteer in the system and can
     /// be assigned to the diffrent activities in the system
     /// </summary>
-    public abstract class Person
+    public abstract class Person : IDatabaseSerializableWithId
     {
+        public Person() { }
+
         /// <summary>
-        /// this is a constructor for an existing volunteer with
+        /// this is a constructor for an existing person with
         /// short data - no activity and availability data
         /// </summary>
         /// <param name="IDNumber">the person unique id</param>
@@ -37,7 +41,7 @@ namespace GymBL.Entities
             m_Birthdate = Birthdate;
             m_Comment = Comment;
         }
-        
+
         /// <summary>
         /// the unique volunteer`s id number
         /// </summary>
@@ -128,7 +132,7 @@ namespace GymBL.Entities
             set { m_Comment = value; }
         }
         private string m_Comment;
-        
+
         /// <summary>
         /// returns the main id properties for the volunteer
         /// </summary>
@@ -159,6 +163,37 @@ namespace GymBL.Entities
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public virtual void Serialize(IDatabaseStream stream)
+        {
+            stream.Add("id", IDNumber);
+            stream.Add("Firstname", Firstname);
+            stream.Add("Surname", Surname);
+            stream.Add("Address", Address);
+            stream.Add("HomePhone", HomePhone);
+            stream.Add("CellPhone", CellPhone);
+            stream.Add("EMail", EMail);
+            stream.Add("Birthdate", Birthdate);
+            stream.Add("Comment", Comment);
+        }
+
+        public virtual void Load(DataRow row, Database.Database database)
+        {
+            IDNumber = row.Field<string>("id");
+            Firstname = row.Field<string>("Firstname");
+            Surname = row.Field<string>("Surname");
+            Address = row.Field<string>("Address");
+            HomePhone = row.Field<string>("HomePhone");
+            CellPhone = row.Field<string>("CellPhone");
+            EMail = row.Field<string>("EMail");
+            Birthdate = row.Field<DateTime>("Birthdate");
+            Comment = row.Field<string>("Comment");
+        }
+
+        public string GetId()
+        {
+            return IDNumber;
         }
     }
 }

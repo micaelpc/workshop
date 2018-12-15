@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="Database\Database.cs" />
+    <Compile Include="Database\IDatabaseSerializableWithId.cs" />
     <Compile Include="Database\DatabaseSerializable.cs" />
     <Compile Include="Database\DatabaseStream.cs" />
     <Compile Include="Database\IDatabaseStream.cs" />

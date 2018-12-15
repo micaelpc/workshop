@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymDAL", "GymDAL\GymDAL.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymClient", "GymClient\GymClient.csproj", "{1821104D-C329-4615-AD5B-9587E1CFD887}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{BE92C6E6-8C1D-4E48-A124-C085C7CAC2FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1821104D-C329-4615-AD5B-9587E1CFD887}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1821104D-C329-4615-AD5B-9587E1CFD887}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1821104D-C329-4615-AD5B-9587E1CFD887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE92C6E6-8C1D-4E48-A124-C085C7CAC2FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE92C6E6-8C1D-4E48-A124-C085C7CAC2FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE92C6E6-8C1D-4E48-A124-C085C7CAC2FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE92C6E6-8C1D-4E48-A124-C085C7CAC2FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

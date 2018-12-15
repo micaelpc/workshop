@@ -9,6 +9,7 @@ namespace GymBL.Database
     {
         public List<string> Values { get ; set; } = new List<string>();
         public List<string> Columns { get; set; } = new List<string>();
+        public List<IDatabaseSerializable> MoreObjects { get; set; } = new List<IDatabaseSerializable>();
 
         public void AddNoFormat(string name, string value)
         {
@@ -30,5 +31,17 @@ namespace GymBL.Database
         {
             AddNoFormat(name, value.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
+
+        public void Add(string name, IDatabaseSerializableWithId value)
+        {
+            Add(name, value.GetId());
+            MoreObjects.Add(value);
+        }
+
+        public void Add(IDatabaseSerializable value)
+        {
+            MoreObjects.Add(value);
+        }
+        
     }
 }

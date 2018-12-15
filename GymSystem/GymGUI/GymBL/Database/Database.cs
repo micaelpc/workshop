@@ -6,7 +6,7 @@ using System.Data.OleDb;
 
 namespace GymBL.Database
 {
-    class Database
+    public class Database
     {
 
         /// <summary>
@@ -29,30 +29,46 @@ namespace GymBL.Database
         private OleDbConnection m_connection;
 
 
-        void Update<T>(T value) where T : DatabaseSerializable, new()
+        public void Update<T>(T value) where T : IDatabaseSerializable
         {
-            var name = typeof(T).Name;
+            var name = value.GetType().Name;
         
             DatabaseStream st = new DatabaseStream();
             value.Serialize(st);
             string columnsValue = string.Join(", ", st.Columns.Zip(st.Values, (first, second) => first + "=" + second).ToArray());
             var id = st.Values[st.Columns.IndexOf("id")];
             ExecuteNonQuery($"UPDATE {name} SET {columnsValue} WHERE id={id};");
+            foreach (IDatabaseSerializable obj in st.MoreObjects)
+                Update(obj);
         }
 
-        T Get<T>(string id) where T : DatabaseSerializable, new()
+        public T Get<T>(string id) where T : IDatabaseSerializable, new()
         {
             T value = new T();
             var name = typeof(T).Name;
             var result = ExecuteQuery($"Select * from {name} where id='{id}'");
             if (result.Rows.Count != 1)
                 throw new Exception($"Failed to get {name} with id {id}");
-            value.Load(result.Rows[0]);
+            value.Load(result.Rows[0], this);
             return value;
         }
 
 
-        List<T> GetAll<T>() where T : DatabaseSerializable, new()
+        public List<T> GetAll<T>(string condition) where T : IDatabaseSerializable, new()
+        {
+            var name = typeof(T).Name;
+            var result = ExecuteQuery($"Select * from {name} where {condition}");
+            List<T> retValue = new List<T>();
+            foreach (DataRow row in result.Rows)
+            {
+                T temp = new T();
+                temp.Load(row, this);
+                retValue.Add(temp);
+            }
+            return retValue;
+        }
+
+        public List<T> GetAll<T>() where T : IDatabaseSerializable, new()
         {
             var name = typeof(T).Name;
             var result = ExecuteQuery($"Select * from {name}");
@@ -60,20 +76,22 @@ namespace GymBL.Database
             foreach (DataRow row in result.Rows)
             {
                 T temp = new T();
-                temp.Load(row);
+                temp.Load(row, this);
                 retValue.Add(temp);
             }
             return retValue;
         }
 
-        void Insert<T>(T value) where T : DatabaseSerializable, new()
+        public void Insert<T>(T value) where T : IDatabaseSerializable
         {
-            var name = typeof(T).Name;
+            var name = value.GetType().Name;
             DatabaseStream st = new DatabaseStream();
             value.Serialize(st);
             var columns = string.Join(", ", st.Columns.ToArray());
             var values = string.Join(", ", st.Values.ToArray());
             ExecuteNonQuery($"INSERT INTO {name}({columns}) VALUES({values});");
+            foreach (IDatabaseSerializable obj in st.MoreObjects)
+                Insert(obj);
         }
 
         /// <summary>

@@ -6,9 +6,8 @@ using System.Text;
 
 namespace GymBL.Database
 {
-    public interface IDatabaseSerializable
+    public interface IDatabaseSerializableWithId : IDatabaseSerializable
     {
-        void Serialize(IDatabaseStream stream);
-        void Load(DataRow row, Database database);
+        string GetId();
     }
 }
