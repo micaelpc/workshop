@@ -42,6 +42,5 @@ namespace GymBL.Database
         {
             MoreObjects.Add(value);
         }
-        
     }
 }

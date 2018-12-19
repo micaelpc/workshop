@@ -68,6 +68,10 @@
       <Project>{2fd63a99-558b-4b04-a855-37fdf7e8e642}</Project>
       <Name>GymDAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GymGUI\GymBL\GymBL.csproj">
+      <Project>{89d1096d-6e3d-492a-b38f-a0ccad0d4032}</Project>
+      <Name>GymBL</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

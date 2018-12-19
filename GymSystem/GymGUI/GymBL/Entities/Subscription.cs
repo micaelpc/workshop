@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GymBL.Entities
 {
-    public class Subscription : IDatabaseSerializable
+    public class Subscription : IDatabaseSerializableWithId
     {
         public Subscription() { }
         public Subscription(string id, DateTime start, DateTime end, uint monthlyPayment, bool isActive, Trainee trainee) {
@@ -18,6 +18,7 @@ namespace GymBL.Entities
             this.IsActive = isActive;
             this.Trainee = trainee;
         }
+        
 
         public string Id { get; private set; }
         public DateTime Start { get; private set; }
@@ -25,6 +26,11 @@ namespace GymBL.Entities
         public uint MonthlyPayment { get; private set; }
         public bool IsActive { get; private set; }
         public Trainee Trainee { get; private set; }
+
+        public string GetId()
+        {
+            return this.Id;
+        }
 
         public void Load(DataRow row, Database.Database database)
         {

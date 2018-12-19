@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace GymBL.Database
 {
@@ -15,18 +16,17 @@ namespace GymBL.Database
         /// <param name="ConnectionString">the connection string used when the connection is opened</param>
         public Database(string ConnectionString)
         {
-            m_connection = new OleDbConnection(ConnectionString);
-            m_connection.Open();
+            Connection = new SqlConnection(ConnectionString);
+            Connection.Open();
         }
 
         /// <summary>
         /// the connection object
         /// </summary>
-        public OleDbConnection Connection
+        public SqlConnection Connection
         {
-            get { return m_connection; }
+            get;
         }
-        private OleDbConnection m_connection;
 
 
         public void Update<T>(T value) where T : IDatabaseSerializable
@@ -102,8 +102,8 @@ namespace GymBL.Database
         /// <returns>this datatable is the result of the query</returns>
         public DataTable ExecuteQuery(string sqlString)
         {
-            OleDbCommand command = new OleDbCommand(sqlString, Connection);
-            OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+            var command = new SqlCommand(sqlString, Connection);
+            var adapter = new SqlDataAdapter(command);
             DataTable result = new DataTable();
             adapter.Fill(result);
             return result;
@@ -120,7 +120,7 @@ namespace GymBL.Database
         /// <returns>the number of rows affected</returns>
         public int ExecuteNonQuery(string sqlString)
         {
-            OleDbCommand command = new OleDbCommand(sqlString, Connection);
+            SqlCommand command = new SqlCommand(sqlString, Connection);
             return command.ExecuteNonQuery();
         }
     }
