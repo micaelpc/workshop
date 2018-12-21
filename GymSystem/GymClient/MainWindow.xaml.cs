@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GymBL.Entities;
+using GymClient.TraineeUCs;
 
 namespace GymClient
 {
@@ -40,15 +41,18 @@ namespace GymClient
 
 
 
-        public UserControl TraineeUC
+
+        public UserControl CurrentTraineeUC
         {
-            get { return (UserControl)GetValue(TraineeUCProperty); }
-            set { SetValue(TraineeUCProperty, value); }
+            get { return (UserControl)GetValue(CurrentTraineeUCProperty); }
+            set { SetValue(CurrentTraineeUCProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for TraineeUC.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TraineeUCProperty =
-            DependencyProperty.Register("TraineeUC", typeof(UserControl), typeof(MainWindow), new PropertyMetadata(new TraineeUC()));
+        // Using a DependencyProperty as the backing store for CurrentTraineeUC.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentTraineeUCProperty =
+            DependencyProperty.Register("CurrentTraineeUC", typeof(UserControl), typeof(MainWindow), new PropertyMetadata(null));
+
+
 
 
 
@@ -71,12 +75,33 @@ namespace GymClient
         public MainWindow()
         {
             InitializeComponent();
-
-            CurrentPageViewModel = new UserControlTest();
-
+            InitEvents();
+            InitUCs();
         }
 
+        private void InitUCs()
+        {
+            CurrentPageViewModel = new UserControlTest();
+            CurrentTraineeUC = new TraineeUC();
+        }
 
+        private void InitEvents()
+        {
+            AddHandler(TraineeUC.NewTrainertEvent,
+                     new RoutedEventHandler(NewTrainertEvent_handler));
 
+            AddHandler(NewTraineeUC.NavToTraineeRetriveEvent,
+                 new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+        }
+
+        private void NavToTraineeRetriveEvent_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTraineeUC = new TraineeUC();
+        }
+
+        private void NewTrainertEvent_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTraineeUC = new NewTraineeUC();
+        }
     }
 }

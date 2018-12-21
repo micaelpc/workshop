@@ -4,22 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymClient.TraineeUCs"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" >
     <Grid FlowDirection="RightToLeft" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
             <RowDefinition/>
 
         </Grid.RowDefinitions>
@@ -75,24 +76,25 @@
         <DatePicker Grid.Column="5" Grid.Row="9"  SelectedDateFormat="Short"></DatePicker>
 
         <TextBlock Grid.Column="7" Grid.Row="9" Text="הערות:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <RichTextBox Grid.ColumnSpan="5" Grid.Column="9" Grid.Row="9" Height="100">
+        <RichTextBox Grid.ColumnSpan="5" Grid.Column="9" Grid.Row="9" >
 
         </RichTextBox>
 
         <!--ROW 11-->
-        <TextBlock FontWeight="Bold" FontSize="12" Grid.Column="3" Grid.Row="11" Text="היסטורית מנויים:"></TextBlock>
+
 
         <!--ROW 13-->
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.ColumnSpan="20" FlowDirection="LeftToRight" >
-            <Button Width="50" Height="20" Margin="5" >בצע
-
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.ColumnSpan="20" FlowDirection="LeftToRight" >
+            
+            <Button Width="50" Height="20" Margin="5" x:Name="AddNewTrainee" Click="AddNewTrainee_Click" >בצע
             </Button>
-            <Button Width="100" Height="20" Margin="5" >אפס שינויים
-
+            
+            <Button x:Name="ReturntToDefaltBtn" Click="ReturntToDefaltBtn_Click"  Width="100" Height="20" Margin="5">אפס שינויים
             </Button>
-            <Button Width="100" Height="20" Margin="5" >חזור לתפריט
-
+            
+            <Button x:Name="RetriveTrainee" Click="RetriveTrainee_Click" Width="100" Height="20" Margin="5" >שליפת מתאמן
             </Button>
+            
         </StackPanel>
     </Grid>
 </UserControl>

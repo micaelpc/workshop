@@ -27,7 +27,7 @@
         <Label Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="1" FontSize="30" Margin="143,0,142,53">חדר כושר מ.ט</Label>
         <TabControl Grid.Column="0" FlowDirection="RightToLeft" Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="334" Margin="24,54,0,0" Grid.Row="1" Grid.RowSpan="4" VerticalAlignment="Top" Width="742">
             <TabItem Header="מתאמן">
-                <ContentControl Content="{Binding TraineeUC}"></ContentControl>
+                <ContentControl Content="{Binding CurrentTraineeUC}"></ContentControl>
             </TabItem>
             <TabItem Header="מאמן">
                 <Grid Background="Green"/>

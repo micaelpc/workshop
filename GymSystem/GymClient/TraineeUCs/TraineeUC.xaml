@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymClient"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             >
+    <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="5"/>
@@ -32,11 +32,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="1">ת.ז</Label>
-        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding koko}"></TextBox>
-        <Label Grid.Column="4" Grid.Row="1">שם</Label>
-        <TextBox Grid.Column="5" Grid.Row="1"></TextBox>
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding RetrivalTrainee.IDNumber,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></TextBox>
+        <Label Grid.Column="4" Grid.Row="1" >שם</Label>
+        <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding RetrivalTrainee.Firstname,UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Grid.Column="7" Grid.Row="1">שם משפחה</Label>
-        <TextBox Grid.Column="8" Grid.Row="1"></TextBox>
+        <TextBox Grid.Column="8" Grid.Row="1" Text="{Binding RetrivalTrainee.Surname,UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Button Grid.Column="13" Grid.Row="1">בצע שליפה</Button>
         <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" 
                                HorizontalAlignment="Stretch" ItemsSource="{Binding Trainees}" AutoGenerateColumns="False" >
@@ -51,7 +51,7 @@
 
         <StackPanel  Grid.Column="100" Grid.Row="5" Orientation="Horizontal">
             <Button Margin="0,0,10,0">יצא תוצאות לאקסל</Button>
-            <Button >מתאמן חדש</Button>
+            <Button x:Name="NewTrainee" Click="NewTrainee_Click" >מתאמן חדש</Button>
         </StackPanel>
 
     </Grid>
