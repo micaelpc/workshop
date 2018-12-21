@@ -195,5 +195,10 @@ namespace GymBL.Entities
         {
             return IDNumber;
         }
+
+        public void SetId(string id)
+        {
+            IDNumber = id;
+        }
     }
 }

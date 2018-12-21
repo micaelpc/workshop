@@ -54,6 +54,11 @@ namespace GymBL.Database
         }
 
 
+        public void DeleteAll<T>() where T : IDatabaseSerializable, new()
+        {
+            var name = typeof(T).Name;
+            ExecuteNonQuery($"DELETE FROM {name}");
+        }
         public List<T> GetAll<T>(string condition) where T : IDatabaseSerializable, new()
         {
             var name = typeof(T).Name;
@@ -89,7 +94,7 @@ namespace GymBL.Database
             value.Serialize(st);
             var columns = string.Join(", ", st.Columns.ToArray());
             var values = string.Join(", ", st.Values.ToArray());
-            ExecuteNonQuery($"INSERT INTO {name}({columns}) VALUES({values});");
+            var result = ExecuteQuery($"INSERT INTO {name}({columns}) OUTPUT Inserted.Id VALUES({values});");
             foreach (IDatabaseSerializable obj in st.MoreObjects)
                 Insert(obj);
         }

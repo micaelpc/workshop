@@ -36,5 +36,10 @@ namespace GymBL.Entities
             stream.Add("Address", this.Address);
             stream.Add("OpeningTimes", Utils.ToString(OpeningTimes));
         }
+
+        public void SetId(string id)
+        {
+            Name = id;
+        }
     }
 }

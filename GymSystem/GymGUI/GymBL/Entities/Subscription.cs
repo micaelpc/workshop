@@ -18,7 +18,6 @@ namespace GymBL.Entities
             this.IsActive = isActive;
             this.Trainee = trainee;
         }
-        
 
         public string Id { get; private set; }
         public DateTime Start { get; private set; }
@@ -34,6 +33,7 @@ namespace GymBL.Entities
 
         public void Load(DataRow row, Database.Database database)
         {
+            Id = row.Field<string>("Id");
             Start = row.Field<DateTime>("Start");
             End = row.Field<DateTime>("End");
             MonthlyPayment = (uint)row.Field<int>("MonthlyPayment");
@@ -43,12 +43,18 @@ namespace GymBL.Entities
 
         public void Serialize(IDatabaseStream stream)
         {
-            stream.Add("Id", Id);
+            if(Id.Length != 0)
+                stream.Add("Id", Id);
             stream.Add("Start", Start);
             stream.Add("End", End);
             stream.Add("MonthlyPayment", (int)MonthlyPayment);
             stream.Add("IsActive", Convert.ToInt32(IsActive));
             stream.Add("Trainee", Trainee.GetId());
+        }
+
+        public void SetId(string id)
+        {
+            Id = id;
         }
     }
 }

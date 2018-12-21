@@ -27,16 +27,19 @@ namespace GymBL.Entities
             base.Serialize(stream);
             var builder = new StringBuilder();
             stream.Add("TrainDays", string.Join("|", TrainDays.Select(x => ((int)x).ToString()).ToArray()));
-            foreach(var sub in Subscriptions)
+            foreach (var sub in Subscriptions)
             {
                 stream.Add(sub);
             }
         }
 
-        public override void Load(DataRow row, Database.Database database) 
+        public override void Load(DataRow row, Database.Database database)
         {
             base.Load(row, database);
-            TrainDays = row.Field<string>("TrainDays").Split('|').Select(x => (DayOfWeek)int.Parse(x)).ToList();
+            if (row.Field<string>("TrainDays").Length == 0)
+                TrainDays = new List<DayOfWeek>();
+            else
+                TrainDays = row.Field<string>("TrainDays").Split('|').Select(x => (DayOfWeek)int.Parse(x)).ToList();
             Subscriptions = database.GetAll<Subscription>($"Trainee = '{IDNumber}'");
         }
     }

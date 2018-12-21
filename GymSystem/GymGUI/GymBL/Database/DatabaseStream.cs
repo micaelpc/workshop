@@ -24,12 +24,12 @@ namespace GymBL.Database
 
         public void Add(string name, string value)
         {
-            AddNoFormat(name, $"'{value}'");
+            AddNoFormat(name, $"N'{value}'");
         }
 
         public void Add(string name, DateTime value)
         {
-            AddNoFormat(name, value.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            AddNoFormat(name, "'" + value.ToString("yyyy-MM-dd HH:mm:ss.fff") + "'");
         }
 
         public void Add(string name, IDatabaseSerializableWithId value)

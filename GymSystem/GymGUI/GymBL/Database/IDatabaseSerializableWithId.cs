@@ -8,6 +8,7 @@ namespace GymBL.Database
 {
     public interface IDatabaseSerializableWithId : IDatabaseSerializable
     {
+        void SetId(string id);
         string GetId();
     }
 }
