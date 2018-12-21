@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="GymClient.TraineeUCs.NewTraineeUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GymClient.TraineeUCs"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid FlowDirection="RightToLeft" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label HorizontalContentAlignment="Center" Content="הוספת מתאמן חדש" Grid.Column="1" Grid.Row="1" FontSize="30"  Grid.ColumnSpan="20"></Label>
+
+        <!--ROW 3-->
+
+        <TextBlock Grid.Column="3" Grid.Row="3" Text="ת.ז:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="5" Grid.Row="3" Text="300951217" FontSize="12" Width="100"></TextBox>
+
+        <TextBlock Grid.Column="7" Grid.Row="3" Text="שם פרטי:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="9" Grid.Row="3" Text="מיכאל" FontSize="12" Width="100"></TextBox>
+
+        <TextBlock Grid.Column="11" Grid.Row="3" Text="שם משפחה:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="13" Grid.Row="3" Text="כהן" FontSize="12" Width="100"></TextBox>
+
+        <!--ROW 5-->
+
+        <TextBlock Grid.Column="3" Grid.Row="5" Text="טלפון:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="5" Grid.Row="5" Text="036521029" FontSize="12" Width="100"></TextBox>
+
+        <TextBlock Grid.Column="7" Grid.Row="5" Text="כתובת:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.ColumnSpan="5" Grid.Column="9"  Grid.Row="5" Text="לויתן 5 חולון" FontSize="12" ></TextBox>
+
+
+        <!--ROW 7-->
+        <TextBlock Grid.Column="3" Grid.Row="7" Text="סלולרי:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="5" Grid.Row="7" Text="0528998829" FontSize="12" Width="100"></TextBox>
+
+        <TextBlock Grid.Column="7" Grid.Row="7" Text="מייל:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="7" Text="micaelpc@gmail.com"  FontSize="12" ></TextBox>
+
+        <!--ROW 9-->
+
+        <TextBlock Grid.Column="3" Grid.Row="9" Text="תאריך לידה" FontWeight="Bold" FontSize="12"></TextBlock>
+        <DatePicker Grid.Column="5" Grid.Row="9"  SelectedDateFormat="Short"></DatePicker>
+
+        <TextBlock Grid.Column="7" Grid.Row="9" Text="הערות:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <RichTextBox Grid.ColumnSpan="5" Grid.Column="9" Grid.Row="9" Height="100">
+
+        </RichTextBox>
+
+        <!--ROW 11-->
+        <TextBlock FontWeight="Bold" FontSize="12" Grid.Column="3" Grid.Row="11" Text="היסטורית מנויים:"></TextBlock>
+
+        <!--ROW 13-->
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.ColumnSpan="20" FlowDirection="LeftToRight" >
+            <Button Width="50" Height="20" Margin="5" >בצע
+
+            </Button>
+            <Button Width="100" Height="20" Margin="5" >אפס שינויים
+
+            </Button>
+            <Button Width="100" Height="20" Margin="5" >חזור לתפריט
+
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
