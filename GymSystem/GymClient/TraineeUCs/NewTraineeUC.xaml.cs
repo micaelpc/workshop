@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GymBL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,16 @@ namespace GymClient.TraineeUCs
         {
             InitializeComponent();
         }
+
+        public static readonly RoutedEvent NavToTraineeRetriveEvent =
+            EventManager.RegisterRoutedEvent("NavToTraineeRetriveEvent", RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler), typeof(TraineeUC));
+
+        private void RetriveTrainee_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(NewTraineeUC.NavToTraineeRetriveEvent, new Trainee()));
+        }
+
+
     }
 }

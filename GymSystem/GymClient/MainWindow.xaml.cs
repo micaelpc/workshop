@@ -89,6 +89,14 @@ namespace GymClient
         {
             AddHandler(TraineeUC.NewTrainertEvent,
                      new RoutedEventHandler(NewTrainertEvent_handler));
+
+            AddHandler(NewTraineeUC.NavToTraineeRetriveEvent,
+                 new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+        }
+
+        private void NavToTraineeRetriveEvent_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTraineeUC = new TraineeUC();
         }
 
         private void NewTrainertEvent_handler(object sender, RoutedEventArgs e)

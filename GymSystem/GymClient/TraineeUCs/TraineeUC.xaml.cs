@@ -31,6 +31,7 @@ namespace GymClient
 
 
 
+
         public event PropertyChangedEventHandler PropertyChanged;
         // Create the OnPropertyChanged method to raise the event
         protected void OnPropertyChanged(string name)
@@ -75,7 +76,7 @@ namespace GymClient
 
         private void InitTraineesMock()
         {
-
+            Trainees.Clear();
             Trainees.Add(new Trainee
                   ("300951212", "מיכאל", "כהן", "לויתן 6 חולון", 
                   "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now,
