@@ -9,7 +9,7 @@ namespace GymBL.Database
 {
     public class Database
     {
-
+        
         /// <summary>
         /// the constructor for this class
         /// </summary>
@@ -27,6 +27,7 @@ namespace GymBL.Database
         {
             get;
         }
+        private Dictionary<Tuple<string, Type>, object> m_liveObjects = new Dictionary<Tuple<string, Type>, object>();
 
 
         public void Update<T>(T value) where T : IDatabaseSerializable
@@ -44,12 +45,19 @@ namespace GymBL.Database
 
         public T Get<T>(string id) where T : IDatabaseSerializable, new()
         {
+            var key = new Tuple<string, Type>(id, typeof(T));
+            if (m_liveObjects.ContainsKey(key))
+                return (T)m_liveObjects[key];
             T value = new T();
+
+            m_liveObjects[key] = value;
+
             var name = typeof(T).Name;
             var result = ExecuteQuery($"Select * from {name} where id='{id}'");
             if (result.Rows.Count != 1)
                 throw new Exception($"Failed to get {name} with id {id}");
             value.Load(result.Rows[0], this);
+            m_liveObjects.Remove(key);
             return value;
         }
 
@@ -87,7 +95,7 @@ namespace GymBL.Database
             return retValue;
         }
 
-        public void Insert<T>(T value) where T : IDatabaseSerializable
+        public void Insert<T>(T value) where T : IDatabaseSerializableWithId
         {
             var name = value.GetType().Name;
             DatabaseStream st = new DatabaseStream();
@@ -95,7 +103,8 @@ namespace GymBL.Database
             var columns = string.Join(", ", st.Columns.ToArray());
             var values = string.Join(", ", st.Values.ToArray());
             var result = ExecuteQuery($"INSERT INTO {name}({columns}) OUTPUT Inserted.Id VALUES({values});");
-            foreach (IDatabaseSerializable obj in st.MoreObjects)
+            value.SetId(result.Rows[0]["Id"].ToString());
+            foreach (var obj in st.MoreObjects)
                 Insert(obj);
         }
 

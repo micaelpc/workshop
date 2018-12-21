@@ -22,11 +22,13 @@ Integrated Security=True");
                   ("300951212", "מיכאל", "כהן", "לויתן 6 חולון",
                   "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now,
                   "רגיש ללקטוז", new List<DayOfWeek>(), new List<Subscription>() { });
-            y.Subscriptions.Add(new Subscription("", DateTime.Now, DateTime.Now, 500, false, y));
+            y.Subscriptions.Add(new Subscription(DateTime.Now, DateTime.Now, 500, false, y));
             
             d.Insert(y);
             var trainee = d.Get<Trainee>("300951212");
             Assert.AreEqual(trainee.Firstname, "מיכאל");
+            d.DeleteAll<Trainee>();
+            d.DeleteAll<Subscription>();
         }
     }
 }

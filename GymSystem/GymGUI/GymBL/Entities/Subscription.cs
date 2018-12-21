@@ -10,7 +10,13 @@ namespace GymBL.Entities
     public class Subscription : IDatabaseSerializableWithId
     {
         public Subscription() { }
-        public Subscription(string id, DateTime start, DateTime end, uint monthlyPayment, bool isActive, Trainee trainee) {
+
+        public Subscription(DateTime start, DateTime end, uint monthlyPayment, bool isActive, Trainee trainee)
+            :this(0, start, end, monthlyPayment, isActive, trainee)
+        {
+        }
+
+        public Subscription(int id, DateTime start, DateTime end, uint monthlyPayment, bool isActive, Trainee trainee) {
             this.Id = id;
             this.Start = start;
             this.End = end;
@@ -19,7 +25,7 @@ namespace GymBL.Entities
             this.Trainee = trainee;
         }
 
-        public string Id { get; private set; }
+        public int Id { get; private set; }
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
         public uint MonthlyPayment { get; private set; }
@@ -28,14 +34,14 @@ namespace GymBL.Entities
 
         public string GetId()
         {
-            return this.Id;
+            return this.Id.ToString();
         }
 
         public void Load(DataRow row, Database.Database database)
         {
-            Id = row.Field<string>("Id");
-            Start = row.Field<DateTime>("Start");
-            End = row.Field<DateTime>("End");
+            Id = row.Field<int>("Id");
+            Start = row.Field<DateTime>("StartT");
+            End = row.Field<DateTime>("EndT");
             MonthlyPayment = (uint)row.Field<int>("MonthlyPayment");
             IsActive = Convert.ToBoolean(row.Field<int>("IsActive"));
             Trainee = database.Get<Trainee>(row.Field<string>("Trainee"));
@@ -43,10 +49,10 @@ namespace GymBL.Entities
 
         public void Serialize(IDatabaseStream stream)
         {
-            if(Id.Length != 0)
+            if(Id != 0)
                 stream.Add("Id", Id);
-            stream.Add("Start", Start);
-            stream.Add("End", End);
+            stream.Add("StartT", Start);
+            stream.Add("EndT", End);
             stream.Add("MonthlyPayment", (int)MonthlyPayment);
             stream.Add("IsActive", Convert.ToInt32(IsActive));
             stream.Add("Trainee", Trainee.GetId());
@@ -54,7 +60,7 @@ namespace GymBL.Entities
 
         public void SetId(string id)
         {
-            Id = id;
+            Id = int.Parse(id);
         }
     }
 }
