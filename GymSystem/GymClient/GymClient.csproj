@@ -57,7 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TraineeUC.xaml.cs">
+    <Compile Include="TraineeUCs\TraineeFullView.xaml.cs">
+      <DependentUpon>TraineeFullView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TraineeUCs\TraineeUC.xaml.cs">
       <DependentUpon>TraineeUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="TrainerUC.xaml.cs">
@@ -78,7 +81,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TraineeUC.xaml">
+    <Page Include="TraineeUCs\TraineeFullView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TraineeUCs\TraineeUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -27,55 +27,7 @@
         <Label Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="1" FontSize="30" Margin="143,0,142,53">חדר כושר מ.ט</Label>
         <TabControl Grid.Column="0" FlowDirection="RightToLeft" Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="334" Margin="24,54,0,0" Grid.Row="1" Grid.RowSpan="4" VerticalAlignment="Top" Width="742">
             <TabItem Header="מתאמן">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="5"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Column="0" Grid.Row="1">ת.ז</Label>
-                    <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding koko}"></TextBox>
-                    <Label Grid.Column="4" Grid.Row="1">שם</Label>
-                    <TextBox Grid.Column="5" Grid.Row="1"></TextBox>
-                    <Label Grid.Column="7" Grid.Row="1">שם משפחה</Label>
-                    <TextBox Grid.Column="8" Grid.Row="1"></TextBox>
-                    <Button Grid.Column="13" Grid.Row="1">בצע שליפה</Button>
-                    <DataGrid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" 
-                               HorizontalAlignment="Stretch" ItemsSource="{Binding Trainees}" AutoGenerateColumns="False" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ת.ז" Binding="{Binding IDNumber}" />
-                            <DataGridTextColumn Header="שם פרטי" Binding="{Binding Firstname}" />
-                            <DataGridTextColumn Header="שם משפחה" Binding="{Binding Surname}" />
-                            <DataGridTextColumn Header="מספר פלאפון" Binding="{Binding CellPhone}" />
-                            <DataGridTextColumn Header="תאריך לידה" Binding="{Binding Birthdate}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                    <StackPanel  Grid.Column="100" Grid.Row="5" Orientation="Horizontal">
-                        <Button Margin="0,0,10,0">יצא תוצאות לאקסל</Button>
-                        <Button >מתאמן חדש</Button>
-                    </StackPanel>
-
-                </Grid>
+                <ContentControl Content="{Binding TraineeUC}"></ContentControl>
             </TabItem>
             <TabItem Header="מאמן">
                 <Grid Background="Green"/>

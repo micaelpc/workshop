@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GymClient
+namespace GymClient.TraineeUCs
 {
     /// <summary>
-    /// Interaction logic for Trainee.xaml
+    /// Interaction logic for TraineeFullView.xaml
     /// </summary>
-    public partial class TraineeUC : UserControl
+    public partial class TraineeFullView : UserControl
     {
-        public TraineeUC()
+        public TraineeFullView()
         {
             InitializeComponent();
         }
