@@ -69,12 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="Contract\ReportRequest.cs" />
+    <Compile Include="Contract\Response.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\IDatabaseSerializableWithId.cs" />
     <Compile Include="Database\DatabaseSerializable.cs" />
     <Compile Include="Database\DatabaseStream.cs" />
     <Compile Include="Database\IDatabaseStream.cs" />
     <Compile Include="Entities\GymLocation.cs" />
+    <Compile Include="Entities\ObservableObject.cs" />
     <Compile Include="Entities\PrivateTraining.cs" />
     <Compile Include="Entities\Subscription.cs" />
     <Compile Include="Entities\TimeSpanOfWeek.cs" />

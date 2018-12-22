@@ -19,8 +19,34 @@ namespace GymBL.Entities
             this.Subscriptions = subscriptions;
         }
 
-        public IList<DayOfWeek> TrainDays { get; private set; }
-        public IList<Subscription> Subscriptions { get; private set; }
+        private IList<DayOfWeek> _trainDays;
+        private IList<Subscription> _subscriptions;
+
+        public IList<DayOfWeek> TrainDays
+        {
+            get
+            {
+                return _trainDays;
+            }
+            set
+            {
+                _trainDays = value;
+                OnPropertyChanged("TrainDays");
+            }
+        }
+
+        public IList<Subscription> Subscriptions
+        {
+            get
+            {
+                return _subscriptions;
+            }
+            set
+            {
+                _subscriptions = value;
+                OnPropertyChanged("Subscriptions");
+            }
+        }
 
         public override void Serialize(IDatabaseStream stream)
         {

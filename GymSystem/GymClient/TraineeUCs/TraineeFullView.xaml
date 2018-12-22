@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymClient.TraineeUCs"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid FlowDirection="RightToLeft" Background="White">
+             d:DesignHeight="450" d:DesignWidth="800"
+                          DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             >
+    <Grid FlowDirection="RightToLeft" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
@@ -21,6 +23,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -39,57 +42,100 @@
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <Label HorizontalContentAlignment="Center" Content="TraineeName" Grid.Column="1" Grid.Row="1" FontSize="30"  Grid.ColumnSpan="20"></Label>
-        
+        <TextBlock  Grid.Column="1" Grid.Row="1" FontSize="30"  Grid.ColumnSpan="20">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}  {1} - {2}">
+                    <Binding Path="Trainee.Firstname" />
+                    <Binding Path="Trainee.Surname" />
+                    <Binding Path="Trainee.IDNumber"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+
+
+
         <!--ROW 3-->
         
         <TextBlock Grid.Column="3" Grid.Row="3" Text="ת.ז:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="5" Grid.Row="3" Text="300951217" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="5" Grid.Row="3" Text="{Binding Trainee.IDNumber,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <TextBlock Grid.Column="7" Grid.Row="3" Text="שם פרטי:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="9" Grid.Row="3" Text="מיכאל" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="9" Grid.Row="3" Text="{Binding Trainee.Firstname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <TextBlock Grid.Column="11" Grid.Row="3" Text="שם משפחה:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="13" Grid.Row="3" Text="כהן" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="13" Grid.Row="3" Text="{Binding Trainee.Surname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
+        <Image Grid.Row="3" Grid.Column="14" Grid.RowSpan="100" VerticalAlignment="Top" Height="200"  Source="pack://application:,,,/Resources/theRock.jpg"></Image>
         <!--ROW 5-->
+        <!--
+                 
+                   string , DateTime Birthdate-->
 
         <TextBlock Grid.Column="3" Grid.Row="5" Text="טלפון:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="5" Grid.Row="5" Text="036521029" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="5" Grid.Row="5" Text="{Binding Trainee.HomePhone,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <TextBlock Grid.Column="7" Grid.Row="5" Text="כתובת:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.ColumnSpan="5" Grid.Column="9"  Grid.Row="5" Text="לויתן 5 חולון" FontSize="12" ></TextBox>
+        <TextBox Grid.ColumnSpan="5" Grid.Column="9"  Grid.Row="5" Text="{Binding Trainee.Address,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" ></TextBox>
 
 
         <!--ROW 7-->
         <TextBlock Grid.Column="3" Grid.Row="7" Text="סלולרי:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="5" Grid.Row="7" Text="0528998829" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="5" Grid.Row="7" Text="{Binding Trainee.CellPhone,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <TextBlock Grid.Column="7" Grid.Row="7" Text="מייל:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="7" Text="micaelpc@gmail.com"  FontSize="12" ></TextBox>
+        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="7" Text="{Binding Trainee.EMail,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  FontSize="12" ></TextBox>
         
         <!--ROW 9-->
 
         <TextBlock Grid.Column="3" Grid.Row="9" Text="תאריך לידה" FontWeight="Bold" FontSize="12"></TextBlock>
-        <DatePicker Grid.Column="5" Grid.Row="9"  SelectedDateFormat="Short"></DatePicker>
+        <DatePicker SelectedDate="{Binding Trainee.Birthdate}" Grid.Column="5" Grid.Row="9"   SelectedDateFormat="Short"></DatePicker>
 
         <TextBlock Grid.Column="7" Grid.Row="9" Text="הערות:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <RichTextBox Grid.ColumnSpan="5" Grid.Column="9" Grid.Row="9" Height="100">
+        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="9" Text="{Binding Trainee.Comment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
             
-        </RichTextBox>
+        </TextBox>
+
 
         <!--ROW 11-->
         <TextBlock FontWeight="Bold" FontSize="12" Grid.Column="3" Grid.Row="11" Text="היסטורית מנויים:"></TextBlock>
+        <DataGrid CanUserAddRows="True" AutoGenerateColumns="False" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="5" 
+                  ItemsSource="{Binding Trainee.Subscriptions ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="התחלה" Width="SizeToCells">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <DatePicker SelectedDate="{Binding Start}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="סוף" Width="SizeToCells">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <DatePicker SelectedDate="{Binding End}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Header="תשלום חודשי" Binding="{Binding MonthlyPayment}" />
+            </DataGrid.Columns>
 
-         <!--ROW 13-->
-        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.ColumnSpan="20" FlowDirection="LeftToRight" >
-            <Button Width="50" Height="30" Margin="10" >עדכן
+
+        </DataGrid>
+
+         <!--ROW 12-->
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.ColumnSpan="20" FlowDirection="LeftToRight"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button x:Name="UpdateChangesBtn" Click="UpdateChangesBtn_Click" Width="50" Height="30" Margin="5" >עדכן
 
             </Button>
-            <Button Width="100" Height="30" Margin="10" >בטל שינויים
+            <Button Width="100" Height="30" Margin="5" >בטל שינויים
 
             </Button>
+            <Button x:Name="RetriveTrainees" Click="RetriveTrainees_Click" Width="100" Height="30" Margin="5" >שליפת מתאמנים
+
+            </Button>
+
         </StackPanel> 
         
         

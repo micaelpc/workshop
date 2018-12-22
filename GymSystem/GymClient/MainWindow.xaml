@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         
         >
-    <Grid Margin="0,1,0,-1">
+    <Grid Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -24,16 +24,19 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="1" FontSize="30" Margin="143,0,142,53">חדר כושר מ.ט</Label>
-        <TabControl Grid.Column="0" FlowDirection="RightToLeft" Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="334" Margin="24,54,0,0" Grid.Row="1" Grid.RowSpan="4" VerticalAlignment="Top" Width="742">
-            <TabItem Header="מתאמן">
+        <Image  VerticalAlignment="Center" Width="100" Source="pack://application:,,,/Resources/gymLogo.jpg" Grid.Column="2"  HorizontalAlignment="Center" Grid.Row="1"/>
+        <TabControl Grid.Column="0" FlowDirection="RightToLeft" Grid.ColumnSpan="100"  HorizontalAlignment="Stretch"  Grid.Row="2" Grid.RowSpan="100" VerticalAlignment="Stretch" >
+            <TabItem Header="מתאמנים">
                 <ContentControl Content="{Binding CurrentTraineeUC}"></ContentControl>
             </TabItem>
-            <TabItem Header="מאמן">
-                <Grid Background="Green"/>
+            <TabItem Header="מאמנים">
+                <ContentControl Content="{Binding CurrentTrainerUC}"></ContentControl>
             </TabItem>
-            <TabItem Header="Test">
-                <ContentControl Content="{Binding CurrentPageViewModel}"></ContentControl>
+            <TabItem Header="אימונים אישיים">
+                <ContentControl Content="{Binding CurrentPrivateTrainingUC}"></ContentControl>
+            </TabItem>
+            <TabItem Header="דוחות">
+                <ContentControl Content="{Binding CurrentReportUC}"></ContentControl>
             </TabItem>
             <Label Content="Label" Height="100" Width="100"/>
             <TextBox Height="21" TextWrapping="Wrap" Text="TextBox" Width="133"/>

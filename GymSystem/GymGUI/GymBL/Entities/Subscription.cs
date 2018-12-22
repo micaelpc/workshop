@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GymBL.Entities
 {
-    public class Subscription : IDatabaseSerializableWithId
+    public class Subscription : ObservableObject, IDatabaseSerializableWithId
     {
         public Subscription() { }
 
@@ -24,12 +24,85 @@ namespace GymBL.Entities
             this.IsActive = isActive;
             this.Trainee = trainee;
         }
+        
+        private int _id;
+        private DateTime _start;
+        private DateTime _end;
+        private uint _monthlyPayment;
+        private bool _isActive;
 
-        public int Id { get; private set; }
-        public DateTime Start { get; private set; }
-        public DateTime End { get; private set; }
-        public uint MonthlyPayment { get; private set; }
-        public bool IsActive { get; private set; }
+
+
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+
+
+
+        public DateTime Start
+        {
+            get
+            {
+                return _start;
+            }
+            set
+            {
+                _start = value;
+                OnPropertyChanged("Start");
+            }
+        }
+
+
+        public DateTime End
+        {
+            get
+            {
+                return _end;
+            }
+            set
+            {
+                _end = value;
+                OnPropertyChanged("End");
+            }
+        }
+
+
+        public uint MonthlyPayment
+        {
+            get
+            {
+                return _monthlyPayment;
+            }
+            set
+            {
+                _monthlyPayment = value;
+                OnPropertyChanged("MonthlyPayment");
+            }
+        }
+
+
+        public bool IsActive
+        {
+            get
+            {
+                return _isActive;
+            }
+            set
+            {
+                _isActive = value;
+                OnPropertyChanged("IsActive");
+            }
+        }
+
         public Trainee Trainee { get; private set; }
 
         public string GetId()
