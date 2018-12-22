@@ -4,10 +4,10 @@ using System.Data;
 
 namespace GymBL.Entities
 {
-    class GymLocation : IDatabaseSerializableWithId
+    public class GymLocation : IDatabaseSerializableWithId
     {
-        GymLocation() { }
-        GymLocation(string name, string address, IList<TimeSpanOfWeek> openingTime)
+        public GymLocation() { }
+        public GymLocation(string name, string address, IList<TimeSpanOfWeek> openingTime)
         {
             this.Name = name;
             this.Address = address;

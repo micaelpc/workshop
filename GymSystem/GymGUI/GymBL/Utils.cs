@@ -14,6 +14,8 @@ namespace GymBL
 
         public static IList<TimeSpanOfWeek> FromString(string data)
         {
+            if (data.Length == 0)
+                return new List<TimeSpanOfWeek>();
             return data.Split('|').
                 Select(x => x.Split(';')).
                 Select(x => new TimeSpanOfWeek((DayOfWeek)int.Parse(x[0]), int.Parse(x[1]), int.Parse(x[2]))).ToList();

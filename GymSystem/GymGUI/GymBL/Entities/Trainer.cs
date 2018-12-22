@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GymBL.Entities
 {
-    class Trainer : Person
+    public class Trainer : Person
     {
         public Trainer() { }
         public Trainer(string IDNumber, string Firstname, string Surname,
@@ -24,13 +24,13 @@ namespace GymBL.Entities
         public override void Serialize(IDatabaseStream stream)
         {
             base.Serialize(stream);
-            stream.Add("TrainDays", string.Join("|", WorkDays.Select(x => $"{(int)x.Day};{x.StartTime};{x.EndTime}").ToArray()));
+            stream.Add("WorkDays", string.Join("|", WorkDays.Select(x => $"{(int)x.Day};{x.StartTime};{x.EndTime}").ToArray()));
         }
 
         public override void Load(DataRow row, Database.Database database)
         {
             base.Load(row, database);
-            WorkDays = Utils.FromString(row.Field<string>("TrainDays"));
+            WorkDays = Utils.FromString(row.Field<string>("WorkDays"));
         }
     }
 }
