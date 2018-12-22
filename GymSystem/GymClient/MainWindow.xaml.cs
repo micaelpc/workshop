@@ -88,6 +88,9 @@ namespace GymClient
 
             AddHandler(TraineeUC.ViewTraineeEvent,
                 new RoutedEventHandler(ViewTraineeEvent_handler));
+
+            AddHandler(TraineeFullView.NavToTraineeRetriveEvent,
+                new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
         }
 
 

@@ -144,5 +144,11 @@
       <Name>GymBL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\gymLogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\theRock.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

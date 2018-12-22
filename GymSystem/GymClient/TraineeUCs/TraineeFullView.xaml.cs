@@ -22,6 +22,10 @@ namespace GymClient.TraineeUCs
     public partial class TraineeFullView : UserControl
     {
 
+        public static readonly RoutedEvent NavToTraineeRetriveEvent =
+            EventManager.RegisterRoutedEvent("NavToTraineeRetriveEvent", RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler), typeof(TraineeFullView));
+
         public Trainee Trainee
         {
             get { return (Trainee)GetValue(TraineeProperty); }
@@ -58,6 +62,14 @@ namespace GymClient.TraineeUCs
 
 
             return true;
+        }
+
+        private void RetriveTrainees_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("השינויים שביצעת ברשומת המתאמן לא ישמרו ,\n האם אתה בטוח ?", "השנויים שביצעת בסכנה", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                RaiseEvent(new RoutedEventArgs(TraineeFullView.NavToTraineeRetriveEvent));
+            }
         }
     }
 }

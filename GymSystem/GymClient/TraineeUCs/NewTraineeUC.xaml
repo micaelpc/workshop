@@ -86,7 +86,7 @@
         <!--ROW 13-->
         <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.ColumnSpan="20" FlowDirection="LeftToRight" >
             
-            <Button Width="50" Height="20" Margin="5" x:Name="AddNewTrainee" Click="AddNewTrainee_Click" >בצע
+            <Button Width="50" Height="20" Margin="5" x:Name="AddNewTraineeBtn" Click="AddNewTrainee_Click" >בצע
             </Button>
             
             <Button x:Name="ReturntToDefaltBtn" Click="ReturntToDefaltBtn_Click"  Width="100" Height="20" Margin="5">אפס שינויים

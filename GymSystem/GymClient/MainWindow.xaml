@@ -12,7 +12,7 @@
     <Grid Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -24,8 +24,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="1" FontSize="30" Margin="143,0,142,53">חדר כושר מ.ט</Label>
-        <TabControl Grid.Column="0" FlowDirection="RightToLeft" Grid.ColumnSpan="100"  HorizontalAlignment="Stretch" Margin="24,54,0,0" Grid.Row="1" Grid.RowSpan="100" VerticalAlignment="Stretch" >
+        <Image  VerticalAlignment="Center" Width="100" Source="pack://application:,,,/Resources/gymLogo.jpg" Grid.Column="2"  HorizontalAlignment="Center" Grid.Row="1"/>
+        <TabControl Grid.Column="0" FlowDirection="RightToLeft" Grid.ColumnSpan="100"  HorizontalAlignment="Stretch"  Grid.Row="2" Grid.RowSpan="100" VerticalAlignment="Stretch" >
             <TabItem Header="מתאמן">
                 <ContentControl Content="{Binding CurrentTraineeUC}"></ContentControl>
             </TabItem>

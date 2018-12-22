@@ -1,4 +1,5 @@
-﻿using GymBL.Entities;
+﻿using GymBL.Contract;
+using GymBL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,24 @@ namespace GymClient.TraineeUCs
             EventManager.RegisterRoutedEvent("NavToTraineeRetriveEvent", RoutingStrategy.Bubble,
             typeof(RoutedEventHandler), typeof(TraineeUC));
 
+
+
+
+
+        public Trainee NewTrainee
+        {
+            get { return (Trainee)GetValue(NewTraineeProperty); }
+            set { SetValue(NewTraineeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for NewTrainee.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NewTraineeProperty =
+            DependencyProperty.Register("NewTrainee", typeof(Trainee), typeof(NewTraineeUC), new PropertyMetadata(new Trainee()));
+
+
+
+
+
         private void RetriveTrainee_Click(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(NewTraineeUC.NavToTraineeRetriveEvent, new Trainee()));
@@ -39,12 +58,30 @@ namespace GymClient.TraineeUCs
 
         private void ReturntToDefaltBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NewTrainee = new Trainee();
         }
 
         private void AddNewTrainee_Click(object sender, RoutedEventArgs e)
         {
+           Response res =   AddNewTrainee(NewTrainee);
 
+            if (res.ResponseStatus== ResponseStatusType.Success)
+            {
+                MessageBox.Show("המתאמן הוכנס בהצלחה");
+                RaiseEvent(new RoutedEventArgs(NewTraineeUC.NavToTraineeRetriveEvent, new Trainee()));
+            }
+            else
+            {
+                MessageBox.Show(res.FailedReasons.FirstOrDefault(), "אירעה שגיאה");
+            }
+            
+        }
+
+        private Response AddNewTrainee(Trainee newTrainee)
+        {
+            ///TODO - TAL logic to insert the new Trainee to the DB
+
+            return new Response { ResponseStatus = ResponseStatusType.Success };
         }
     }
 }
