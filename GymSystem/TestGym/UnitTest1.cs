@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GymBL;
 using GymBL.Database;
 using GymBL.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -68,6 +69,43 @@ Integrated Security=True");
             var trainer = d.Get<Trainer>("300951212");
             Assert.AreEqual(trainer.Address, "לויתן 6 חולון");
             d.DeleteAll<Trainer>();
+        }
+
+
+        [TestMethod]
+        public void TestMethod4()
+        {
+            Database d = new Database(@"
+Data Source=(LocalDB)\MSSQLLocalDB;
+AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;
+Integrated Security=True");
+            d.DeleteAll<Trainer>();
+            d.DeleteAll<Trainee>();
+            d.DeleteAll<PrivateTraining>();
+            var trainer = new Trainer
+                  ("300951212", "מיכאל", "כהן", "לויתן 6 חולון",
+                  "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now,
+                  "רגיש ללקטוז", new List<TimeSpanOfWeek>());
+
+            var trainee = new Trainee
+                  ("300951212", "מיכאל", "כהן", "לויתן 6 חולון",
+                  "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now,
+                  "רגיש ללקטוז", new List<DayOfWeek>(), new List<Subscription>() { });
+
+            d.Insert(trainer);
+            d.Insert(trainee);
+            var a = new PrivateTraining(trainer, trainee, Utils.Trim(DateTime.Now, TimeSpan.TicksPerSecond), TimeSpan.FromSeconds(10));
+            d.Insert(a);
+            var b  = d.Get<PrivateTraining>(a.Id);
+            Assert.AreEqual(a.Id, b.Id);
+            Assert.AreEqual(a.Date, b.Date);
+            Assert.AreEqual(a.Duration, b.Duration);
+            Assert.AreEqual(a.Trainee.IDNumber, b.Trainee.IDNumber);
+            Assert.AreEqual(a.Trainer.IDNumber, b.Trainer.IDNumber);
+
+            d.DeleteAll<Trainer>();
+            d.DeleteAll<Trainee>();
+            d.DeleteAll<PrivateTraining>();
         }
     }
 }

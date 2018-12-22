@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GymBL
 {
-    static class Utils
+    public static class Utils
     {
         public static string ToString(IList<TimeSpanOfWeek> list)
         {
@@ -21,5 +21,9 @@ namespace GymBL
                 Select(x => new TimeSpanOfWeek((DayOfWeek)int.Parse(x[0]), int.Parse(x[1]), int.Parse(x[2]))).ToList();
         }
 
+        public static DateTime Trim(this DateTime date, long ticks)
+        {
+            return new DateTime(date.Ticks - (date.Ticks % ticks), date.Kind);
+        }
     }
 }
