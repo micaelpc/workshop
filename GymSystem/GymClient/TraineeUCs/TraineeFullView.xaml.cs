@@ -1,4 +1,5 @@
-﻿using GymBL.Entities;
+﻿using GymBL.Database;
+using GymBL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,11 +58,14 @@ namespace GymClient.TraineeUCs
 
         private bool SetChangesToTrainee(Trainee trainee)
         {
-
-            //TODO - TAL set function that update the trainee details - and return true if succeded - false if not
-
-
-            return true;
+            try
+            {
+                Database.GetInstance().Update(Trainee);
+                return true;
+            }
+            catch (Exception) {
+                return false;
+            }
         }
 
         private void RetriveTrainees_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using GymBL.Contract;
+using GymBL.Database;
 using GymBL.Entities;
 using System;
 using System.Collections.Generic;
@@ -75,14 +76,18 @@ namespace GymClient.TraineeUCs
             {
                 MessageBox.Show(res.FailedReasons.FirstOrDefault(), "אירעה שגיאה");
             }
-            
         }
 
         private Response AddNewTrainee(Trainee newTrainee)
         {
-            ///TODO - TAL logic to insert the new Trainee to the DB
-
-            return new Response { ResponseStatus = ResponseStatusType.Success };
+            try
+            {
+                Database.GetInstance().Insert(newTrainee);
+                return new Response { ResponseStatus = ResponseStatusType.Success };
+            }
+            catch (Exception e) {
+                return Response.FromException(e);
+            }
         }
     }
 }

@@ -15,6 +15,9 @@ namespace GymBL.Contract
         public ResponseStatusType ResponseStatus { get; set; }
         public object Value { get; set; }
 
+        public static Response FromException(Exception e) {
+            return new Response { FailedReasons = new List<string>() { e.Message }, ResponseStatus = ResponseStatusType.Failed };
+        }
     }
 
     public enum ResponseStatusType {

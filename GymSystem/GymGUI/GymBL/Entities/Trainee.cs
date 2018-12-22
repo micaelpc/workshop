@@ -9,7 +9,10 @@ namespace GymBL.Entities
 {
     public class Trainee : Person
     {
-        public Trainee() { }
+        public Trainee() {
+            TrainDays = new List<DayOfWeek>();
+            Subscriptions = new List<Subscription>();
+        }
         public Trainee(string IDNumber, string Firstname, string Surname,
                   string Address, string HomePhone,
                   string CellPhone, string EMail, DateTime Birthdate,

@@ -1,4 +1,5 @@
-﻿using GymBL.Entities;
+﻿using GymBL.Database;
+using GymBL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ namespace GymClient
     /// <summary>
     /// Interaction logic for Trainee.xaml
     /// </summary>
-    public partial class TraineeUC : UserControl ,INotifyPropertyChanged
+    public partial class TraineeUC : UserControl, INotifyPropertyChanged
     {
 
 
@@ -92,38 +93,24 @@ namespace GymClient
         private void InitTraineesMock()
         {
             Trainees.Clear();
-            Trainees.Add(new Trainee
-                  ("300951212", "מיכאל", "כהן", "לויתן 6 חולון", 
-                  "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now,
-                  "רגיש ללקטוז", null,new List<Subscription>()));
-            Trainees.Add(new Trainee
-                 ("300952212", "טל", "כהן", "לויתן 5 חולון", "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now, "רגיש ללקטוז", null, new List<Subscription>()));
-            Trainees.Add(new Trainee
-                 ("300953212", "מיכאל", "שלטי", "לויתן 7 חולון", "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now, "רגיש ללקטוז", null, new List<Subscription>()));
-            Trainees.Add(new Trainee
-                 ("300954212", "טל", "שלטי", "לויתן 86 חולון", "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now, "רגיש ללקטוז", null, new List<Subscription>()));
+            foreach(var trainee in Database.GetInstance().GetAll<Trainee>()) {
+                Trainees.Add(trainee);
+            }
         }
 
         private void NewTrainee_Click(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(NewTrainertEvent,new Trainee()));
+            RaiseEvent(new RoutedEventArgs(NewTrainertEvent, new Trainee()));
         }
 
         private void ExcuteRetrival_Click(object sender, RoutedEventArgs e)
         {
-            Trainees =  GetTraineeRerivalResults(RetrivalTrainee);
+            Trainees = GetTraineeRerivalResults(RetrivalTrainee);
         }
 
         private ObservableCollection<Trainee> GetTraineeRerivalResults(Trainee retrivalTrainee)
         {
-
-            ///TODO - TAL complete Logic from server here!
-
-
-            ///this is a mock! delete it after finishing.
-            return new ObservableCollection<Trainee> { new Trainee {IDNumber = "21221212",Firstname="תוצאה",Surname="מצד שרת" },
-
-                                                       new Trainee{ IDNumber = "33333333",Firstname="תוצאה נוספת",Surname="מצד שרת"} };
+            return new ObservableCollection<Trainee>(Database.GetInstance().GetAll<Trainee>());
         }
 
 
@@ -138,7 +125,7 @@ namespace GymClient
         {
             if (((DataGridRow)sender).DataContext is Trainee trainee)
             {
-                RaiseEvent(new RoutedEventArgs(ViewTraineeEvent, trainee));  
+                RaiseEvent(new RoutedEventArgs(ViewTraineeEvent, trainee));
             }
         }
 

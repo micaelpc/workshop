@@ -9,7 +9,26 @@ namespace GymBL.Database
 {
     public class Database
     {
-        
+        private static Database Instance;
+
+        public static string GetConnectionString() {
+            if (System.Environment.MachineName == "SHALTIPC")
+                return @"
+Data Source=(LocalDB)\MSSQLLocalDB;
+AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;
+Integrated Security=True";
+            else
+                return @"
+Data Source=(LocalDB)\MSSQLLocalDB;
+AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;
+Integrated Security=True"; // TODO: Michael. Change connection string here
+        }
+        public static Database GetInstance() {
+            if (Instance == null)
+                Instance = new Database(GetConnectionString());
+            return Instance;
+        }
+
         /// <summary>
         /// the constructor for this class
         /// </summary>
