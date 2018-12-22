@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="Contract\ReportRequest.cs" />
     <Compile Include="Contract\Response.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\IDatabaseSerializableWithId.cs" />

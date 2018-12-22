@@ -30,13 +30,13 @@
                 <ContentControl Content="{Binding CurrentTraineeUC}"></ContentControl>
             </TabItem>
             <TabItem Header="מאמנים">
-                <Grid Background="Green"/>
+                <ContentControl Content="{Binding CurrentTrainerUC}"></ContentControl>
             </TabItem>
             <TabItem Header="אימונים אישיים">
-                <ContentControl Content="{Binding CurrentPageViewModel}"></ContentControl>
+                <ContentControl Content="{Binding CurrentPrivateTrainingUC}"></ContentControl>
             </TabItem>
             <TabItem Header="דוחות">
-                <ContentControl Content="{Binding CurrentPageViewModel}"></ContentControl>
+                <ContentControl Content="{Binding CurrentReportUC}"></ContentControl>
             </TabItem>
             <Label Content="Label" Height="100" Width="100"/>
             <TextBox Height="21" TextWrapping="Wrap" Text="TextBox" Width="133"/>

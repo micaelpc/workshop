@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GymBL.Entities;
+using GymClient.PrivateTrainingUCs;
+using GymClient.ReportsUCs;
 using GymClient.TraineeUCs;
 
 namespace GymClient
@@ -24,15 +26,38 @@ namespace GymClient
     public partial class MainWindow : Window
     {
 
+        #region UC Navigators
+        public UserControl CurrentPrivateTrainingUC
+        {
+            get { return (UserControl)GetValue(CurrentPrivateTrainingUCProperty); }
+            set { SetValue(CurrentPrivateTrainingUCProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CurrentPrivateTrainingUC.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentPrivateTrainingUCProperty =
+            DependencyProperty.Register("CurrentPrivateTrainingUC", typeof(UserControl), typeof(MainWindow), new PropertyMetadata(null));
 
 
+        public UserControl CurrentTrainerUC
+        {
+            get { return (UserControl)GetValue(CurrentTrainerUCProperty); }
+            set { SetValue(CurrentTrainerUCProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CurrentTrainerUC.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentTrainerUCProperty =
+            DependencyProperty.Register("CurrentTrainerUC", typeof(UserControl), typeof(MainWindow), new PropertyMetadata(null));
 
 
+        public UserControl CurrentReportUC
+        {
+            get { return (UserControl)GetValue(CurrentReportUCProperty); }
+            set { SetValue(CurrentReportUCProperty, value); }
+        }
 
-
-
-
-
+        // Using a DependencyProperty as the backing store for CurrentReportUC.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentReportUCProperty =
+            DependencyProperty.Register("CurrentReportUC", typeof(UserControl), typeof(MainWindow), new PropertyMetadata(null));
 
         public UserControl CurrentTraineeUC
         {
@@ -43,27 +68,7 @@ namespace GymClient
         // Using a DependencyProperty as the backing store for CurrentTraineeUC.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CurrentTraineeUCProperty =
             DependencyProperty.Register("CurrentTraineeUC", typeof(UserControl), typeof(MainWindow), new PropertyMetadata(null));
-
-
-
-
-
-        public UserControl CurrentPageViewModel
-        {
-            get { return (UserControl)GetValue(CurrentPageViewModelProperty); }
-            set { SetValue(CurrentPageViewModelProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CurrentPageViewModel.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CurrentPageViewModelProperty =
-            DependencyProperty.Register("CurrentPageViewModel", typeof(UserControl), typeof(MainWindow), new PropertyMetadata(null));
-
-
-
-
-
-
-
+        #endregion
 
         public MainWindow()
         {
@@ -74,8 +79,10 @@ namespace GymClient
 
         private void InitUCs()
         {
-            CurrentPageViewModel = new UserControlTest();
             CurrentTraineeUC = new TraineeUC();
+            CurrentReportUC = new ReportsMenuUC();
+            CurrentTrainerUC = new TrainerUC();
+            CurrentPrivateTrainingUC = new PrivateTrainingUC();
         }
 
         private void InitEvents()

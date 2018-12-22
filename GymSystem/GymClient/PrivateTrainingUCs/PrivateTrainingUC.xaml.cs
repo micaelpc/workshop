@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GymClient.ReportsUCs
+namespace GymClient.PrivateTrainingUCs
 {
     /// <summary>
-    /// Interaction logic for ReportsMenu.xaml
+    /// Interaction logic for PrivateTrainingUC.xaml
     /// </summary>
-    public partial class ReportsMenu : UserControl
+    public partial class PrivateTrainingUC : UserControl
     {
-        public ReportsMenu()
+        public PrivateTrainingUC()
         {
             InitializeComponent();
         }
