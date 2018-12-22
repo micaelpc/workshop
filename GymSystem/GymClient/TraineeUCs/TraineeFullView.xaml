@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymClient.TraineeUCs"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+                          DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             >
     <Grid FlowDirection="RightToLeft" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
@@ -40,51 +42,65 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label HorizontalContentAlignment="Center" Content="TraineeName" Grid.Column="1" Grid.Row="1" FontSize="30"  Grid.ColumnSpan="20"></Label>
-        
+        <TextBlock  Grid.Column="1" Grid.Row="1" FontSize="30"  Grid.ColumnSpan="20">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}  {1} - {2}">
+                    <Binding Path="Trainee.Firstname" />
+                    <Binding Path="Trainee.Surname" />
+                    <Binding Path="Trainee.IDNumber"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+
+
+
         <!--ROW 3-->
         
         <TextBlock Grid.Column="3" Grid.Row="3" Text="ת.ז:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="5" Grid.Row="3" Text="300951217" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="5" Grid.Row="3" Text="{Binding Trainee.IDNumber,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <TextBlock Grid.Column="7" Grid.Row="3" Text="שם פרטי:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="9" Grid.Row="3" Text="מיכאל" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="9" Grid.Row="3" Text="{Binding Trainee.Firstname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <TextBlock Grid.Column="11" Grid.Row="3" Text="שם משפחה:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="13" Grid.Row="3" Text="כהן" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="13" Grid.Row="3" Text="{Binding Trainee.Surname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <!--ROW 5-->
+        <!--
+                 
+                   string , DateTime Birthdate-->
 
         <TextBlock Grid.Column="3" Grid.Row="5" Text="טלפון:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="5" Grid.Row="5" Text="036521029" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="5" Grid.Row="5" Text="{Binding Trainee.HomePhone,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <TextBlock Grid.Column="7" Grid.Row="5" Text="כתובת:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.ColumnSpan="5" Grid.Column="9"  Grid.Row="5" Text="לויתן 5 חולון" FontSize="12" ></TextBox>
+        <TextBox Grid.ColumnSpan="5" Grid.Column="9"  Grid.Row="5" Text="{Binding Trainee.Address,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" ></TextBox>
 
 
         <!--ROW 7-->
         <TextBlock Grid.Column="3" Grid.Row="7" Text="סלולרי:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.Column="5" Grid.Row="7" Text="0528998829" FontSize="12" Width="100"></TextBox>
+        <TextBox Grid.Column="5" Grid.Row="7" Text="{Binding Trainee.CellPhone,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
         <TextBlock Grid.Column="7" Grid.Row="7" Text="מייל:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="7" Text="micaelpc@gmail.com"  FontSize="12" ></TextBox>
+        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="7" Text="{Binding Trainee.EMail,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  FontSize="12" ></TextBox>
         
         <!--ROW 9-->
 
         <TextBlock Grid.Column="3" Grid.Row="9" Text="תאריך לידה" FontWeight="Bold" FontSize="12"></TextBlock>
-        <DatePicker Grid.Column="5" Grid.Row="9"  SelectedDateFormat="Short"></DatePicker>
+        <DatePicker SelectedDate="{Binding Trainee.Birthdate}" Grid.Column="5" Grid.Row="9"   SelectedDateFormat="Short"></DatePicker>
 
         <TextBlock Grid.Column="7" Grid.Row="9" Text="הערות:" FontWeight="Bold" FontSize="12"></TextBlock>
-        <RichTextBox Grid.ColumnSpan="5" Grid.Column="9" Grid.Row="9" Height="100">
+        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="9" Text="{Binding Trainee.Comment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
             
-        </RichTextBox>
+        </TextBox>
 
         <!--ROW 11-->
         <TextBlock FontWeight="Bold" FontSize="12" Grid.Column="3" Grid.Row="11" Text="היסטורית מנויים:"></TextBlock>
 
          <!--ROW 13-->
         <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.ColumnSpan="20" FlowDirection="LeftToRight" >
-            <Button Width="50" Height="30" Margin="10" >עדכן
+            <Button x:Name="UpdateChangesBtn" Click="UpdateChangesBtn_Click" Width="50" Height="30" Margin="10" >עדכן
 
             </Button>
             <Button Width="100" Height="30" Margin="10" >בטל שינויים

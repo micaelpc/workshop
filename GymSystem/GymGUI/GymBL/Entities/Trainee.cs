@@ -19,6 +19,8 @@ namespace GymBL.Entities
             this.Subscriptions = subscriptions;
         }
 
+
+
         public IList<DayOfWeek> TrainDays { get; private set; }
         public IList<Subscription> Subscriptions { get; private set; }
 

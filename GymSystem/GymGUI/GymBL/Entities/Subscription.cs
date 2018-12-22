@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GymBL.Entities
 {
-    public class Subscription : IDatabaseSerializableWithId
+    public class Subscription : ObservableObject, IDatabaseSerializableWithId
     {
         public Subscription() { }
         public Subscription(string id, DateTime start, DateTime end, uint monthlyPayment, bool isActive, Trainee trainee) {

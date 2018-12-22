@@ -29,15 +29,13 @@ namespace GymClient
             EventManager.RegisterRoutedEvent("NewTrainertEvent", RoutingStrategy.Bubble,
             typeof(RoutedEventHandler), typeof(TraineeUC));
 
+        public static readonly RoutedEvent ViewTraineeEvent =
+            EventManager.RegisterRoutedEvent("ViewTrainertEvent", RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler), typeof(TraineeUC));
 
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        // Create the OnPropertyChanged method to raise the event
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+
 
         public Trainee RetrivalTrainee
         {
@@ -51,18 +49,48 @@ namespace GymClient
 
 
 
+        private void NotifyPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 
+        private ObservableCollection<Trainee> _trainees = new ObservableCollection<Trainee>();
+        private Trainee _selectedTrainee = new Trainee();
 
         public ObservableCollection<Trainee> Trainees
         {
-            get { return (ObservableCollection<Trainee>)GetValue(TraineesProperty); }
-            set { SetValue(TraineesProperty, value); }
+            get { return _trainees; }
+            set
+            {
+                _trainees = value;
+                NotifyPropertyChanged("Trainees");
+            }
         }
 
-        // Using a DependencyProperty as the backing store for Trainees.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TraineesProperty =
-            DependencyProperty.Register("Trainees", typeof(ObservableCollection<Trainee>),
-                typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Trainee>()));
+
+        public Trainee SelectedTrainee
+        {
+            get { return _selectedTrainee; }
+            set
+            {
+                _selectedTrainee = value;
+                NotifyPropertyChanged("SelectedTrainee");
+            }
+        }
+
+
+
+
+        //public ObservableCollection<Trainee> Trainees
+        //{
+        //    get { return (ObservableCollection<Trainee>)GetValue(TraineesProperty); }
+        //    set { SetValue(TraineesProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for Trainees.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty TraineesProperty =
+        //    DependencyProperty.Register("Trainees", typeof(ObservableCollection<Trainee>),
+        //        typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Trainee>()));
 
         public TraineeUC()
         {
@@ -106,5 +134,23 @@ namespace GymClient
 
                                                        new Trainee{ IDNumber = "33333333",Firstname="תוצאה נוספת",Surname="מצד שרת"} };
         }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        // Create the OnPropertyChanged method to raise the event
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void TraineeDGRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (((DataGridRow)sender).DataContext is Trainee trainee)
+            {
+                RaiseEvent(new RoutedEventArgs(ViewTraineeEvent, trainee));  
+            }
+        }
+
+
     }
 }

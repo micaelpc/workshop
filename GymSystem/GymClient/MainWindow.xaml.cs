@@ -27,15 +27,7 @@ namespace GymClient
 
 
 
-        public string koko
-        {
-            get { return (string)GetValue(kokoProperty); }
-            set { SetValue(kokoProperty, value); }
-        }
 
-        // Using a DependencyProperty as the backing store for koko.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty kokoProperty =
-            DependencyProperty.Register("koko", typeof(string), typeof(MainWindow), new PropertyMetadata("ghfjhfjhgf"));
 
 
 
@@ -72,6 +64,7 @@ namespace GymClient
 
 
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -92,6 +85,16 @@ namespace GymClient
 
             AddHandler(NewTraineeUC.NavToTraineeRetriveEvent,
                  new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+
+            AddHandler(TraineeUC.ViewTraineeEvent,
+                new RoutedEventHandler(ViewTraineeEvent_handler));
+        }
+
+
+        #region Event Handlers
+        private void ViewTraineeEvent_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTraineeUC = new TraineeFullView((Trainee)e.OriginalSource);
         }
 
         private void NavToTraineeRetriveEvent_handler(object sender, RoutedEventArgs e)
@@ -103,5 +106,7 @@ namespace GymClient
         {
             CurrentTraineeUC = new NewTraineeUC();
         }
+        #endregion
+
     }
 }
