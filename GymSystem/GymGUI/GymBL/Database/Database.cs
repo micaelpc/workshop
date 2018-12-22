@@ -46,7 +46,7 @@ Integrated Security=True"; // TODO: Michael. Change connection string here
         {
             get;
         }
-        private Dictionary<Tuple<string, Type>, object> m_liveObjects = new Dictionary<Tuple<string, Type>, object>();
+        private Dictionary<Tuple<object, Type>, object> m_liveObjects = new Dictionary<Tuple<object, Type>, object>();
 
 
         public void Update<T>(T value) where T : IDatabaseSerializable
@@ -64,20 +64,20 @@ Integrated Security=True"; // TODO: Michael. Change connection string here
 
         public T Get<T>(string id) where T : IDatabaseSerializable, new()
         {
-            var key = new Tuple<string, Type>(id, typeof(T));
-            if (m_liveObjects.ContainsKey(key))
-                return (T)m_liveObjects[key];
-            T value = new T();
-
-            m_liveObjects[key] = value;
-
             var name = typeof(T).Name;
             var result = ExecuteQuery($"Select * from {name} where id='{id}'");
             if (result.Rows.Count != 1)
                 throw new Exception($"Failed to get {name} with id {id}");
-            value.Load(result.Rows[0], this);
-            m_liveObjects.Remove(key);
-            return value;
+            return Load<T>(result.Rows[0]);
+        }
+
+        public T Get<T>(int id) where T : IDatabaseSerializable, new()
+        {
+            var name = typeof(T).Name;
+            var result = ExecuteQuery($"Select * from {name} where id={id}");
+            if (result.Rows.Count != 1)
+                throw new Exception($"Failed to get {name} with id {id}");
+            return Load<T>(result.Rows[0]);
         }
 
 
@@ -93,11 +93,22 @@ Integrated Security=True"; // TODO: Michael. Change connection string here
             List<T> retValue = new List<T>();
             foreach (DataRow row in result.Rows)
             {
-                T temp = new T();
-                temp.Load(row, this);
+                T temp = Load<T>(row);
                 retValue.Add(temp);
             }
             return retValue;
+        }
+
+        private T Load<T>(DataRow row) where T : IDatabaseSerializable, new()
+        {
+            var key = new Tuple<object, Type>(row["id"], typeof(T));
+            if (m_liveObjects.ContainsKey(key))
+                return (T)m_liveObjects[key];
+            T temp = new T();
+            m_liveObjects[key] = temp;
+            temp.Load(row, this);
+            m_liveObjects.Remove(key);
+            return temp;
         }
 
         public List<T> GetAll<T>() where T : IDatabaseSerializable, new()
@@ -107,8 +118,7 @@ Integrated Security=True"; // TODO: Michael. Change connection string here
             List<T> retValue = new List<T>();
             foreach (DataRow row in result.Rows)
             {
-                T temp = new T();
-                temp.Load(row, this);
+                T temp = Load<T>(row);
                 retValue.Add(temp);
             }
             return retValue;
@@ -141,9 +151,7 @@ Integrated Security=True"; // TODO: Michael. Change connection string here
             adapter.Fill(result);
             return result;
         }
-
-
-
+        
         /// <summary>
         /// this method executes a query that alters the db data such
         /// as update or delete
