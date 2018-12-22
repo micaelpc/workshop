@@ -24,6 +24,7 @@ namespace GymClient.TraineeUCs
     {
         public NewTraineeUC()
         {
+            NewTrainee.Firstname = "קוקוקו";
             InitializeComponent();
         }
 
