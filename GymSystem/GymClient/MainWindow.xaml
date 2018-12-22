@@ -26,13 +26,16 @@
         </Grid.ColumnDefinitions>
         <Image  VerticalAlignment="Center" Width="100" Source="pack://application:,,,/Resources/gymLogo.jpg" Grid.Column="2"  HorizontalAlignment="Center" Grid.Row="1"/>
         <TabControl Grid.Column="0" FlowDirection="RightToLeft" Grid.ColumnSpan="100"  HorizontalAlignment="Stretch"  Grid.Row="2" Grid.RowSpan="100" VerticalAlignment="Stretch" >
-            <TabItem Header="מתאמן">
+            <TabItem Header="מתאמנים">
                 <ContentControl Content="{Binding CurrentTraineeUC}"></ContentControl>
             </TabItem>
-            <TabItem Header="מאמן">
+            <TabItem Header="מאמנים">
                 <Grid Background="Green"/>
             </TabItem>
-            <TabItem Header="Test">
+            <TabItem Header="אימונים אישיים">
+                <ContentControl Content="{Binding CurrentPageViewModel}"></ContentControl>
+            </TabItem>
+            <TabItem Header="דוחות">
                 <ContentControl Content="{Binding CurrentPageViewModel}"></ContentControl>
             </TabItem>
             <Label Content="Label" Height="100" Width="100"/>
