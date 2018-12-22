@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymClient.TraineeUCs"
              mc:Ignorable="d" >
-    <Grid FlowDirection="RightToLeft" Background="White">
+    <Grid FlowDirection="RightToLeft" Background="White" DataContext="">
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
@@ -92,7 +92,7 @@
             <Button x:Name="ReturntToDefaltBtn" Click="ReturntToDefaltBtn_Click"  Width="100" Height="20" Margin="5">אפס שינויים
             </Button>
             
-            <Button x:Name="RetriveTrainee" Click="RetriveTrainee_Click" Width="100" Height="20" Margin="5" >שליפת מתאמן
+            <Button x:Name="RetriveTrainee" Click="RetriveTrainee_Click"  Width="100" Height="20" Margin="5" >שליפת מתאמן
             </Button>
             
         </StackPanel>

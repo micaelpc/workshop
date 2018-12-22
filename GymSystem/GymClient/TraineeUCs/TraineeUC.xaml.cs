@@ -47,7 +47,9 @@ namespace GymClient
 
         // Using a DependencyProperty as the backing store for RetrivalTrainee.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RetrivalTraineeProperty =
-            DependencyProperty.Register("RetrivalTrainee", typeof(Trainee), typeof(MainWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("RetrivalTrainee", typeof(Trainee), typeof(MainWindow), new PropertyMetadata(new Trainee()));
+
+
 
 
 
@@ -66,12 +68,6 @@ namespace GymClient
         {
             InitializeComponent();
             InitTraineesMock();
-            RetrivalTrainee = new Trainee
-            {
-                IDNumber = "123456789",
-                Surname = "כהן",
-                Firstname = "מיכאל"
-            };
         }
 
         private void InitTraineesMock()
@@ -92,6 +88,23 @@ namespace GymClient
         private void NewTrainee_Click(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(NewTrainertEvent,new Trainee()));
+        }
+
+        private void ExcuteRetrival_Click(object sender, RoutedEventArgs e)
+        {
+            Trainees =  GetTraineeRerivalResults(RetrivalTrainee);
+        }
+
+        private ObservableCollection<Trainee> GetTraineeRerivalResults(Trainee retrivalTrainee)
+        {
+
+            ///TODO - TAL complete Logic from server here!
+
+
+            ///this is a mock! delete it after finishing.
+            return new ObservableCollection<Trainee> { new Trainee {IDNumber = "21221212",Firstname="תוצאה",Surname="מצד שרת" },
+
+                                                       new Trainee{ IDNumber = "33333333",Firstname="תוצאה נוספת",Surname="מצד שרת"} };
         }
     }
 }

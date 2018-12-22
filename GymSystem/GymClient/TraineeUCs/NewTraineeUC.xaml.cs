@@ -36,5 +36,15 @@ namespace GymClient.TraineeUCs
         }
 
 
+
+        private void ReturntToDefaltBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddNewTrainee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

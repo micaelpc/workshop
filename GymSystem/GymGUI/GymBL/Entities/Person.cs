@@ -9,7 +9,7 @@ namespace GymBL.Entities
     /// person that is registered as volunteer in the system and can
     /// be assigned to the diffrent activities in the system
     /// </summary>
-    public abstract class Person : IDatabaseSerializableWithId
+    public abstract class Person : ObservableObject, IDatabaseSerializableWithId 
     {
         public Person() { }
 
@@ -42,14 +42,31 @@ namespace GymBL.Entities
             m_Comment = Comment;
         }
 
+
+
+        public string IDNumber
+        {
+            get
+            {
+                if (m_IDNumber == null)
+                    return String.Empty;
+                return m_IDNumber;
+            }
+            set
+            {
+                m_IDNumber = value;
+                OnPropertyChanged("IDNumber");
+            }
+        }
+
         /// <summary>
         /// the unique volunteer`s id number
         /// </summary>
-        public string IDNumber
-        {
-            get { return m_IDNumber; }
-            set { m_IDNumber = value; }
-        }
+        //public string IDNumber
+        //{
+        //    get { return m_IDNumber; }
+        //    set { m_IDNumber = value; }
+        //}
         private string m_IDNumber;
 
         /// <summary>

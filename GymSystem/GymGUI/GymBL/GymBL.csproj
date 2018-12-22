@@ -75,6 +75,7 @@
     <Compile Include="Database\DatabaseStream.cs" />
     <Compile Include="Database\IDatabaseStream.cs" />
     <Compile Include="Entities\GymLocation.cs" />
+    <Compile Include="Entities\ObservableObject.cs" />
     <Compile Include="Entities\PrivateTraining.cs" />
     <Compile Include="Entities\Subscription.cs" />
     <Compile Include="Entities\TimeSpanOfWeek.cs" />
