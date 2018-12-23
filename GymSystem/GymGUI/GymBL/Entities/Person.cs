@@ -166,6 +166,22 @@ namespace GymBL.Entities
         private string m_Comment;
 
         /// <summary>
+        /// the person`s general comment. used to describe unstructured data for 
+        /// the person entity
+        /// </summary>
+        public byte[] Picture
+        {
+            get { return m_Picture; }
+            set
+            {
+                OnPropertyChanged("Picture");
+                m_Picture = value;
+            }
+        }
+        private byte[] m_Picture;
+
+
+        /// <summary>
         /// returns the main id properties for the volunteer
         /// </summary>
         /// <returns>the person`s short description</returns>
