@@ -16,19 +16,18 @@ namespace GymClient
     public partial class TraineeUC : UserControl, INotifyPropertyChanged
     {
 
-
+        #region EventsRegisters
         public static readonly RoutedEvent NewTrainertEvent =
-            EventManager.RegisterRoutedEvent("NewTrainertEvent", RoutingStrategy.Bubble,
-            typeof(RoutedEventHandler), typeof(TraineeUC));
+          EventManager.RegisterRoutedEvent("NewTrainertEvent", RoutingStrategy.Bubble,
+          typeof(RoutedEventHandler), typeof(TraineeUC));
 
         public static readonly RoutedEvent ViewTraineeEvent =
             EventManager.RegisterRoutedEvent("ViewTrainertEvent", RoutingStrategy.Bubble,
             typeof(RoutedEventHandler), typeof(TraineeUC));
 
+        #endregion
 
-
-
-
+        #region Model items
         public Trainee RetrivalTrainee
         {
             get { return (Trainee)GetValue(RetrivalTraineeProperty); }
@@ -38,13 +37,8 @@ namespace GymClient
         // Using a DependencyProperty as the backing store for RetrivalTrainee.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty RetrivalTraineeProperty =
             DependencyProperty.Register("RetrivalTrainee", typeof(Trainee), typeof(MainWindow), new PropertyMetadata(new Trainee()));
+        #endregion
 
-
-
-        private void NotifyPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
 
         private ObservableCollection<Trainee> _trainees = new ObservableCollection<Trainee>();
         private Trainee _selectedTrainee = new Trainee();
@@ -98,6 +92,38 @@ namespace GymClient
             }
         }
 
+        private ObservableCollection<Trainee> GetTraineeRerivalResults(Trainee retrivalTrainee)
+        {
+
+            ///TODO - TAL - notice that you need to get the results comparing to the  retrivalTrainee parameters
+            return new ObservableCollection<Trainee>(Database.GetInstance().GetAll<Trainee>());
+        }
+
+        #region INotifyPropertyChanged Items
+        private void NotifyPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        // Create the OnPropertyChanged method to raise the event
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        #endregion
+
+
+        #region EventHandlers
+        private void TraineeDGRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (((DataGridRow)sender).DataContext is Trainee trainee)
+            {
+                RaiseEvent(new RoutedEventArgs(ViewTraineeEvent, trainee));
+            }
+        }
+
         private void NewTrainee_Click(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(NewTrainertEvent, new Trainee()));
@@ -108,27 +134,7 @@ namespace GymClient
             Trainees = GetTraineeRerivalResults(RetrivalTrainee);
         }
 
-        private ObservableCollection<Trainee> GetTraineeRerivalResults(Trainee retrivalTrainee)
-        {
-            return new ObservableCollection<Trainee>(Database.GetInstance().GetAll<Trainee>());
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        // Create the OnPropertyChanged method to raise the event
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        private void TraineeDGRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (((DataGridRow)sender).DataContext is Trainee trainee)
-            {
-                RaiseEvent(new RoutedEventArgs(ViewTraineeEvent, trainee));
-            }
-        }
-
+        #endregion
 
     }
 }
