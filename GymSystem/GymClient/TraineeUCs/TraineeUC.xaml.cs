@@ -94,9 +94,20 @@ namespace GymClient
 
         private ObservableCollection<Trainee> GetTraineeRerivalResults(Trainee retrivalTrainee)
         {
-
-            ///TODO - TAL - notice that you need to get the results comparing to the  retrivalTrainee parameters
-            return new ObservableCollection<Trainee>(Database.GetInstance().GetAll<Trainee>());
+            var clauses = new List<string>();
+            if (retrivalTrainee.IDNumber != "")
+                clauses.Add($"id = '{retrivalTrainee.IDNumber}'");
+            if(retrivalTrainee.Firstname != "" && retrivalTrainee.Firstname != null)
+                clauses.Add($"Firstname like N'{retrivalTrainee.Firstname}'");
+            if (retrivalTrainee.Surname != "" && retrivalTrainee.Surname != null)
+                clauses.Add($"Surname like N'{retrivalTrainee.Surname}'");
+            
+            if(clauses.Count == 0)
+                return new ObservableCollection<Trainee>(Database.GetInstance().GetAll<Trainee>());
+            else
+            {
+                return new ObservableCollection<Trainee>(Database.GetInstance().GetAll<Trainee>(string.Join(" and ", clauses)));
+            }
         }
 
         #region INotifyPropertyChanged Items

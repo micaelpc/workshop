@@ -1,4 +1,5 @@
-﻿using GymBL.Entities;
+﻿using GymBL.Database;
+using GymBL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,16 +33,9 @@ namespace GymClient
         private void InitActiveTrainersList()
         {
             //TODO TAL set List of all active trainerts (with prop is active 1 )
-            ///and replace that mock
-            ///in the active trainers
-            ActiveTrainers =  new ObservableCollection<Trainer> {
-                new Trainer {Firstname = "מאמני" ,Surname="מגניבי",IDNumber="123456789"},
-                new Trainer {Firstname = "מאמני1" ,Surname="מגניבי1",IDNumber="122456789"},
-                new Trainer {Firstname = "2מאמני" ,Surname="מגניבי2",IDNumber="124456789"}
-            };
+            //TODO Michael there's no prop is active. We can delete inactive. easier.
+            ActiveTrainers =  new ObservableCollection<Trainer> (Database.GetInstance().GetAll<Trainer>());
         }
-
-
 
         private ObservableCollection<Trainer> _activeTrainers = new ObservableCollection<Trainer>();
 
@@ -53,9 +47,7 @@ namespace GymClient
             }
 
         }
-
-
-
+        
         #region INotifyPropertyChanged Imp
         public event PropertyChangedEventHandler PropertyChanged;
         // Create the OnPropertyChanged method to raise the event
@@ -64,14 +56,6 @@ namespace GymClient
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
-
-
-
-
-
-
-
-
-
+        
     }
 }
