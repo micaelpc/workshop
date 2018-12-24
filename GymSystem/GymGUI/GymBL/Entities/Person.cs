@@ -1,6 +1,7 @@
 ﻿using GymBL.Database;
 using System;
 using System.Data;
+using System.Drawing;
 
 namespace GymBL.Entities
 {
@@ -40,7 +41,7 @@ namespace GymBL.Entities
             m_Comment = Comment;
         }
 
-
+        
 
         public string IDNumber
         {
@@ -166,8 +167,7 @@ namespace GymBL.Entities
         private string m_Comment;
 
         /// <summary>
-        /// the person`s general comment. used to describe unstructured data for 
-        /// the person entity
+        /// The person's picture
         /// </summary>
         public byte[] Picture
         {
@@ -216,6 +216,7 @@ namespace GymBL.Entities
         public virtual void Serialize(IDatabaseStream stream)
         {
             stream.Add("id", IDNumber);
+            stream.Add("Picture", Picture);
             stream.Add("Firstname", Firstname);
             stream.Add("Surname", Surname);
             stream.Add("Address", Address);
@@ -229,6 +230,7 @@ namespace GymBL.Entities
         public virtual void Load(DataRow row, Database.Database database)
         {
             IDNumber = row.Field<string>("id");
+            Picture = row.Field<byte[]>("Picture");
             Firstname = row.Field<string>("Firstname");
             Surname = row.Field<string>("Surname");
             Address = row.Field<string>("Address");

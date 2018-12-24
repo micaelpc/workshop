@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GymBL.Database
 {
     class DatabaseStream : IDatabaseStream
     {
-        public List<string> Values { get ; set; } = new List<string>();
+        public List<string> Values { get; set; } = new List<string>();
         public List<string> Columns { get; set; } = new List<string>();
         public List<IDatabaseSerializableWithId> MoreObjects { get; set; } = new List<IDatabaseSerializableWithId>();
 
@@ -15,6 +13,17 @@ namespace GymBL.Database
         {
             Columns.Add(name);
             Values.Add(value);
+        }
+
+        public void Add(string name, byte[] value)
+        {
+            if (value == null)
+            {
+                AddNoFormat(name, "NULL");
+                return;
+            }
+
+            AddNoFormat(name, Utils.ByteArrayToString(value));
         }
 
         public void Add(string name, int value)

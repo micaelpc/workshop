@@ -10,6 +10,7 @@ namespace GymBL.Database
         void Add(string name, int value);
         void Add(string name, string value);
         void Add(string name, DateTime value);
+        void Add(string name, byte[] value);
         void Add(string name, IDatabaseSerializableWithId value);
         void Add(IDatabaseSerializableWithId value);
     }

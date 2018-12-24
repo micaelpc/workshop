@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using GymBL;
+﻿using GymBL;
 using GymBL.Database;
 using GymBL.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
 
 namespace TestGym
 {
@@ -23,10 +23,12 @@ Integrated Security=True");
                   ("300951212", "מיכאל", "כהן", "לויתן 6 חולון",
                   "0528998829", "0528998829", "micaelpc@gmail.com", DateTime.Now,
                   "רגיש ללקטוז", new List<DayOfWeek>(), new List<Subscription>() { });
+            y.Picture = new byte[] { 5, 6 };
             y.Subscriptions.Add(new Subscription(DateTime.Now, DateTime.Now, 500, false, y));
-            
+
             d.Insert(y);
             var trainee = d.Get<Trainee>("300951212");
+            Assert.AreEqual(trainee.Picture[0], 5);
             Assert.AreEqual(trainee.Firstname, "מיכאל");
             d.DeleteAll<Trainee>();
             d.DeleteAll<Subscription>();
@@ -42,7 +44,7 @@ AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;
 Integrated Security=True");
             d.DeleteAll<GymLocation>();
             var y = new GymLocation
-                  ("there", "address", new List<TimeSpanOfWeek>() { new TimeSpanOfWeek(DayOfWeek.Friday, 6, 8)});
+                  ("there", "address", new List<TimeSpanOfWeek>() { new TimeSpanOfWeek(DayOfWeek.Friday, 6, 8) });
 
             d.Insert(y);
             var gym = d.Get<GymLocation>("there");
@@ -96,7 +98,7 @@ Integrated Security=True");
             d.Insert(trainee);
             var a = new PrivateTraining(trainer, trainee, Utils.Trim(DateTime.Now, TimeSpan.TicksPerSecond), TimeSpan.FromSeconds(10));
             d.Insert(a);
-            var b  = d.Get<PrivateTraining>(a.Id);
+            var b = d.Get<PrivateTraining>(a.Id);
             Assert.AreEqual(a.Id, b.Id);
             Assert.AreEqual(a.Date, b.Date);
             Assert.AreEqual(a.Duration, b.Duration);
