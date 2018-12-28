@@ -56,11 +56,7 @@ namespace GymClient
 
         private void InitActiveTrainersList()
         {
-            //TODO TAL set List of all active trainerts (with prop is active 1 )
-            //TODO Michael there's no prop is active. We can delete inactive. easier.
-            ActiveTrainers =  new ObservableCollection<Trainer> (Database.GetInstance().GetAll<Trainer>());
-
-            ActiveTrainers.Add(new Trainer { Firstname = "מיכאל", Surname = "כהן" }); //TODO For Testing only remove before presenting
+            ActiveTrainers = new ObservableCollection<Trainer>(Database.GetInstance().GetAll<Trainer>());
         }
 
         private ObservableCollection<Trainer> _activeTrainers = new ObservableCollection<Trainer>();

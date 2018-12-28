@@ -9,6 +9,8 @@ namespace GymBL
     {
         public static string ToString(IList<TimeSpanOfWeek> list)
         {
+            if (list == null)
+                return "";
             return string.Join("|", list.Select(x => $"{(int)x.Day};{x.StartTime};{x.EndTime}").ToArray());
         }
 
