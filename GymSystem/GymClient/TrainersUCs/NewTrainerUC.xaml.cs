@@ -30,6 +30,7 @@ namespace GymClient.TrainersUCs
 
         public NewTrainerUC()
         {
+            NewTrainer = new Trainer();
             InitializeComponent();
         }
 

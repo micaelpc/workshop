@@ -31,6 +31,7 @@ namespace GymBL.Entities
         public override void Serialize(IDatabaseStream stream)
         {
             base.Serialize(stream);
+            //TODO - TAL - fix exception
             stream.Add("WorkDays", string.Join("|", WorkDays.Select(x => $"{(int)x.Day};{x.StartTime};{x.EndTime}").ToArray()));
         }
 
