@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="GymClient.TrainersUCs.TrainerFullView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GymClient.TrainersUCs"
+                                       xmlns:Converter="clr-namespace:GymClient.Resources"
+                          DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Converter:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" x:Name="ByteArrayToImageSourceConverter"/>
+    </UserControl.Resources>
+    <Grid FlowDirection="RightToLeft" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock  Grid.Column="1" Grid.Row="1" FontSize="30"  Grid.ColumnSpan="20">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}  {1} - {2}">
+                    <Binding Path="Trainer.Firstname" />
+                    <Binding Path="Trainer.Surname" />
+                    <Binding Path="Trainer.IDNumber"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+
+
+
+        <!--ROW 3-->
+
+        <TextBlock Grid.Column="3" Grid.Row="3" Text="ת.ז:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="5" Grid.Row="3" Text="{Binding Trainer.IDNumber,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
+
+        <TextBlock Grid.Column="7" Grid.Row="3" Text="שם פרטי:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="9" Grid.Row="3" Text="{Binding Trainer.Firstname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
+
+        <TextBlock Grid.Column="11" Grid.Row="3" Text="שם משפחה:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="13" Grid.Row="3" Text="{Binding Trainer.Surname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
+
+
+        <!--ROW 5-->
+        <!--
+                 
+                   string , DateTime Birthdate-->
+
+        <Border VerticalAlignment="Top" Grid.Row="2" Grid.Column="15" Grid.RowSpan="10" MaxHeight="300" MinHeight="200" MinWidth="200" BorderBrush="Black" BorderThickness="3">
+            <Image  VerticalAlignment="Top" MaxHeight="300" MaxWidth="200"  Source="{Binding Trainer.Picture
+                ,UpdateSourceTrigger=PropertyChanged,Mode=OneWay,Converter={StaticResource ByteArrayToImageSourceConverter}}">
+
+            </Image>
+        </Border>
+        <Button x:Name="LoadPictureBtn" Click="LoadPictureBtn_Click"  Grid.Column="15" Grid.Row="11" Width="100">
+            טען תמונה חדשה...
+        </Button>
+
+        <TextBlock Grid.Column="3" Grid.Row="5" Text="טלפון:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="5" Grid.Row="5" Text="{Binding Trainer.HomePhone,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
+
+        <TextBlock Grid.Column="7" Grid.Row="5" Text="כתובת:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.ColumnSpan="5" Grid.Column="9"  Grid.Row="5" Text="{Binding Trainer.Address,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" ></TextBox>
+
+
+        <!--ROW 7-->
+        <TextBlock Grid.Column="3" Grid.Row="7" Text="סלולרי:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.Column="5" Grid.Row="7" Text="{Binding Trainer.CellPhone,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
+
+        <TextBlock Grid.Column="7" Grid.Row="7" Text="מייל:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="7" Text="{Binding Trainer.EMail,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  FontSize="12" ></TextBox>
+
+        <!--ROW 9-->
+
+        <TextBlock Grid.Column="3" Grid.Row="9" Text="תאריך לידה" FontWeight="Bold" FontSize="12"></TextBlock>
+        <DatePicker SelectedDate="{Binding Trainer.Birthdate}" Grid.Column="5" Grid.Row="9"   SelectedDateFormat="Short"></DatePicker>
+
+        <TextBlock Grid.Column="7" Grid.Row="9" Text="הערות:" FontWeight="Bold" FontSize="12"></TextBlock>
+        <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="9" Text="{Binding Trainer.Comment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+
+        </TextBox>
+
+
+
+        <!--ROW 11-->
+        <TextBlock FontWeight="Bold" FontSize="12" Grid.Column="3" Grid.Row="11" Text="ימי עבודה"></TextBlock>
+        <!--<DataGrid CanUserAddRows="True" AutoGenerateColumns="False" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="5" 
+                  ItemsSource="{Binding Trainee.Subscriptions ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="התחלה" Width="SizeToCells">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Start}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="סוף" Width="SizeToCells">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding End}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="תשלום חודשי" Binding="{Binding MonthlyPayment}" />
+            </DataGrid.Columns>
+
+
+        </DataGrid>-->
+
+        <!--ROW 12-->
+        <StackPanel Orientation="Horizontal" Grid.Row="13" Grid.ColumnSpan="20" FlowDirection="LeftToRight"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button x:Name="UpdateChangesBtn" Click="UpdateChangesBtn_Click"  Width="50" Height="30" Margin="5" >עדכן
+
+            </Button>
+            <Button Width="100" Height="30" Margin="5" >בטל שינויים
+
+            </Button>
+            <Button x:Name="RetriveTrainers" Click="RetriveTrainers_Click"  Width="100" Height="30" Margin="5" >שליפת מאמנים
+
+            </Button>
+
+        </StackPanel>
+
+
+
+    </Grid>
+</UserControl>

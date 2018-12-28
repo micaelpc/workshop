@@ -78,6 +78,9 @@
     <Compile Include="TrainersUCs\NewTrainerUC.xaml.cs">
       <DependentUpon>NewTrainerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TrainersUCs\TrainerFullView.xaml.cs">
+      <DependentUpon>TrainerFullView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TrainersUCs\TrainerUC.xaml.cs">
       <DependentUpon>TrainerUC.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TrainersUCs\NewTrainerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrainersUCs\TrainerFullView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

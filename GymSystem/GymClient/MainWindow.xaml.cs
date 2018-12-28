@@ -96,6 +96,15 @@ namespace GymClient
             AddHandler(NewTrainerUC.NavToTrainerRetriveEvent,
                   new RoutedEventHandler(NavToTrainerRetriveEvent_handler));
 
+            AddHandler(TrainerFullView.NavToTrainerRetriveEvent,
+                 new RoutedEventHandler(NavToTrainerRetriveEvent_handler));
+
+            AddHandler(TrainerUC.ViewTrainerEvent,
+                 new RoutedEventHandler(ViewTrainerEvent_handler));
+
+
+            // ViewTrainerEvent
+
             #endregion
 
             #region Trainee Event reg
@@ -113,10 +122,7 @@ namespace GymClient
             #endregion
         }
 
-        private void NavToTrainerRetriveEvent_handler(object sender, RoutedEventArgs e)
-        {
-            CurrentTrainerUC = new TrainerUC();
-        }
+
 
 
 
@@ -141,6 +147,16 @@ namespace GymClient
         #endregion
 
         #region Trainers Handlers
+
+        private void ViewTrainerEvent_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTrainerUC = new TrainerFullView((Trainer)e.OriginalSource);
+        }
+
+        private void NavToTrainerRetriveEvent_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTrainerUC = new TrainerUC();
+        }
 
         private void NewTrainertEvent_handler(object sender, RoutedEventArgs e)
         {

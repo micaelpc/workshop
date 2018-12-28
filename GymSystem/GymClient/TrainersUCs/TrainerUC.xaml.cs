@@ -57,6 +57,8 @@ namespace GymClient
             //TODO TAL set List of all active trainerts (with prop is active 1 )
             //TODO Michael there's no prop is active. We can delete inactive. easier.
             ActiveTrainers =  new ObservableCollection<Trainer> (Database.GetInstance().GetAll<Trainer>());
+
+            ActiveTrainers.Add(new Trainer { Firstname = "מיכאל", Surname = "כהן" }); //TODO For Testing only remove before presenting
         }
 
         private ObservableCollection<Trainer> _activeTrainers = new ObservableCollection<Trainer>();
@@ -70,6 +72,18 @@ namespace GymClient
 
         }
 
+
+
+
+        public Trainer SelectedTrainer
+        {
+            get { return (Trainer)GetValue(SelectedTrainerProperty); }
+            set { SetValue(SelectedTrainerProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedTrainer.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedTrainerProperty =
+            DependencyProperty.Register("SelectedTrainer", typeof(Trainer), typeof(TrainerUC), new PropertyMetadata(new Trainer()));
 
 
 
@@ -92,7 +106,10 @@ namespace GymClient
 
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            if (((DataGridRow)sender).DataContext is Trainer trainer)
+            {
+                RaiseEvent(new RoutedEventArgs(ViewTrainerEvent, trainer));
+            }
         }
 
         private void ExcuteRetrival_Click(object sender, RoutedEventArgs e)
