@@ -1,5 +1,6 @@
 ﻿using GymBL.Database;
 using GymBL.Entities;
+using GymClient.Resources.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +25,27 @@ namespace GymClient
     /// </summary>
     public partial class TrainerUC : UserControl, INotifyPropertyChanged
     {
+
+        #region EventsRegisters
+        public static readonly RoutedEvent NewTrainertEvent =
+          EventManager.RegisterRoutedEvent("NewTrainertEvent", RoutingStrategy.Bubble,
+          typeof(RoutedEventHandler), typeof(TrainerUC));
+
+        public static readonly RoutedEvent ViewTrainerEvent =
+            EventManager.RegisterRoutedEvent("ViewTrainerEvent", RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler), typeof(TrainerUC));
+
+        #endregion
+
+        private Trainer _retrivalTrainer;
+
+
+        public Trainer RetrivalTrainer {
+            get { return _retrivalTrainer; }
+            set { _retrivalTrainer = value;
+                OnPropertyChanged("RetrivalTrainer");
+            } }
+
         public TrainerUC()
         {
             InitializeComponent();
@@ -47,7 +69,10 @@ namespace GymClient
             }
 
         }
-        
+
+
+
+
         #region INotifyPropertyChanged Imp
         public event PropertyChangedEventHandler PropertyChanged;
         // Create the OnPropertyChanged method to raise the event
@@ -56,6 +81,33 @@ namespace GymClient
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
-        
+
+
+
+        private void ExportExcelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelExportUtils.ExportToExcel(TrainersDG);
+
+        }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ExcuteRetrival_Click(object sender, RoutedEventArgs e)
+        {
+            ///TODO TAL retrival by RetrivalTrainer props
+            ///
+            //ActiveTrainers = //TODO TAL put the results here
+
+        }
+
+
+
+        private void NewTrainer_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseEvent(new RoutedEventArgs(NewTrainertEvent));
+        }
     }
 }

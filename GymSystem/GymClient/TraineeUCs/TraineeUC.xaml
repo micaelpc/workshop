@@ -71,7 +71,7 @@
         </DataGrid>
 
         <StackPanel  Grid.Column="100" Grid.Row="5" Orientation="Horizontal">
-            <Button Margin="0,0,10,0">יצא תוצאות לאקסל</Button>
+            <Button x:Name="ExcelExportBtn" Click="ExcelExportBtn_Click" Margin="0,0,10,0">יצא תוצאות לאקסל</Button>
             <Button x:Name="NewTrainee" Click="NewTrainee_Click" >מתאמן חדש</Button>
         </StackPanel>
 

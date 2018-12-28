@@ -1,6 +1,7 @@
 ﻿using GymBL.Contract;
 using GymBL.Database;
 using GymBL.Entities;
+using GymClient.Resources.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -95,31 +96,11 @@ namespace GymClient.TraineeUCs
 
         private void LoadPictureBtn_Click(object sender, RoutedEventArgs e)
         {
-            BitmapImage img;
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-              "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == DialogResult.OK)
+           var bA= ImageUtils.GetImageByteArrayFromFile();
+            if (bA!=null)
             {
-                 img = new BitmapImage(new Uri(op.FileName));
-                 NewTrainee.Picture = ImageToByte(img);
+                NewTrainee.Picture = bA;
             }
-
-        }
-
-        public Byte[] ImageToByte(BitmapImage imageSource)
-        {
-            byte[] data;
-            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(imageSource));
-            using (MemoryStream ms = new MemoryStream())
-            {
-                encoder.Save(ms);
-                data = ms.ToArray();
-            }
-            return data;
         }
     }
 }
