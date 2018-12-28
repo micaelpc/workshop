@@ -18,7 +18,14 @@ namespace GymBL.Entities
             this.WorkDays = workDays;
         }
 
-        public IList<TimeSpanOfWeek> WorkDays { get; private set; }
+
+        private IList<TimeSpanOfWeek> _workDays; 
+    
+        public IList<TimeSpanOfWeek> WorkDays { get { return _workDays; }
+            set { _workDays= value;
+                OnPropertyChanged("WorkDays");
+            }
+        }
 
 
         public override void Serialize(IDatabaseStream stream)
