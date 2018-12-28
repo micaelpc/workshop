@@ -4,8 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymClient.TraineeUCs"
-                                       DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             xmlns:Converter="clr-namespace:GymClient.Resources"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <Converter:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" x:Name="ByteArrayToImageSourceConverter"/>
+    </UserControl.Resources>
 
     <Grid FlowDirection="RightToLeft" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
@@ -40,6 +45,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" MinWidth="40"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -61,7 +67,17 @@
         <TextBlock Grid.Column="11" Grid.Row="3" Text="שם משפחה:" FontWeight="Bold" FontSize="12"></TextBlock>
         <TextBox Grid.Column="13" Grid.Row="3" Text="{Binding NewTrainee.Surname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
-        <Image Grid.Row="3" Grid.Column="14" Grid.RowSpan="100" VerticalAlignment="Top" Height="200"  Source="pack://application:,,,/Resources/theRock.jpg"></Image>
+
+        <Border Grid.Row="3"  Grid.Column="15" Grid.RowSpan="5" MinHeight="200" MinWidth="200" BorderBrush="Black" BorderThickness="3">
+            <Image  VerticalAlignment="Top" Height="200"  Source="{Binding NewTrainee.Picture
+                ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource ByteArrayToImageSourceConverter}}">
+
+            </Image>
+        </Border>
+        <Button x:Name="LoadPictureBtn" Click="LoadPictureBtn_Click" Grid.Column="15" Grid.Row="8" Width="100">
+            טען תמונה...
+        </Button>
+
         <!--ROW 5-->
         <!--
                  

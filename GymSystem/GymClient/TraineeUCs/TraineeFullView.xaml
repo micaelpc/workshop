@@ -6,8 +6,12 @@
              xmlns:local="clr-namespace:GymClient.TraineeUCs"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+                          xmlns:Converter="clr-namespace:GymClient.Resources"
                           DataContext="{Binding RelativeSource={RelativeSource Self}}"
              >
+    <UserControl.Resources>
+        <Converter:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" x:Name="ByteArrayToImageSourceConverter"/>
+    </UserControl.Resources>
     <Grid FlowDirection="RightToLeft" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
@@ -27,22 +31,23 @@
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="15"/>
         </Grid.ColumnDefinitions>
         <TextBlock  Grid.Column="1" Grid.Row="1" FontSize="30"  Grid.ColumnSpan="20">
             <TextBlock.Text>
@@ -68,11 +73,21 @@
         <TextBlock Grid.Column="11" Grid.Row="3" Text="שם משפחה:" FontWeight="Bold" FontSize="12"></TextBlock>
         <TextBox Grid.Column="13" Grid.Row="3" Text="{Binding Trainee.Surname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
 
-        <Image Grid.Row="3" Grid.Column="14" Grid.RowSpan="100" VerticalAlignment="Top" Height="200"  Source="pack://application:,,,/Resources/theRock.jpg"></Image>
+      
         <!--ROW 5-->
         <!--
                  
                    string , DateTime Birthdate-->
+
+        <Border VerticalAlignment="Top" Grid.Row="2" Grid.Column="15" Grid.RowSpan="10" MaxHeight="300" MinHeight="200" MinWidth="200" BorderBrush="Black" BorderThickness="3">
+            <Image  VerticalAlignment="Top" MaxHeight="300" MaxWidth="200"  Source="{Binding Trainee.Picture
+                ,UpdateSourceTrigger=PropertyChanged,Mode=OneWay,Converter={StaticResource ByteArrayToImageSourceConverter}}">
+                
+            </Image>
+        </Border>
+        <Button x:Name="LoadPictureBtn" Click="LoadPictureBtn_Click" Grid.Column="15" Grid.Row="11" Width="100">
+          טען תמונה חדשה...
+        </Button>
 
         <TextBlock Grid.Column="3" Grid.Row="5" Text="טלפון:" FontWeight="Bold" FontSize="12"></TextBlock>
         <TextBox Grid.Column="5" Grid.Row="5" Text="{Binding Trainee.HomePhone,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="12" Width="100"></TextBox>
@@ -97,6 +112,7 @@
         <TextBox Grid.ColumnSpan="5"  Grid.Column="9" Grid.Row="9" Text="{Binding Trainee.Comment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
             
         </TextBox>
+
 
 
         <!--ROW 11-->

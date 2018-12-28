@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymClient"
              mc:Ignorable="d" 
+             xmlns:Converter="clr-namespace:GymClient.Resources"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              >
+    <UserControl.Resources>
+        <Converter:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" x:Name="ByteArrayToImageSourceConverter"/>
+    </UserControl.Resources>
     <Grid Margin="10" Background="White" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -42,6 +46,17 @@
         <DataGrid x:Name="TraineesDG" IsReadOnly="True"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" SelectedItem=""
                                HorizontalAlignment="Stretch" ItemsSource="{Binding Trainees,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" >
             <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Image" Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Height="80"  Source="{Binding Picture
+                                             ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,
+                                                 Converter={StaticResource ByteArrayToImageSourceConverter}}" >
+                                
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="ת.ז" Binding="{Binding IDNumber}" />
                 <DataGridTextColumn Header="שם פרטי" Binding="{Binding Firstname}" />
                 <DataGridTextColumn Header="שם משפחה" Binding="{Binding Surname}" />

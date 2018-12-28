@@ -7,7 +7,7 @@
         mc:Ignorable="d"
 
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        
+        Height="700"
         >
     <Grid Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>

@@ -81,10 +81,10 @@ namespace GymClient
         public TraineeUC()
         {
             InitializeComponent();
-            InitTraineesMock();
+            InitTrainees();
         }
 
-        private void InitTraineesMock()
+        private void InitTrainees()
         {
             Trainees.Clear();
             foreach(var trainee in Database.GetInstance().GetAll<Trainee>()) {

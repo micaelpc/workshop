@@ -63,6 +63,7 @@
     <Compile Include="ReportsUCs\ReportsMenuUC.xaml.cs">
       <DependentUpon>ReportsMenuUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Converters\ByteArrayToImageSourceConverter.cs" />
     <Compile Include="TraineeUCs\NewTraineeUC.xaml.cs">
       <DependentUpon>NewTraineeUC.xaml</DependentUpon>
     </Compile>

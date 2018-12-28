@@ -19,9 +19,7 @@ AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;
 Integrated Security=True";
             else
                 return @"
-Data Source=(LocalDB)\MSSQLLocalDB;
-AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;
-Integrated Security=True"; // TODO: Michael. Change connection string here
+Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;Integrated Security=True"; // TODO: Michael. Change connection string here
         }
         public static Database GetInstance() {
             if (Instance == null)

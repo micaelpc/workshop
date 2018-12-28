@@ -2,6 +2,7 @@
 using GymBL.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.MessageBox;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace GymClient.TraineeUCs
 {
@@ -74,6 +78,35 @@ namespace GymClient.TraineeUCs
             {
                 RaiseEvent(new RoutedEventArgs(TraineeFullView.NavToTraineeRetriveEvent));
             }
+        }
+
+        private void LoadPictureBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BitmapImage img;
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                img = new BitmapImage(new Uri(op.FileName));
+                Trainee.Picture = ImageToByte(img);
+            }
+
+        }
+
+        public Byte[] ImageToByte(BitmapImage imageSource)
+        {
+            byte[] data;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(imageSource));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                data = ms.ToArray();
+            }
+            return data;
         }
     }
 }
