@@ -37,7 +37,7 @@ namespace GymClient
 
         #endregion
 
-        private Trainer _retrivalTrainer = new Trainer();
+        private Trainer _retrivalTrainer;
 
 
         public Trainer RetrivalTrainer {
@@ -45,11 +45,11 @@ namespace GymClient
             set { _retrivalTrainer = value;
                 OnPropertyChanged("RetrivalTrainer");
             } }
-        public static readonly DependencyProperty RetrivalTrainerProperty =
-            DependencyProperty.Register("RetrivalTrainer", typeof(Trainer), typeof(TrainerUC), new PropertyMetadata(new Trainer()));
+
 
         public TrainerUC()
         {
+            RetrivalTrainer = new Trainer();
             InitializeComponent();
             InitActiveTrainersList();
         }

@@ -39,9 +39,9 @@
         <Label Grid.Column="0" Grid.Row="1">ת.ז</Label>
         <TextBox Grid.Column="2" Grid.Row="1"  Text="{Binding RetrivalTrainer.IDNumber,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></TextBox>
         <Label Grid.Column="4" Grid.Row="1" >שם</Label>
-        <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding RetrivalTrainer.Firstname,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding RetrivalTrainer.Firstname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></TextBox>
         <Label Grid.Column="7" Grid.Row="1">שם משפחה</Label>
-        <TextBox Grid.Column="8" Grid.Row="1" Text="{Binding RetrivalTrainer.Surname,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Column="8" Grid.Row="1" Text="{Binding RetrivalTrainer.Surname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></TextBox>
         <Button x:Name="ExcuteRetrival" Click="ExcuteRetrival_Click"  Grid.Column="13" Grid.Row="1">בצע שליפה</Button>
         <DataGrid x:Name="TrainersDG" IsReadOnly="True"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" SelectedItem=""
                                HorizontalAlignment="Stretch" ItemsSource="{Binding ActiveTrainers,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" >
