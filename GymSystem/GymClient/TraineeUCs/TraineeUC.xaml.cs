@@ -1,5 +1,6 @@
 ﻿using GymBL.Database;
 using GymBL.Entities;
+using GymClient.Resources.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,12 +18,12 @@ namespace GymClient
     {
 
         #region EventsRegisters
-        public static readonly RoutedEvent NewTrainertEvent =
-          EventManager.RegisterRoutedEvent("NewTrainertEvent", RoutingStrategy.Bubble,
+        public static readonly RoutedEvent NewTraineetEvent =
+          EventManager.RegisterRoutedEvent("NewTraineetEvent", RoutingStrategy.Bubble,
           typeof(RoutedEventHandler), typeof(TraineeUC));
 
         public static readonly RoutedEvent ViewTraineeEvent =
-            EventManager.RegisterRoutedEvent("ViewTrainertEvent", RoutingStrategy.Bubble,
+            EventManager.RegisterRoutedEvent("ViewTraineeEvent", RoutingStrategy.Bubble,
             typeof(RoutedEventHandler), typeof(TraineeUC));
 
         #endregion
@@ -137,7 +138,7 @@ namespace GymClient
 
         private void NewTrainee_Click(object sender, RoutedEventArgs e)
         {
-            RaiseEvent(new RoutedEventArgs(NewTrainertEvent, new Trainee()));
+            RaiseEvent(new RoutedEventArgs(NewTraineetEvent, new Trainee()));
         }
 
         private void ExcuteRetrival_Click(object sender, RoutedEventArgs e)
@@ -147,5 +148,9 @@ namespace GymClient
 
         #endregion
 
+        private void ExcelExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelExportUtils.ExportToExcel(this.TraineesDG);
+        }
     }
 }

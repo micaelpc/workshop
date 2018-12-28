@@ -17,6 +17,7 @@ using GymBL.Entities;
 using GymClient.PrivateTrainingUCs;
 using GymClient.ReportsUCs;
 using GymClient.TraineeUCs;
+using GymClient.TrainersUCs;
 
 namespace GymClient
 {
@@ -87,21 +88,42 @@ namespace GymClient
 
         private void InitEvents()
         {
-            AddHandler(TraineeUC.NewTrainertEvent,
-                     new RoutedEventHandler(NewTrainertEvent_handler));
+            #region Trainers Events Regs
 
-            AddHandler(NewTraineeUC.NavToTraineeRetriveEvent,
-                 new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+            AddHandler(TrainerUC.NewTrainertEvent,
+                  new RoutedEventHandler(NewTrainertEvent_handler));
 
-            AddHandler(TraineeUC.ViewTraineeEvent,
-                new RoutedEventHandler(ViewTraineeEvent_handler));
+            AddHandler(NewTrainerUC.NavToTrainerRetriveEvent,
+                  new RoutedEventHandler(NavToTrainerRetriveEvent_handler));
 
-            AddHandler(TraineeFullView.NavToTraineeRetriveEvent,
-                new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+            #endregion
+
+            #region Trainee Event reg
+            AddHandler(TraineeUC.NewTraineetEvent,
+                        new RoutedEventHandler(NewTraineetEvent_handler));
+
+                    AddHandler(NewTraineeUC.NavToTraineeRetriveEvent,
+                         new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+
+                    AddHandler(TraineeUC.ViewTraineeEvent,
+                        new RoutedEventHandler(ViewTraineeEvent_handler));
+
+                    AddHandler(TraineeFullView.NavToTraineeRetriveEvent,
+                        new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+            #endregion
+        }
+
+        private void NavToTrainerRetriveEvent_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTrainerUC = new TrainerUC();
         }
 
 
+
+
         #region Event Handlers
+
+        #region Trainee Handlers
         private void ViewTraineeEvent_handler(object sender, RoutedEventArgs e)
         {
             CurrentTraineeUC = new TraineeFullView((Trainee)e.OriginalSource);
@@ -112,10 +134,22 @@ namespace GymClient
             CurrentTraineeUC = new TraineeUC();
         }
 
-        private void NewTrainertEvent_handler(object sender, RoutedEventArgs e)
+        private void NewTraineetEvent_handler(object sender, RoutedEventArgs e)
         {
             CurrentTraineeUC = new NewTraineeUC();
         }
+        #endregion
+
+        #region Trainers Handlers
+
+        private void NewTrainertEvent_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTrainerUC = new NewTrainerUC();
+        }
+
+        #endregion
+
+
         #endregion
 
     }

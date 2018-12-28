@@ -74,7 +74,7 @@
 
             </Image>
         </Border>
-        <Button x:Name="LoadPictureBtn" Click="LoadPictureBtn_Click" Grid.Column="15" Grid.Row="8" Width="100">
+        <Button x:Name="LoadPictureBtn" Click="LoadPictureBtn_Click"  Grid.Column="15" Grid.Row="8" Width="100">
             טען תמונה...
         </Button>
 
