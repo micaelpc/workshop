@@ -1,4 +1,5 @@
-﻿using GymBL.Entities;
+﻿using GymBL.Database;
+using GymBL.Entities;
 using GymClient.Resources.Utils;
 using System;
 using System.Collections.Generic;
@@ -53,8 +54,7 @@ namespace GymClient.TrainersUCs
 
         private void UpdateChangesBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            ///TODO -TAL  excure the change on  Trainer object in DB
+            Database.GetInstance().Update(Trainer);
         }
 
         private void RetriveTrainers_Click(object sender, RoutedEventArgs e)

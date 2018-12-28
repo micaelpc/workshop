@@ -1,4 +1,5 @@
-﻿using GymBL.Entities;
+﻿using GymBL.Database;
+using GymBL.Entities;
 using GymClient.Resources.Utils;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace GymClient.TrainersUCs
 
         private void AddNewTrainerBtn_Click(object sender, RoutedEventArgs e)
         {
-            ///TODO - TAL Insert the new Trainer..
+            Database.GetInstance().Insert(NewTrainer);
             MessageBox.Show("המאמן הוכנס בהצלחה");
 
             RaiseEvent(new RoutedEventArgs(NavToTrainerRetriveEvent));

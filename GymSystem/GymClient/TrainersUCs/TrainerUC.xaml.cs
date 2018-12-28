@@ -37,7 +37,7 @@ namespace GymClient
 
         #endregion
 
-        private Trainer _retrivalTrainer;
+        private Trainer _retrivalTrainer = new Trainer();
 
 
         public Trainer RetrivalTrainer {
@@ -45,6 +45,8 @@ namespace GymClient
             set { _retrivalTrainer = value;
                 OnPropertyChanged("RetrivalTrainer");
             } }
+        public static readonly DependencyProperty RetrivalTrainerProperty =
+            DependencyProperty.Register("RetrivalTrainer", typeof(Trainer), typeof(TrainerUC), new PropertyMetadata(new Trainer()));
 
         public TrainerUC()
         {
@@ -114,10 +116,21 @@ namespace GymClient
 
         private void ExcuteRetrival_Click(object sender, RoutedEventArgs e)
         {
-            ///TODO TAL retrival by RetrivalTrainer props
-            ///
-            //ActiveTrainers = //TODO TAL put the results here
 
+            var clauses = new List<string>();
+            if (RetrivalTrainer.IDNumber != "")
+                clauses.Add($"id = '{RetrivalTrainer.IDNumber}'");
+            if (RetrivalTrainer.Firstname != "" && RetrivalTrainer.Firstname != null)
+                clauses.Add($"Firstname like N'{RetrivalTrainer.Firstname}'");
+            if (RetrivalTrainer.Surname != "" && RetrivalTrainer.Surname != null)
+                clauses.Add($"Surname like N'{RetrivalTrainer.Surname}'");
+
+            if (clauses.Count == 0)
+                ActiveTrainers = new ObservableCollection<Trainer>(Database.GetInstance().GetAll<Trainer>());
+            else
+            {
+                ActiveTrainers = new ObservableCollection<Trainer>(Database.GetInstance().GetAll<Trainer>(string.Join(" and ", clauses)));
+            }
         }
 
 
