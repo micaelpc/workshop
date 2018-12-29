@@ -32,7 +32,7 @@ namespace GymBL.Entities
 
         public void Load(DataRow row, Database.Database database)
         {
-            Id = row.Field<int>("Id");
+            Id = row.Field<int>("id");
             Trainer = database.Get<Trainer>(row.Field<string>("Trainer"));
             Trainee = database.Get<Trainee>(row.Field<string>("Trainee"));
             Date = row.Field<DateTime>("Date");
@@ -42,7 +42,7 @@ namespace GymBL.Entities
         public void Serialize(IDatabaseStream stream)
         {
             if (Id != 0)
-                stream.Add("Id", Id);
+                stream.Add("id", Id);
             stream.Add("Trainer", Trainer.GetId());
             stream.Add("Trainee", Trainee.GetId());
             stream.Add("Date", Date);

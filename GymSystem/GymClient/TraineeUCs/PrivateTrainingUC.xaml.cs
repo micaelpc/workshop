@@ -1,4 +1,5 @@
-﻿using GymBL.Entities;
+﻿using GymBL.Database;
+using GymBL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -76,8 +77,7 @@ namespace GymClient.TraineeUCs
 
         private void ReloadAvailableTrainers()
         {
-            //TODO - TAL - load avilable by the selected Date (in containas the time also)
-            /// AvailableTrainers  =  //here
+            AvailableTrainers = new ObservableCollection<Trainer>(Database.GetInstance().GetAll<Trainer>());
         }
 
         private DateTime _selectedDate;
@@ -128,9 +128,16 @@ namespace GymClient.TraineeUCs
 
         }
 
+        private Trainer GetSelectedTrainer() {
+            ///TODO - Michael, get selected trainer;
+            return AvailableTrainers[0];
+        }
+
         private void SetPrivateTrainingBtn_Click(object sender, RoutedEventArgs e)
         {
-            ///TODO - TAL Set Private Training!
+            var newDate = new DateTime(SelectedDate.Year, SelectedDate.Month, SelectedDate.Day, Hour, 0, 0);
+            var pt = new PrivateTraining(GetSelectedTrainer(), Trainee, newDate, new TimeSpan(1, 0, 0));
+            Database.GetInstance().Insert(pt);
         }
 
         private void BackToTrainerViewBtn_Click(object sender, RoutedEventArgs e)
