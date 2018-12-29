@@ -35,6 +35,9 @@
             <TabItem Header="דוחות">
                 <ContentControl Content="{Binding CurrentReportUC}"></ContentControl>
             </TabItem>
+            <TabItem Header="אימונים אישיים">
+                <ContentControl Content="{Binding CurrentPrivateTrainingUC}"></ContentControl>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

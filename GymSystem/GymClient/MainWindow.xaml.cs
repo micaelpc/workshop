@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GymBL.Entities;
+using GymClient.PrivateTrainingsUC;
 using GymClient.ReportsUCs;
 using GymClient.TraineeUCs;
 using GymClient.TrainersUCs;
@@ -83,8 +84,10 @@ namespace GymClient
             CurrentTraineeUC = new TraineeUC();
             CurrentReportUC = new ReportsMenuUC();
             CurrentTrainerUC = new TrainerUC();
+            CurrentPrivateTrainingUC = new PrivateTrainingsViewUC();
 
         }
+
 
         private void InitEvents()
         {
