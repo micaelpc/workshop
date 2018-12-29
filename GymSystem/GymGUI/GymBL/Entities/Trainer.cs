@@ -1,6 +1,7 @@
 ﻿using GymBL.Database;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,9 @@ namespace GymBL.Entities
 {
     public class Trainer : Person
     {
-        public Trainer() { }
+        public Trainer() {
+            this.WorkDays = new List<TimeSpanOfWeek>();
+        }
         public Trainer(string IDNumber, string Firstname, string Surname,
                   string Address, string HomePhone,
                   string CellPhone, string EMail, DateTime Birthdate,

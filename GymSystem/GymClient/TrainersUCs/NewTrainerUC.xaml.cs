@@ -43,7 +43,6 @@ namespace GymClient.TrainersUCs
             }
         }
 
-
         #region INotifyPropertyChanged Items
         private void NotifyPropertyChanged(string name)
         {

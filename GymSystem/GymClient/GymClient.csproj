@@ -64,6 +64,7 @@
       <DependentUpon>ReportsMenuUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Converters\ByteArrayToImageSourceConverter.cs" />
+    <Compile Include="Resources\Converters\DayOfWeekConverter.cs" />
     <Compile Include="Resources\Utils\ExcelExportUtils.cs" />
     <Compile Include="Resources\Utils\ImageUtils.cs" />
     <Compile Include="TraineeUCs\NewTraineeUC.xaml.cs">

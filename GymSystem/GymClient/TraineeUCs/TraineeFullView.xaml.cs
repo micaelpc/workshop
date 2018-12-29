@@ -89,5 +89,10 @@ namespace GymClient.TraineeUCs
                 Trainee.Picture = bA;
             }
         }
+
+        private void NewPersonalTraining_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
