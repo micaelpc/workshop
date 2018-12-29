@@ -30,9 +30,9 @@ namespace GymClient.TrainersUCs
                 EventManager.RegisterRoutedEvent("NavToTrainerRetriveEvent", RoutingStrategy.Bubble,
                 typeof(RoutedEventHandler), typeof(TrainerFullView));
 
-        private List<TimeSpanOfWeek> _workDays = new List<TimeSpanOfWeek>();
+        private ObservableCollection<TimeSpanOfWeek> _workDays = new ObservableCollection<TimeSpanOfWeek>();
 
-        public List<TimeSpanOfWeek> WorkDays
+        public ObservableCollection<TimeSpanOfWeek> WorkDays
         {
             get { return _workDays; }
             set
@@ -57,7 +57,14 @@ namespace GymClient.TrainersUCs
         public TrainerFullView(Trainer trainer)
         {
             Trainer = trainer;
-            WorkDays = trainer.WorkDays.ToList();
+            WorkDays = new ObservableCollection<TimeSpanOfWeek>();
+            foreach (var day in
+                trainer.WorkDays)
+            {
+                WorkDays.Add(day);
+            }
+                
+
             InitializeComponent();
         }
 
@@ -80,6 +87,7 @@ namespace GymClient.TrainersUCs
         {
             Trainer.WorkDays = WorkDays;
             Database.GetInstance().Update(Trainer);
+            MessageBox.Show("עודכן בהצלחה");
         }
 
         private void RetriveTrainers_Click(object sender, RoutedEventArgs e)
