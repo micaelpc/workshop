@@ -3,6 +3,7 @@ using GymBL.Entities;
 using GymClient.Resources.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,34 @@ namespace GymClient.TrainersUCs
             InitializeComponent();
         }
 
+        public ObservableCollection<string> DayOfWeekHeb = new ObservableCollection<string> {"ראשון","שני" ,
+            "שלישי","רביעי","חמישי","שישי", "שבת"
+        };
+
+        private DayOfWeek _day;
+
+        public DayOfWeek Day
+        {
+            get { return _day; }
+            set
+            {
+                _day = value;
+                OnPropertyChanged("Day");
+            }
+        }
+
+        private ObservableCollection<TimeSpanOfWeek> _workDays =new ObservableCollection<TimeSpanOfWeek>();
+
+        public ObservableCollection<TimeSpanOfWeek> WorkDays
+        {
+            get { return _workDays; }
+            set
+            {
+                _workDays = value;
+                OnPropertyChanged("WorkDays");
+            }
+        }
+
         private Trainer _newTrainer;
 
         public Trainer NewTrainer { get { return _newTrainer; }
@@ -60,6 +89,7 @@ namespace GymClient.TrainersUCs
 
         private void AddNewTrainerBtn_Click(object sender, RoutedEventArgs e)
         {
+            NewTrainer.WorkDays = WorkDays;
             Database.GetInstance().Insert(NewTrainer);
             MessageBox.Show("המאמן הוכנס בהצלחה");
 
@@ -85,6 +115,18 @@ namespace GymClient.TrainersUCs
         private void RetriveTrainer_Click(object sender, RoutedEventArgs e)
         {
             RaiseEvent(new RoutedEventArgs(NavToTrainerRetriveEvent));
+        }
+
+        private void AddDayOfWorkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!WorkDays.Any(x=>x.Day== Day))
+            {
+                WorkDays.Add(new TimeSpanOfWeek { Day=Day});
+            }
+            else
+            {
+                MessageBox.Show("יום זה כבר קיים בזמינויות של המאמן");
+            }
         }
     }
 }

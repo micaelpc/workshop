@@ -3,6 +3,7 @@ using GymBL.Entities;
 using GymClient.Resources.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -29,11 +30,34 @@ namespace GymClient.TrainersUCs
                 EventManager.RegisterRoutedEvent("NavToTrainerRetriveEvent", RoutingStrategy.Bubble,
                 typeof(RoutedEventHandler), typeof(TrainerFullView));
 
+        private List<TimeSpanOfWeek> _workDays = new List<TimeSpanOfWeek>();
 
+        public List<TimeSpanOfWeek> WorkDays
+        {
+            get { return _workDays; }
+            set
+            {
+                _workDays = value;
+                OnPropertyChanged("WorkDays");
+            }
+        }
+
+        private DayOfWeek _day;
+
+        public DayOfWeek Day
+        {
+            get { return _day; }
+            set
+            {
+                _day = value;
+                OnPropertyChanged("Day");
+            }
+        }
 
         public TrainerFullView(Trainer trainer)
         {
             Trainer = trainer;
+            WorkDays = trainer.WorkDays.ToList();
             InitializeComponent();
         }
 
@@ -54,6 +78,7 @@ namespace GymClient.TrainersUCs
 
         private void UpdateChangesBtn_Click(object sender, RoutedEventArgs e)
         {
+            Trainer.WorkDays = WorkDays;
             Database.GetInstance().Update(Trainer);
         }
 
@@ -69,6 +94,18 @@ namespace GymClient.TrainersUCs
             {
                 Trainer.Picture = bA;
             }
+        }
+
+        private void AddDayOfWorkBtn_Click(object sender, RoutedEventArgs e)
+        {
+                if (!WorkDays.Any(x => x.Day == Day))
+                {
+                    WorkDays.Add(new TimeSpanOfWeek { Day = Day });
+                }
+                else
+                {
+                    MessageBox.Show("יום זה כבר קיים בזמינויות של המאמן");
+                }
         }
     }
 }

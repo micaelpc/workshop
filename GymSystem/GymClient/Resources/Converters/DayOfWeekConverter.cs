@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace GymClient.Resources
@@ -49,8 +50,17 @@ namespace GymClient.Resources
         {
 
             DayOfWeek res = DayOfWeek.Sunday;
+            string req = "";
+            if ( value is ComboBoxItem)
+            {
+                req = ((ComboBoxItem)value).Content.ToString();
+            }
+            else
+            {
+                req = value.ToString();
+            }
 
-            switch (value)
+            switch (req)
             {
                 case "ראשון":
                     
