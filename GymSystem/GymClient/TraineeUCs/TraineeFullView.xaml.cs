@@ -72,7 +72,7 @@ namespace GymClient.TraineeUCs
                 Database.GetInstance().Update(Trainee);
                 return true;
             }
-            catch (Exception) {
+            catch (Exception e) {
                 return false;
             }
         }

@@ -1,10 +1,7 @@
 ﻿using GymBL.Database;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
-using System.Linq;
-using System.Text;
 
 namespace GymBL.Entities
 {
@@ -16,9 +13,13 @@ namespace GymBL.Entities
         /// <summary>
         /// Default constructor for the database.
         /// </summary>
-        public Trainer() {
+        public Trainer()
+        {
             this.WorkDays = new List<TimeSpanOfWeek>();
         }
+
+        /// <summary>
+        /// The Trainer's constructor the define all it's properties.
         /// </summary>
         /// <param name="IDNumber">The trainer's ID number</param>
         /// <param name="Firstname">The trainer's first name</param>
@@ -41,10 +42,14 @@ namespace GymBL.Entities
         /// <summary>
         /// The days the trainer works, with time duration.
         /// </summary>
-        private IList<TimeSpanOfWeek> _workDays; 
-    
-        public IList<TimeSpanOfWeek> WorkDays { get { return _workDays; }
-            set { _workDays= value;
+        private IList<TimeSpanOfWeek> _workDays;
+
+        public IList<TimeSpanOfWeek> WorkDays
+        {
+            get { return _workDays; }
+            set
+            {
+                _workDays = value;
                 OnPropertyChanged("WorkDays");
             }
         }
@@ -71,4 +76,3 @@ namespace GymBL.Entities
         }
     }
 }
- 

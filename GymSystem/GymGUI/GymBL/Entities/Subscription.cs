@@ -103,16 +103,18 @@ namespace GymBL.Entities
             }
         }
 
-        public Trainee Trainee { get; private set; }
+        public Trainee Trainee { get; set; }
 
         public string GetId()
         {
+            if (this.Id == 0)
+                return "";
             return this.Id.ToString();
         }
 
         public void Load(DataRow row, Database.Database database)
         {
-            Id = row.Field<int>("Id");
+            Id = row.Field<int>("id");
             Start = row.Field<DateTime>("StartT");
             End = row.Field<DateTime>("EndT");
             MonthlyPayment = (uint)row.Field<int>("MonthlyPayment");
@@ -123,7 +125,7 @@ namespace GymBL.Entities
         public void Serialize(IDatabaseStream stream)
         {
             if(Id != 0)
-                stream.Add("Id", Id);
+                stream.Add("id", Id);
             stream.Add("StartT", Start);
             stream.Add("EndT", End);
             stream.Add("MonthlyPayment", (int)MonthlyPayment);
