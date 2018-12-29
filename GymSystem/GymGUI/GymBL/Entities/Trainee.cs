@@ -79,6 +79,7 @@ namespace GymBL.Entities
             stream.Add("TrainDays", string.Join("|", TrainDays.Select(x => ((int)x).ToString()).ToArray()));
             foreach (var sub in Subscriptions)
             {
+                sub.Trainee = this;
                 stream.Add(sub);
             }
         }

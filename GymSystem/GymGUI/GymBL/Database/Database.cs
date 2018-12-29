@@ -53,11 +53,20 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
         
             DatabaseStream st = new DatabaseStream();
             value.Serialize(st);
-            string columnsValue = string.Join(", ", st.Columns.Zip(st.Values, (first, second) => first + "=" + second).ToArray());
+            var idIndex = st.Columns.IndexOf("id");
             var id = st.Values[st.Columns.IndexOf("id")];
+            st.Columns.RemoveAt(idIndex);
+            st.Values.RemoveAt(idIndex);
+            string columnsValue = string.Join(", ", st.Columns.Zip(st.Values, (first, second) => first + "=" + second).ToArray());
+            
             ExecuteNonQuery($"UPDATE {name} SET {columnsValue} WHERE id={id};");
-            foreach (IDatabaseSerializable obj in st.MoreObjects)
-                Update(obj);
+            foreach (IDatabaseSerializableWithId obj in st.MoreObjects)
+            {
+                if (obj.GetId() == "")
+                    Insert(obj);
+                else
+                    Update(obj);
+            }
         }
 
         public T Get<T>(string id) where T : IDatabaseSerializable, new()
