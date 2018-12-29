@@ -8,7 +8,7 @@ namespace GymBL.Entities
     /// <summary>
     /// this class describes a time and day in the week.
     /// </summary>
-    public class TimeSpanOfWeek
+    public class TimeSpanOfWeek : ObservableObject
     {
         public TimeSpanOfWeek() {
 
@@ -35,7 +35,9 @@ namespace GymBL.Entities
         public DayOfWeek Day
         {
             get { return m_Day; }
-            set { m_Day = value; }
+            set { m_Day = value;
+                OnPropertyChanged("Day");
+            }
         }
         private DayOfWeek m_Day;
 
@@ -45,7 +47,9 @@ namespace GymBL.Entities
         public int StartTime
         {
             get { return m_StartTime; }
-            set { m_StartTime = value; }
+            set { m_StartTime = value;
+                OnPropertyChanged("StartTime");
+            }
         }
         private int m_StartTime;
 
@@ -55,7 +59,9 @@ namespace GymBL.Entities
         public int EndTime
         {
             get { return m_EndTime; }
-            set { m_EndTime = value; }
+            set { m_EndTime = value;
+                OnPropertyChanged("EndTime");
+            }
         }
         private int m_EndTime;
         /// <summary>
