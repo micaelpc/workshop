@@ -62,5 +62,10 @@ namespace GymClient.ReportsUCs
         {
             InitializeComponent();
         }
+
+        private void ExcuteReportRequestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GetReportResults();
+        }
     }
 }

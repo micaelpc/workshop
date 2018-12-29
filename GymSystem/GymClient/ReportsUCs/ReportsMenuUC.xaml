@@ -12,17 +12,20 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="20"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -30,9 +33,10 @@
         <TextBlock Grid.Row="3" Grid.Column="1" >מתאריך:</TextBlock>
         <DatePicker SelectedDate="{Binding FromDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="2"></DatePicker>
         
-        <TextBlock  Grid.Row="3" Grid.Column="3">עד תאריך:</TextBlock>
-        <DatePicker SelectedDate="{Binding ToDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="4"></DatePicker>
+        <TextBlock  Grid.Row="3" Grid.Column="4">עד תאריך:</TextBlock>
+        <DatePicker SelectedDate="{Binding ToDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="5"></DatePicker>
 
+        <Button Grid.Column="7" Grid.Row="3" x:Name="ExcuteReportRequestBtn" Click="ExcuteReportRequestBtn_Click">שלוף דוחות</Button>
         
     </Grid>
 </UserControl>
