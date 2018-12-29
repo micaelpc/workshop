@@ -8,11 +8,28 @@ using System.Text;
 
 namespace GymBL.Entities
 {
+    /// <summary>
+    /// An active trainer in the gym
+    /// </summary>
     public class Trainer : Person
     {
+        /// <summary>
+        /// Default constructor for the database.
+        /// </summary>
         public Trainer() {
             this.WorkDays = new List<TimeSpanOfWeek>();
         }
+        /// </summary>
+        /// <param name="IDNumber">The trainer's ID number</param>
+        /// <param name="Firstname">The trainer's first name</param>
+        /// <param name="Surname">The trainer's surname</param>
+        /// <param name="Address">The trainer's address</param>
+        /// <param name="HomePhone">The trainer's home phone</param>
+        /// <param name="CellPhone">The trainer's cellphone</param>
+        /// <param name="EMail">The trainer's email address</param>
+        /// <param name="Birthdate">The trainer's Birthdate</param>
+        /// <param name="Comment">A comment on the trainer</param>
+        /// <param name="workDays">When the trainer can work. Days and duration</param>
         public Trainer(string IDNumber, string Firstname, string Surname,
                   string Address, string HomePhone,
                   string CellPhone, string EMail, DateTime Birthdate,
@@ -21,7 +38,9 @@ namespace GymBL.Entities
             this.WorkDays = workDays;
         }
 
-
+        /// <summary>
+        /// The days the trainer works, with time duration.
+        /// </summary>
         private IList<TimeSpanOfWeek> _workDays; 
     
         public IList<TimeSpanOfWeek> WorkDays { get { return _workDays; }
@@ -30,13 +49,21 @@ namespace GymBL.Entities
             }
         }
 
-
+        /// <summary>
+        /// Serialize to database.
+        /// </summary>
+        /// <param name="stream">The serialization output</param>
         public override void Serialize(IDatabaseStream stream)
         {
             base.Serialize(stream);
             stream.Add("WorkDays", Utils.ToString(WorkDays));
         }
 
+        /// <summary>
+        /// Loads the trainer from the database
+        /// </summary>
+        /// <param name="row">The row representing the trainer</param>
+        /// <param name="database">The database containing the trainer</param>
         public override void Load(DataRow row, Database.Database database)
         {
             base.Load(row, database);
