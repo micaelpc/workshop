@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GymBL.Report
 {
-    class PersonalTrainingReportForTrainers
+    public class PersonalTrainingReportForTrainers
     {
-        PersonalTrainingReportForTrainers(Trainer trainer) {
+        public PersonalTrainingReportForTrainers(Trainer trainer) {
             this.Trainer = trainer;
             this.PrivateTrainings = Database.Database.GetInstance().GetAll<PrivateTraining>($"Trainer = '{trainer.IDNumber}'");
         }

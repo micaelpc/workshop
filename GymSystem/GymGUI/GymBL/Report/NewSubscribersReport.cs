@@ -9,8 +9,8 @@ namespace GymBL.Report
 {
     public class NewSubscribersReport
     {
-        public NewSubscribersReport(DateTime since) {
-            var subs = Database.Database.GetInstance().GetAll<Subscription>($"StartT >= '{since.ToString("yyyy-MM-dd HH:mm:ss.fff")}'");
+        public NewSubscribersReport(DateTime from, DateTime to) {
+            var subs = Database.Database.GetInstance().GetAll<Subscription>($"StartT >= '{from.ToString("yyyy-MM-dd HH:mm:ss.fff")}' and StartT <= '{to.ToString("yyyy-MM-dd HH:mm:ss.fff")}'");
             this.Trainees = subs.Select(x => x.Trainee).ToList();
         }
 

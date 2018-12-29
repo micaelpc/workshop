@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GymBL.Report;
 
 namespace GymClient.ReportsUCs
 {
@@ -42,9 +43,9 @@ namespace GymClient.ReportsUCs
             DependencyProperty.Register("ToDate", typeof(DateTime), typeof(ReportsMenuUC), new PropertyMetadata(DateTime.Today));
         
         public object GetReportResults() {
-
-            ///TODO -TAL get reports by datefrom and dateTo
-
+            
+            var report1 = new SubscriptionNearEnd(FromDate, ToDate);
+            var report2 = new NewSubscribersReport(FromDate, ToDate);
             return null;
         }
 
