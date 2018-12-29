@@ -52,8 +52,11 @@
         </ComboBox>-->
 
         <TextBlock  FontSize="20" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4"  >מאמנים פנויים לפי התאריך והשעה:</TextBlock>
-        <DataGrid x:Name="TrainersDG" IsReadOnly="True"   Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4"  VerticalAlignment="Stretch" SelectedItem=""
-                               HorizontalAlignment="Stretch" ItemsSource="{Binding AvailableTrainers,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" >
+        <DataGrid x:Name="TrainersDG" IsReadOnly="True"    Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" 
+                  VerticalAlignment="Stretch" SelectedItem="{Binding SelectedTrainer}"
+                  HorizontalAlignment="Stretch" 
+                  ItemsSource="{Binding AvailableTrainers,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  AutoGenerateColumns="False" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="תמונה" Width="SizeToCells" IsReadOnly="True" >
                     <DataGridTemplateColumn.CellTemplate>

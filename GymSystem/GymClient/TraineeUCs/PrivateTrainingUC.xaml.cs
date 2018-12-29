@@ -106,6 +106,19 @@ namespace GymClient.TraineeUCs
             }
         }
 
+
+        private Trainer _selectedTrainer;
+        public Trainer SelectedTrainer
+        {
+            get { return _selectedTrainer; }
+            set
+            {
+                _selectedTrainer = value;
+                OnPropertyChanged("SelectedTrainer");
+
+            }
+        }
+
         #region INotifyPropertyChanged Items
         private void NotifyPropertyChanged(string name)
         {
@@ -129,15 +142,21 @@ namespace GymClient.TraineeUCs
         }
 
         private Trainer GetSelectedTrainer() {
-            ///TODO - Michael, get selected trainer;
-            return AvailableTrainers[0];
+            return SelectedTrainer;
         }
 
         private void SetPrivateTrainingBtn_Click(object sender, RoutedEventArgs e)
         {
-            var newDate = new DateTime(SelectedDate.Year, SelectedDate.Month, SelectedDate.Day, Hour, 0, 0);
-            var pt = new PrivateTraining(GetSelectedTrainer(), Trainee, newDate, new TimeSpan(1, 0, 0));
-            Database.GetInstance().Insert(pt);
+            if (SelectedTrainer!=null)
+            {
+                var newDate = new DateTime(SelectedDate.Year, SelectedDate.Month, SelectedDate.Day, Hour, 0, 0);
+                var pt = new PrivateTraining(GetSelectedTrainer(), Trainee, newDate, new TimeSpan(1, 0, 0));
+                Database.GetInstance().Insert(pt);
+            }
+            else
+            {
+                MessageBox.Show("אנא בחר מאמן");
+            }
         }
 
         private void BackToTrainerViewBtn_Click(object sender, RoutedEventArgs e)
