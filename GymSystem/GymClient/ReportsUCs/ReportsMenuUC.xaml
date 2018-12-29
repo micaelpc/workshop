@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GymClient.ReportsUCs"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+    <Grid Background="White" FlowDirection="RightToLeft">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
@@ -22,12 +23,16 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="1" Grid.ColumnSpan="100" HorizontalAlignment="Center" FontSize="30">דוחות</TextBlock>
-        <StackPanel>
-            
-        </StackPanel>
-    
+        <TextBlock Grid.Row="3" Grid.Column="1" >מתאריך:</TextBlock>
+        <DatePicker SelectedDate="{Binding FromDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="2"></DatePicker>
+        
+        <TextBlock  Grid.Row="3" Grid.Column="3">עד תאריך:</TextBlock>
+        <DatePicker SelectedDate="{Binding ToDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="4"></DatePicker>
+
+        
     </Grid>
 </UserControl>
