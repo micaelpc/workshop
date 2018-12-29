@@ -7,10 +7,20 @@ using System.Data.SqlClient;
 
 namespace GymBL.Database
 {
+    /// <summary>
+    /// This class Represents the database.
+    /// </summary>
     public class Database
     {
+        /// <summary>
+        /// Instancte (Singleton class)
+        /// </summary>
         private static Database Instance;
 
+        /// <summary>
+        /// Connection string
+        /// </summary>
+        /// <returns>The connection string to the db</returns>
         public static string GetConnectionString() {
             if (System.Environment.MachineName == "SHALTIPC")
                 return @"
@@ -21,6 +31,11 @@ Integrated Security=True";
                 return @"
 Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;Integrated Security=True"; // TODO: Michael. Change connection string here
         }
+
+        /// <summary>
+        /// Returns the instance of this singleton
+        /// </summary>
+        /// <returns>The instance of the class</returns>
         public static Database GetInstance() {
             if (Instance == null)
                 Instance = new Database(GetConnectionString());
@@ -44,9 +59,17 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
         {
             get;
         }
+
+        /// <summary>
+        /// To break cycles, the is the loaded objects.
+        /// </summary>
         private Dictionary<Tuple<object, Type>, object> m_liveObjects = new Dictionary<Tuple<object, Type>, object>();
 
-
+        /// <summary>
+        /// Updates the database about the serializable object.
+        /// </summary>
+        /// <typeparam name="T">The type of the object to be serialized</typeparam>
+        /// <param name="value">The value to be serialized</param>
         public void Update<T>(T value) where T : IDatabaseSerializable
         {
             var name = value.GetType().Name;
@@ -69,6 +92,12 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
             }
         }
 
+        /// <summary>
+        /// Returns an instance of a type by it's id.
+        /// </summary>
+        /// <typeparam name="T">The type of the object to be retrieved from the db</typeparam>
+        /// <param name="id">The id ob the object</param>
+        /// <returns>An instance of T with the id</returns>
         public T Get<T>(string id) where T : IDatabaseSerializable, new()
         {
             var name = typeof(T).Name;
@@ -78,6 +107,9 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
             return Load<T>(result.Rows[0]);
         }
 
+        /// <summary>
+        /// Same as Get, just id as a numbers.
+        /// </summary>
         public T Get<T>(int id) where T : IDatabaseSerializable, new()
         {
             var name = typeof(T).Name;
@@ -86,13 +118,23 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
                 throw new Exception($"Failed to get {name} with id {id}");
             return Load<T>(result.Rows[0]);
         }
-
-
+        
+        /// <summary>
+        /// Deletes all the objects of a specific type.
+        /// </summary>
+        /// <typeparam name="T">The type of object to be deleted</typeparam>
         public void DeleteAll<T>() where T : IDatabaseSerializable, new()
         {
             var name = typeof(T).Name;
             ExecuteNonQuery($"DELETE FROM {name}");
         }
+
+        /// <summary>
+        /// Returns all inserted instances of a specific type that satisfy a condition.
+        /// </summary>
+        /// <typeparam name="T">The type of instance</typeparam>
+        /// <param name="condition">The condition to be met.</param>
+        /// <returns>All instances that satisfy the condition</returns>
         public List<T> GetAll<T>(string condition) where T : IDatabaseSerializable, new()
         {
             var name = typeof(T).Name;
@@ -106,6 +148,12 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
             return retValue;
         }
 
+        /// <summary>
+        /// Loads an instance from database row
+        /// </summary>
+        /// <typeparam name="T">The type to be loaded</typeparam>
+        /// <param name="row">The row representing the object</param>
+        /// <returns>A loaded instance from the row</returns>
         private T Load<T>(DataRow row) where T : IDatabaseSerializable, new()
         {
             var key = new Tuple<object, Type>(row["id"], typeof(T));
@@ -118,6 +166,11 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
             return temp;
         }
 
+        /// <summary>
+        /// Returns all instances of a specific type ever to be inserted to the database.
+        /// </summary>
+        /// <typeparam name="T">The type of the instances.</typeparam>
+        /// <returns>List of all instances of type T ever inserted to the database</returns>
         public List<T> GetAll<T>() where T : IDatabaseSerializable, new()
         {
             var name = typeof(T).Name;
@@ -131,6 +184,11 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
             return retValue;
         }
 
+        /// <summary>
+        /// Inserts a new object to the database.
+        /// </summary>
+        /// <typeparam name="T">The type of the object</typeparam>
+        /// <param name="value">The object to be inserted to the database</param>
         public void Insert<T>(T value) where T : IDatabaseSerializableWithId
         {
             var name = value.GetType().Name;
