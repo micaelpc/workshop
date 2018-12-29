@@ -151,7 +151,9 @@
             <Button x:Name="RetriveTrainees" Click="RetriveTrainees_Click" Width="100" Height="30" Margin="5" >שליפת מתאמנים
 
             </Button>
+            <Button x:Name="NewPersonalTraining" Click="NewPersonalTraining_Click"  Width="100" Height="30" Margin="5" >אימון אישי
 
+            </Button>
         </StackPanel> 
         
         

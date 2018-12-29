@@ -11,7 +11,7 @@ namespace GymBL.Entities
     {
         public Trainee() {
             TrainDays = new List<DayOfWeek>();
-            Subscriptions = new List<Subscription>();
+            Subscriptions = new List<Subscription> { new Subscription {Start = DateTime.Now,End = DateTime.Now.AddMonths(12) } };
         }
         public Trainee(string IDNumber, string Firstname, string Surname,
                   string Address, string HomePhone,
@@ -21,6 +21,27 @@ namespace GymBL.Entities
             this.TrainDays = trainDays;
             this.Subscriptions = subscriptions;
         }
+
+
+
+        /// <summary>
+        /// Caluated prop - Dont map!
+        /// </summary>
+        public bool IsActiveMember
+        {
+            get {
+                if (this.Subscriptions!=null &&this.Subscriptions.Count>0 &&
+                    this.Subscriptions.Any(x=>x.End<DateTime.Now))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
 
         private IList<DayOfWeek> _trainDays;
         private IList<Subscription> _subscriptions;

@@ -10,6 +10,7 @@
 >
     <UserControl.Resources>
         <Converter:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" x:Name="ByteArrayToImageSourceConverter"/>
+        <Converter:DayOfWeekConverter x:Key="DayOfWeekConverter" x:Name="DayOfWeekConverter"/>
     </UserControl.Resources>
     <Grid FlowDirection="RightToLeft" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
@@ -108,29 +109,37 @@
 
 
         <!--ROW 11-->
-        <!--<TextBlock FontWeight="Bold" FontSize="12" Grid.Column="3" Grid.Row="11" Text="היסטורית מנויים:"></TextBlock>
+        <TextBlock FontWeight="Bold" FontSize="12" Grid.Column="3" Grid.Row="11" Text="ימי עבודה:"></TextBlock>
         <DataGrid CanUserAddRows="True" AutoGenerateColumns="False" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="5" 
-                  ItemsSource="{Binding Trainee.Subscriptions ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                  ItemsSource="{Binding NewTrainer.WorkDays ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="התחלה" Width="SizeToCells">
+                <DataGridTemplateColumn Header="יום" Width="SizeToCells">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Start}"/>
+                            <ComboBox SelectedItem="{Binding Day ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource DayOfWeekConverter} }">
+                                <ComboBoxItem Content="ראשון" />
+                                <ComboBoxItem Content="שני" />
+                                <ComboBoxItem Content="שלישי" />
+                                <ComboBoxItem Content="רביעי"/>
+                                <ComboBoxItem Content="חמישי"/>
+                                <ComboBoxItem Content="שישי"/>
+                                <ComboBoxItem Content="שבת"/>
+                            </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="סוף" Width="SizeToCells">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding End}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="תשלום חודשי" Binding="{Binding MonthlyPayment}" />
             </DataGrid.Columns>
+        </DataGrid>
 
+        <!--<StackPanel Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="5">
+            <DataGrid   
+                   CanUserAddRows="True" AutoGenerateColumns="True"  
+                   ItemsSource="{Binding NewTrainer.WorkDays ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
 
-        </DataGrid>-->
+            </DataGrid>
+
+        </StackPanel>-->
+
 
         <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.ColumnSpan="20" FlowDirection="LeftToRight" >
 

@@ -1,6 +1,7 @@
 ﻿using GymBL.Database;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,9 @@ namespace GymBL.Entities
         /// <summary>
         /// Default constructor for the database.
         /// </summary>
-        public Trainer() { }
-        /// <summary>
-        /// Constructor with all the data need to define a trainer.
+        public Trainer() {
+            this.WorkDays = new List<TimeSpanOfWeek>();
+        }
         /// </summary>
         /// <param name="IDNumber">The trainer's ID number</param>
         /// <param name="Firstname">The trainer's first name</param>

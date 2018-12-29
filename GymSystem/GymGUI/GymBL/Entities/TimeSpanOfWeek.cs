@@ -10,6 +10,12 @@ namespace GymBL.Entities
     /// </summary>
     public class TimeSpanOfWeek
     {
+        public TimeSpanOfWeek() {
+
+            Day = DayOfWeek.Sunday;
+            StartTime = 0;
+            EndTime = 0;
+        }
         /// <summary>
         /// the constructor for the TimeSpanOfWeek object
         /// </summary>
