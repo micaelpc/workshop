@@ -9,10 +9,20 @@ namespace GymBL.Entities
     /// </summary>
     public class PrivateTraining : IDatabaseSerializableWithId
     {
+        /// <summary>
+        /// The default constructror, for database
+        /// </summary>
         public PrivateTraining()
         {
             Id = 0;
         }
+        /// <summary>
+        /// Defines a private training
+        /// </summary>
+        /// <param name="trainer">The trainer</param>
+        /// <param name="trainee">The trainee</param>
+        /// <param name="date">When will they meet</param>
+        /// <param name="duration">How long will it take</param>
         public PrivateTraining(Trainer trainer, Trainee trainee, DateTime date, TimeSpan duration)
         {
             this.Trainer = trainer;
@@ -22,11 +32,31 @@ namespace GymBL.Entities
             Id = 0;
         }
 
+        /// <summary>
+        /// The trainer
+        /// </summary>
         public Trainer Trainer { get; private set; }
+        
+        /// <summary>
+        /// The trainee
+        /// </summary>
         public Trainee Trainee { get; private set; }
+        /// <summary>
+        /// When will they meet
+        /// </summary>
         public DateTime Date { get; private set; }
+
+        /// <summary>
+        /// How long will it take
+        /// </summary>
         public TimeSpan Duration { get; private set; }
+
+        /// <summary>
+        /// Database id
+        /// </summary>
         public int Id { get; private set; }
+        /// Overriden methods:
+
 
         public string GetId()
         {

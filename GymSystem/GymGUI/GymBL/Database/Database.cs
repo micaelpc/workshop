@@ -118,7 +118,26 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
                 throw new Exception($"Failed to get {name} with id {id}");
             return Load<T>(result.Rows[0]);
         }
-        
+
+        /// <summary>
+        /// Deletes an object by id
+        /// </summary>
+        public void Delete<T>(string id) where T : IDatabaseSerializable, new()
+        {
+            var name = typeof(T).Name;
+            ExecuteNonQuery($"DELETE FROM {name} where id='{id}'");
+        }
+
+        /// <summary>
+        /// Deletes an object by id
+        /// </summary>
+        public void Delete<T>(int id) where T : IDatabaseSerializable, new()
+        {
+            var name = typeof(T).Name;
+            ExecuteNonQuery($"DELETE FROM {name} where id={id}");
+        }
+
+
         /// <summary>
         /// Deletes all the objects of a specific type.
         /// </summary>

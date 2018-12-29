@@ -1,20 +1,10 @@
-﻿using GymBL.Entities;
-using System;
-using System.Collections.Generic;
+﻿using GymBL.Database;
+using GymBL.Entities;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GymClient.PrivateTrainingsUC
 {
@@ -31,9 +21,16 @@ namespace GymClient.PrivateTrainingsUC
 
         private void InitPrivateTrainings()
         {
-            //TODO - TAL init all the private Trainings 
-            // and filter with TrainerNameStr and  TraineeNameStr strings with the names
-            //PrivateTraining = //here
+            var privateTrainings = Database.GetInstance().GetAll<PrivateTraining>();
+            if (TraineeNameStr != "")
+            {
+                privateTrainings = privateTrainings.Where(x => x.Trainee.Firstname == TraineeNameStr || x.Trainee.Surname == TraineeNameStr).ToList();
+            }
+            if (TrainerNameStr != "")
+            {
+                privateTrainings = privateTrainings.Where(x => x.Trainer.Firstname == TrainerNameStr || x.Trainer.Surname == TrainerNameStr).ToList();
+            }
+            PrivateTraining = new ObservableCollection<PrivateTraining>(privateTrainings);
         }
 
         private ObservableCollection<PrivateTraining> _privateTrainings = new ObservableCollection<PrivateTraining>();
@@ -47,14 +44,6 @@ namespace GymClient.PrivateTrainingsUC
                 NotifyPropertyChanged("PrivateTraining");
             }
         }
-
-
-
-
-
-
-
-
 
         public string TrainerNameStr
         {
@@ -128,10 +117,9 @@ namespace GymClient.PrivateTrainingsUC
 
         private void DeletePrivateTrainingBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedPrivateTraining!=null)
+            if (SelectedPrivateTraining != null)
             {
-                ///TODO - TAL -delete private Training
-                ///
+                Database.GetInstance().Delete<PrivateTraining>(SelectedPrivateTraining.Id);
                 MessageBox.Show("אימון הפרטי בוטל בהצלחה");
                 SelectedPrivateTraining = null;
             }

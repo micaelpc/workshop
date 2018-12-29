@@ -49,15 +49,30 @@ namespace GymBL.Entities
             this.IsActive = isActive;
             this.Trainee = trainee;
         }
-        
+        /// <summary>
+        /// The database's id
+        /// </summary>
         private int _id;
+        /// <summary>
+        /// When the substription starts
+        /// </summary>
         private DateTime _start;
+        /// <summary>
+        /// When will it end
+        /// </summary>
         private DateTime _end;
+
+        /// <summary>
+        /// How much to pay each month
+        /// </summary>
         private uint _monthlyPayment;
+        /// <summary>
+        /// Whether the substription is active or not
+        /// </summary>
         private bool _isActive;
 
 
-
+        // Properties:
         public int Id
         {
             get
@@ -129,6 +144,8 @@ namespace GymBL.Entities
         }
 
         public Trainee Trainee { get; set; }
+
+        // overriden methods:
 
         public string GetId()
         {

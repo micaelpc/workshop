@@ -49,7 +49,7 @@ namespace GymBL.Database
         void Add(string name, IDatabaseSerializableWithId value);
 
         /// <summary>
-        /// Adds an object to be serialized later.wq
+        /// Adds an object to be serialized later.
         /// </summary>
         /// <param name="name">The column name</param>
         /// <param name="value">The value</param>
