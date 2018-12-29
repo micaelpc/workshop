@@ -32,14 +32,9 @@
             <TabItem Header="מאמנים">
                 <ContentControl Content="{Binding CurrentTrainerUC}"></ContentControl>
             </TabItem>
-            <TabItem Header="אימונים אישיים">
-                <ContentControl Content="{Binding CurrentPrivateTrainingUC}"></ContentControl>
-            </TabItem>
             <TabItem Header="דוחות">
                 <ContentControl Content="{Binding CurrentReportUC}"></ContentControl>
             </TabItem>
-            <Label Content="Label" Height="100" Width="100"/>
-            <TextBox Height="21" TextWrapping="Wrap" Text="TextBox" Width="133"/>
         </TabControl>
     </Grid>
 </Window>

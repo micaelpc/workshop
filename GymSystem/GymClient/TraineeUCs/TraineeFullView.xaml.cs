@@ -32,6 +32,10 @@ namespace GymClient.TraineeUCs
             EventManager.RegisterRoutedEvent("NavToTraineeRetriveEvent", RoutingStrategy.Bubble,
             typeof(RoutedEventHandler), typeof(TraineeFullView));
 
+        public static readonly RoutedEvent NavToPrivateTraining =
+            EventManager.RegisterRoutedEvent("NavToPrivateTraining", RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler), typeof(TraineeFullView));
+
         public Trainee Trainee
         {
             get { return (Trainee)GetValue(TraineeProperty); }
@@ -92,7 +96,7 @@ namespace GymClient.TraineeUCs
 
         private void NewPersonalTraining_Click(object sender, RoutedEventArgs e)
         {
-
+            RaiseEvent(new RoutedEventArgs(NavToPrivateTraining,Trainee));
         }
     }
 }

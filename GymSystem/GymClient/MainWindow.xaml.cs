@@ -14,10 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GymBL.Entities;
-using GymClient.PrivateTrainingUCs;
 using GymClient.ReportsUCs;
 using GymClient.TraineeUCs;
 using GymClient.TrainersUCs;
+using PrivateTrainingUC = GymClient.TraineeUCs.PrivateTrainingUC;
 
 namespace GymClient
 {
@@ -83,7 +83,7 @@ namespace GymClient
             CurrentTraineeUC = new TraineeUC();
             CurrentReportUC = new ReportsMenuUC();
             CurrentTrainerUC = new TrainerUC();
-            CurrentPrivateTrainingUC = new PrivateTrainingUC();
+
         }
 
         private void InitEvents()
@@ -117,8 +117,19 @@ namespace GymClient
                     AddHandler(TraineeUC.ViewTraineeEvent,
                         new RoutedEventHandler(ViewTraineeEvent_handler));
 
-                    AddHandler(TraineeFullView.NavToTraineeRetriveEvent,
+            AddHandler(TraineeFullView.NavToPrivateTraining,
+                     new RoutedEventHandler(NavToPrivateTraining_handler));
+
+            AddHandler(TraineeFullView.NavToTraineeRetriveEvent,
                         new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+
+            AddHandler(PrivateTrainingUC.NavToFullViewTrainerEvent,
+            new RoutedEventHandler(ViewTraineeEvent_handler));
+
+            AddHandler(PrivateTrainingUC.NavToTraineeRetriveEvent,
+                    new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
+
+            //
             #endregion
         }
 
@@ -144,6 +155,13 @@ namespace GymClient
         {
             CurrentTraineeUC = new NewTraineeUC();
         }
+
+
+        private void NavToPrivateTraining_handler(object sender, RoutedEventArgs e)
+        {
+            CurrentTraineeUC = new PrivateTrainingUC((Trainee)e.OriginalSource);
+        }
+
         #endregion
 
         #region Trainers Handlers
