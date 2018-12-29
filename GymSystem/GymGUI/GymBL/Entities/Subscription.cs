@@ -7,15 +7,40 @@ using System.Text;
 
 namespace GymBL.Entities
 {
+    /// <summary>
+    /// Represents a subscription to the gym. 
+    /// </summary>
     public class Subscription : ObservableObject, IDatabaseSerializableWithId
     {
-        public Subscription() { }
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Subscription() {
+            Id = 0;
+        }
 
+        /// <summary>
+        /// Defines a substription
+        /// </summary>
+        /// <param name="start">When does it start</param>
+        /// <param name="end">When will it end</param>
+        /// <param name="monthlyPayment">The monthly payment</param>
+        /// <param name="isActive">Whether it's active</param>
+        /// <param name="trainee">The trainee in question</param>
         public Subscription(DateTime start, DateTime end, uint monthlyPayment, bool isActive, Trainee trainee)
             :this(0, start, end, monthlyPayment, isActive, trainee)
         {
         }
 
+        /// <summary>
+        /// Defines a substription
+        /// </summary>
+        /// <param name="id">The database id of the subscription</param>
+        /// <param name="start">When does it start</param>
+        /// <param name="end">When will it end</param>
+        /// <param name="monthlyPayment">The monthly payment</param>
+        /// <param name="isActive">Whether it's active</param>
+        /// <param name="trainee">The trainee in question</param>
         public Subscription(int id, DateTime start, DateTime end, uint monthlyPayment, bool isActive, Trainee trainee) {
             this.Id = id;
             this.Start = start;

@@ -182,7 +182,7 @@ namespace GymBL.Entities
 
 
         /// <summary>
-        /// returns the main id properties for the volunteer
+        /// returns the main properties for the person
         /// </summary>
         /// <returns>the person`s short description</returns>
         override public string ToString()
@@ -191,7 +191,7 @@ namespace GymBL.Entities
         }
 
         /// <summary>
-        /// used to compare between two voluunteers.
+        /// used to compare between two persons.
         /// two persons are the same if their idnumber is the same
         /// </summary>
         /// <param name="obj">the second person to compare to</param>

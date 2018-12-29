@@ -7,12 +7,32 @@ using System.Text;
 
 namespace GymBL.Entities
 {
+    /// <summary>
+    /// Represents someone who trains in the gym
+    /// </summary>
     public class Trainee : Person
     {
+        /// <summary>
+        /// Default constructor for the database
+        /// </summary>
         public Trainee() {
             TrainDays = new List<DayOfWeek>();
             Subscriptions = new List<Subscription> { new Subscription {Start = DateTime.Now,End = DateTime.Now.AddMonths(12) } };
         }
+        /// <summary>
+        /// A constructor for a trainee
+        /// </summary>
+        /// <param name="IDNumber">the trainee unique id</param>
+        /// <param name="Firstname">first name for the trainee</param>
+        /// <param name="Surname">surname for the person</param>
+        /// <param name="Address">the trainee`s address</param>
+        /// <param name="HomePhone">the trainee`s homephone</param>
+        /// <param name="CellPhone">the trainee`s cellphone</param>
+        /// <param name="EMail">the trainee`s email</param>
+        /// <param name="Birthdate">the trainee`s birthdate</param>
+        /// <param name="Comment">a general textual comment for the trainee</param>
+        /// <param name="trainDays">When does he trains</param>
+        /// <param name="subscriptions">It's substriptions</param>
         public Trainee(string IDNumber, string Firstname, string Surname,
                   string Address, string HomePhone,
                   string CellPhone, string EMail, DateTime Birthdate,
@@ -22,8 +42,7 @@ namespace GymBL.Entities
             this.Subscriptions = subscriptions;
         }
 
-
-
+        
         /// <summary>
         /// Caluated prop - Dont map!
         /// </summary>
@@ -42,8 +61,14 @@ namespace GymBL.Entities
             }
         }
 
-
+        /// <summary>
+        /// When does he train
+        /// </summary>
         private IList<DayOfWeek> _trainDays;
+
+        /// <summary>
+        /// His subscriptions
+        /// </summary>
         private IList<Subscription> _subscriptions;
 
         public IList<DayOfWeek> TrainDays
@@ -71,6 +96,8 @@ namespace GymBL.Entities
                 OnPropertyChanged("Subscriptions");
             }
         }
+
+        // overriden methods:
 
         public override void Serialize(IDatabaseStream stream)
         {

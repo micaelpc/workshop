@@ -4,6 +4,9 @@ using System.Data;
 
 namespace GymBL.Entities
 {
+    /// <summary>
+    /// Represents a meeting between a trainer and a trainee. Paid, ofcurse.
+    /// </summary>
     public class PrivateTraining : IDatabaseSerializableWithId
     {
         public PrivateTraining()
