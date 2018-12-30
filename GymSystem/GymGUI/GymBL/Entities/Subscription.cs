@@ -17,6 +17,7 @@ namespace GymBL.Entities
         /// </summary>
         public Subscription() {
             Id = 0;
+            IsActive = true;
         }
 
         /// <summary>

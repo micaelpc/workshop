@@ -91,7 +91,7 @@ namespace GymClient.ReportsUCs
         public void GetReportResults() {
 
             SubscriptionNearEndTrainees = new SubscriptionNearEnd(FromDate, ToDate).Trainees;
-            var report2 = new NewSubscribersReport(FromDate, ToDate).Trainees;
+            NewSubscribersReportTrainees = new NewSubscribersReport(FromDate, ToDate).Trainees;
 
         }
 
