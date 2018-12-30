@@ -37,6 +37,47 @@
         <DatePicker SelectedDate="{Binding ToDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="5"></DatePicker>
 
         <Button Grid.Column="7" Grid.Row="3" x:Name="ExcuteReportRequestBtn" Click="ExcuteReportRequestBtn_Click">שלוף דוחות</Button>
-        
+        <TabControl Grid.Row="5" Grid.ColumnSpan="10" Grid.RowSpan="10">
+            <TabItem Header="דוח מנויים חדשים">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="TraineesNewDG" IsReadOnly="True"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" SelectedItem=""
+                               HorizontalAlignment="Stretch" ItemsSource="{Binding NewSubscribersReportTrainees,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ת.ז" Binding="{Binding IDNumber}" />
+                            <DataGridTextColumn Header="שם פרטי" Binding="{Binding Firstname}" />
+                            <DataGridTextColumn Header="שם משפחה" Binding="{Binding Surname}" />
+                            <DataGridTextColumn Header="מספר פלאפון" Binding="{Binding CellPhone}" />
+                            <DataGridTextColumn Header="תאריך לידה" Binding="{Binding Birthdate}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="ExcelNewBtn" Background="LightGreen" Click="ExcelNewBtn_Click" Grid.Row="1" HorizontalAlignment="Center">יצא לאקסל</Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="דוח מנויים לקראת סיום">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="TraineesAboutToExpireDG" IsReadOnly="True"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" SelectedItem=""
+                               HorizontalAlignment="Stretch" ItemsSource="{Binding SubscriptionNearEndTrainees,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ת.ז" Binding="{Binding IDNumber}" />
+                            <DataGridTextColumn Header="שם פרטי" Binding="{Binding Firstname}" />
+                            <DataGridTextColumn Header="שם משפחה" Binding="{Binding Surname}" />
+                            <DataGridTextColumn Header="מספר פלאפון" Binding="{Binding CellPhone}" />
+                            <DataGridTextColumn Header="תאריך לידה" Binding="{Binding Birthdate}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="ExcelExpairedBtn" Background="LightGreen" Click="ExcelExpairedBtn_Click" Grid.Row="1" HorizontalAlignment="Center">יצא לאקסל</Button>
+                </Grid>
+                
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </UserControl>
