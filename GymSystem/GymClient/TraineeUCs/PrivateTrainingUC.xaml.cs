@@ -152,6 +152,8 @@ namespace GymClient.TraineeUCs
                 var newDate = new DateTime(SelectedDate.Year, SelectedDate.Month, SelectedDate.Day, Hour, 0, 0);
                 var pt = new PrivateTraining(GetSelectedTrainer(), Trainee, newDate, new TimeSpan(1, 0, 0));
                 Database.GetInstance().Insert(pt);
+                MessageBox.Show("אימון אישי נקבע");
+                RaiseEvent(new RoutedEventArgs(NavToFullViewTrainerEvent, Trainee));
             }
             else
             {
