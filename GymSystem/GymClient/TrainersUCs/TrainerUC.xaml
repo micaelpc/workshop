@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <Converter:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" x:Name="ByteArrayToImageSourceConverter"/>
     </UserControl.Resources>
-    <Grid Margin="10" Background="White" >
+    <Grid Margin="10" Background="White" FlowDirection="RightToLeft" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="5"/>
@@ -42,7 +42,8 @@
         <TextBox Grid.Column="5" Grid.Row="1" Text="{Binding RetrivalTrainer.Firstname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></TextBox>
         <Label Grid.Column="7" Grid.Row="1">שם משפחה</Label>
         <TextBox Grid.Column="8" Grid.Row="1" Text="{Binding RetrivalTrainer.Surname,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></TextBox>
-        <Button x:Name="ExcuteRetrival" Click="ExcuteRetrival_Click"  Grid.Column="13" Grid.Row="1">בצע שליפה</Button>
+        <Button x:Name="ExcuteRetrival" Click="ExcuteRetrival_Click"  Grid.Column="10" Grid.Row="1">בצע שליפה</Button>
+        <Button Background="Red" x:Name="DeleteTrainerBtn" Click="DeleteTrainerBtn_Click"  Grid.Column="13" Grid.Row="1">מחק מאמן מסומן</Button>
         <DataGrid x:Name="TrainersDG" IsReadOnly="True"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" SelectedItem=""
                                HorizontalAlignment="Stretch" ItemsSource="{Binding ActiveTrainers,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" >
             <DataGrid.Columns>

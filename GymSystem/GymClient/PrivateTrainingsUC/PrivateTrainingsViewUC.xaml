@@ -13,11 +13,12 @@
             <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="10"/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="1"  >
-            <Button Margin="0,0,10,0"  x:Name="Refresh" Click="Refresh_Click">רענן</Button>
-            <Button Margin="0,0,10,0" x:Name="DeletePrivateTrainingBtn" Click="DeletePrivateTrainingBtn_Click">בטל אימון מסומן</Button>
+            <Button Margin="0,0,10,0" Background="LightBlue"  x:Name="Refresh" Click="Refresh_Click">רענן</Button>
+            <Button Margin="0,0,10,0" Background="Red"  x:Name="DeletePrivateTrainingBtn" Click="DeletePrivateTrainingBtn_Click">בטל אימון מסומן</Button>
             <TextBlock Margin="0,0,10,0" >שם מאמן:</TextBlock>
             <TextBox Margin="0,0,10,0" x:Name="TrainerName" Width="150" Text="{Binding TrainerNameStr,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Margin="0,0,10,0" >שם מתאמן:</TextBlock>
@@ -25,8 +26,9 @@
 
             <Button x:Name="SearchBtn" Click="SearchBtn_Click" >חפש</Button>
         </StackPanel>
-        <DataGrid Grid.Row="3" AutoGenerateColumns="True" SelectedItem="{Binding SelectedPrivateTraining,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"   ItemsSource="{Binding PrivateTraining,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+        <DataGrid Grid.Row="3" x:Name="PrivateTrainingDG" AutoGenerateColumns="True" SelectedItem="{Binding SelectedPrivateTraining,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"   ItemsSource="{Binding PrivateTraining,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
             
         </DataGrid>
+        <Button Background="LightGreen" Margin="10" HorizontalAlignment="Center" Grid.Row="4" x:Name="ExportExcelBtn" Click="ExportExcelBtn_Click">פתח באקסל</Button>
     </Grid>
 </UserControl>

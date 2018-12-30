@@ -135,5 +135,18 @@ namespace GymClient
         {
             RaiseEvent(new RoutedEventArgs(NewTrainertEvent));
         }
+
+        private void DeleteTrainerBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            //TODO TAL - Delete Trainer Here
+
+            //SelectedTrainer
+
+            SelectedTrainer = null;
+            InitActiveTrainersList();
+        }
+
     }
 }

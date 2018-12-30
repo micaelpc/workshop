@@ -152,5 +152,14 @@ namespace GymClient
         {
             ExcelExportUtils.ExportToExcel(this.TraineesDG);
         }
+
+        private void DeleteTraineeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ///TODO -TAL - delete selected Trinee
+            ///SelectedTrainee
+
+            SelectedTrainee = null;
+            InitTrainees();
+        }
     }
 }

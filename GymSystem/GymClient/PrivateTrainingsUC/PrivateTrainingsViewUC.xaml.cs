@@ -1,5 +1,6 @@
 ﻿using GymBL.Database;
 using GymBL.Entities;
+using GymClient.Resources.Utils;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -122,7 +123,14 @@ namespace GymClient.PrivateTrainingsUC
                 Database.GetInstance().Delete<PrivateTraining>(SelectedPrivateTraining.Id);
                 MessageBox.Show("אימון הפרטי בוטל בהצלחה");
                 SelectedPrivateTraining = null;
+                InitPrivateTrainings();
             }
+        }
+
+        private void ExportExcelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelExportUtils.ExportToExcel(PrivateTrainingDG);
+
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
