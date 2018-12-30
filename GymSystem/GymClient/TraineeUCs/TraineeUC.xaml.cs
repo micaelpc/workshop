@@ -155,9 +155,8 @@ namespace GymClient
 
         private void DeleteTraineeBtn_Click(object sender, RoutedEventArgs e)
         {
-            ///TODO -TAL - delete selected Trinee
-            ///SelectedTrainee
-
+            Database.GetInstance().Delete<Trainee>(SelectedTrainee.GetId());
+            MessageBox.Show("המתאמן נמחק בהצלחה");
             SelectedTrainee = null;
             InitTrainees();
         }

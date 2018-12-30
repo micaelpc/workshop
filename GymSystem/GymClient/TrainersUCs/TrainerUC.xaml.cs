@@ -138,12 +138,8 @@ namespace GymClient
 
         private void DeleteTrainerBtn_Click(object sender, RoutedEventArgs e)
         {
-
-
-            //TODO TAL - Delete Trainer Here
-
-            //SelectedTrainer
-
+            Database.GetInstance().Delete<Trainer>(SelectedTrainer.GetId());
+            MessageBox.Show("המאמן נמחק בהצלחה");
             SelectedTrainer = null;
             InitActiveTrainersList();
         }
