@@ -145,6 +145,10 @@ namespace GymClient
                 SelectedTrainer = null;
                 InitActiveTrainersList();
             }
+            else
+            {
+                MessageBox.Show("סמן מאמן למחיקה");
+            }
         }
 
     }

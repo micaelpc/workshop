@@ -44,10 +44,11 @@
         <TextBox Grid.Column="8" Grid.Row="1" Text="{Binding RetrivalTrainee.Surname,UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Button x:Name="ExcuteRetrival" Click="ExcuteRetrival_Click" Grid.Column="10" Grid.Row="1">בצע שליפה</Button>
         <Button Background="Red" x:Name="DeleteTraineeBtn" Click="DeleteTraineeBtn_Click" Grid.Column="13" Grid.Row="1">מחק מאמן מסומן</Button>
-        <DataGrid x:Name="TraineesDG" IsReadOnly="True"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch" SelectedItem=""
+        <DataGrid x:Name="TraineesDG" IsReadOnly="True"   Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="100"  VerticalAlignment="Stretch"
+                  SelectedItem="{Binding SelectedTrainee,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                HorizontalAlignment="Stretch" ItemsSource="{Binding Trainees,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" >
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Image" Width="SizeToCells" IsReadOnly="True">
+                <DataGridTemplateColumn Header="תמונה" Width="SizeToCells" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Image Height="80"  Source="{Binding Picture

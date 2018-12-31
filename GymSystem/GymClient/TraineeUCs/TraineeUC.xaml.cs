@@ -42,7 +42,7 @@ namespace GymClient
 
 
         private ObservableCollection<Trainee> _trainees = new ObservableCollection<Trainee>();
-        private Trainee _selectedTrainee = new Trainee();
+        private Trainee _selectedTrainee;
 
         public ObservableCollection<Trainee> Trainees
         {
