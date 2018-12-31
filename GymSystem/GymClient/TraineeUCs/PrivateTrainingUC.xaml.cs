@@ -33,15 +33,15 @@ namespace GymClient.TraineeUCs
             typeof(RoutedEventHandler), typeof(PrivateTrainingUC));
 
 
-        public ObservableCollection<int> Numbers = new ObservableCollection<int> { 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 };
+
 
         public PrivateTrainingUC(Trainee trainee)
         {
             SelectedDate = DateTime.Today;
-
             Trainee = trainee;
             InitializeComponent();
             ReloadAvailableTrainers();
+            HourCmb.ItemsSource = new ObservableCollection<int> { 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 };
         }
 
         private ObservableCollection<Trainer> _availableTrainers;
@@ -170,5 +170,7 @@ namespace GymClient.TraineeUCs
         {
             RaiseEvent(new RoutedEventArgs(NavToTraineeRetriveEvent, Trainee));
         }
+
+
     }
 }
