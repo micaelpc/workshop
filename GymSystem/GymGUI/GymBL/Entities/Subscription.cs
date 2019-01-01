@@ -53,24 +53,24 @@ namespace GymBL.Entities
         /// <summary>
         /// The database's id
         /// </summary>
-        private int _id;
+        private int m_id;
         /// <summary>
         /// When the substription starts
         /// </summary>
-        private DateTime _start;
+        private DateTime m_start;
         /// <summary>
         /// When will it end
         /// </summary>
-        private DateTime _end;
+        private DateTime m_end;
 
         /// <summary>
         /// How much to pay each month
         /// </summary>
-        private uint _monthlyPayment;
+        private uint m_monthlyPayment;
         /// <summary>
         /// Whether the substription is active or not
         /// </summary>
-        private bool _isActive;
+        private bool m_isActive;
 
 
         // Properties:
@@ -78,11 +78,11 @@ namespace GymBL.Entities
         {
             get
             {
-                return _id;
+                return m_id;
             }
             set
             {
-                _id = value;
+                m_id = value;
                 OnPropertyChanged("Id");
             }
         }
@@ -93,11 +93,11 @@ namespace GymBL.Entities
         {
             get
             {
-                return _start;
+                return m_start;
             }
             set
             {
-                _start = value;
+                m_start = value;
                 OnPropertyChanged("Start");
             }
         }
@@ -107,11 +107,11 @@ namespace GymBL.Entities
         {
             get
             {
-                return _end;
+                return m_end;
             }
             set
             {
-                _end = value;
+                m_end = value;
                 OnPropertyChanged("End");
             }
         }
@@ -121,11 +121,11 @@ namespace GymBL.Entities
         {
             get
             {
-                return _monthlyPayment;
+                return m_monthlyPayment;
             }
             set
             {
-                _monthlyPayment = value;
+                m_monthlyPayment = value;
                 OnPropertyChanged("MonthlyPayment");
             }
         }
@@ -135,11 +135,11 @@ namespace GymBL.Entities
         {
             get
             {
-                return _isActive;
+                return m_isActive;
             }
             set
             {
-                _isActive = value;
+                m_isActive = value;
                 OnPropertyChanged("IsActive");
             }
         }

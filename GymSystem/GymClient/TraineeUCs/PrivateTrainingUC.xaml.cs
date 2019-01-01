@@ -44,13 +44,13 @@ namespace GymClient.TraineeUCs
             ReloadAvailableTrainers();
         }
 
-        private ObservableCollection<Trainer> _availableTrainers;
+        private ObservableCollection<Trainer> m_availableTrainers;
         public ObservableCollection<Trainer> AvailableTrainers
         {
-            get { return _availableTrainers; }
+            get { return m_availableTrainers; }
             set
             {
-                _availableTrainers = value;
+                m_availableTrainers = value;
                 OnPropertyChanged("AvailableTrainers");
 
 
@@ -58,13 +58,13 @@ namespace GymClient.TraineeUCs
         }
 
 
-        private int _hour;
+        private int m_hour;
         public int Hour
         {
-            get { return _hour; }
+            get { return m_hour; }
             set
             {
-                _hour = value;
+                m_hour = value;
 
                 SelectedDate =   SelectedDate.Date;
 
@@ -80,13 +80,13 @@ namespace GymClient.TraineeUCs
             AvailableTrainers = new ObservableCollection<Trainer>(Database.GetInstance().GetAll<Trainer>());
         }
 
-        private DateTime _selectedDate;
+        private DateTime m_selectedDate;
         public DateTime SelectedDate
         {
-            get { return _selectedDate; }
+            get { return m_selectedDate; }
             set
             {
-                _selectedDate = value;
+                m_selectedDate = value;
 
                 OnPropertyChanged("SelectedDate");
                 ReloadAvailableTrainers();
@@ -94,26 +94,26 @@ namespace GymClient.TraineeUCs
         }
 
 
-        private Trainee _trainee;
+        private Trainee m_trainee;
         public Trainee Trainee
         {
-            get { return _trainee; }
+            get { return m_trainee; }
             set
             {
-                _trainee = value;
+                m_trainee = value;
                 OnPropertyChanged("Trainee");
 
             }
         }
 
 
-        private Trainer _selectedTrainer;
+        private Trainer m_selectedTrainer;
         public Trainer SelectedTrainer
         {
-            get { return _selectedTrainer; }
+            get { return m_selectedTrainer; }
             set
             {
-                _selectedTrainer = value;
+                m_selectedTrainer = value;
                 OnPropertyChanged("SelectedTrainer");
 
             }

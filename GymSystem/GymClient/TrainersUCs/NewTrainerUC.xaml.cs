@@ -39,35 +39,35 @@ namespace GymClient.TrainersUCs
             "שלישי","רביעי","חמישי","שישי", "שבת"
         };
 
-        private DayOfWeek _day;
+        private DayOfWeek m_day;
 
         public DayOfWeek Day
         {
-            get { return _day; }
+            get { return m_day; }
             set
             {
-                _day = value;
+                m_day = value;
                 OnPropertyChanged("Day");
             }
         }
 
-        private ObservableCollection<TimeSpanOfWeek> _workDays =new ObservableCollection<TimeSpanOfWeek>();
+        private ObservableCollection<TimeSpanOfWeek> m_workDays =new ObservableCollection<TimeSpanOfWeek>();
 
         public ObservableCollection<TimeSpanOfWeek> WorkDays
         {
-            get { return _workDays; }
+            get { return m_workDays; }
             set
             {
-                _workDays = value;
+                m_workDays = value;
                 OnPropertyChanged("WorkDays");
             }
         }
 
-        private Trainer _newTrainer;
+        private Trainer m_newTrainer;
 
-        public Trainer NewTrainer { get { return _newTrainer; }
+        public Trainer NewTrainer { get { return m_newTrainer; }
             set {
-                _newTrainer = value;
+                m_newTrainer = value;
                 OnPropertyChanged("NewTrainer");
             }
         }

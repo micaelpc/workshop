@@ -9,19 +9,16 @@ namespace GymBL.Contract
 {
     public class Response : ObservableObject
     {
-
-
         public List<string> FailedReasons { get; set; }
-        public ResponseStatusType ResponseStatus { get; set; }
+        public ResponseStatusEnum ResponseStatus { get; set; }
         public object Value { get; set; }
 
         public static Response FromException(Exception e) {
-            return new Response { FailedReasons = new List<string>() { e.Message }, ResponseStatus = ResponseStatusType.Failed };
+            return new Response { FailedReasons = new List<string>() { e.Message }, ResponseStatus = ResponseStatusEnum.Failed };
         }
     }
 
-    public enum ResponseStatusType {
-
+    public enum ResponseStatusEnum {
         Success,
         Failed
     }

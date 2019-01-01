@@ -42,14 +42,14 @@ namespace GymBL.Entities
         /// <summary>
         /// The days the trainer works, with time duration.
         /// </summary>
-        private IList<TimeSpanOfWeek> _workDays;
+        private IList<TimeSpanOfWeek> m_workDays;
 
         public IList<TimeSpanOfWeek> WorkDays
         {
-            get { return _workDays; }
+            get { return m_workDays; }
             set
             {
-                _workDays = value;
+                m_workDays = value;
                 OnPropertyChanged("WorkDays");
             }
         }

@@ -64,22 +64,22 @@ namespace GymBL.Entities
         /// <summary>
         /// When does he train
         /// </summary>
-        private IList<DayOfWeek> _trainDays;
+        private IList<DayOfWeek> m_trainDays;
 
         /// <summary>
         /// His subscriptions
         /// </summary>
-        private IList<Subscription> _subscriptions;
+        private IList<Subscription> m_subscriptions;
 
         public IList<DayOfWeek> TrainDays
         {
             get
             {
-                return _trainDays;
+                return m_trainDays;
             }
             set
             {
-                _trainDays = value;
+                m_trainDays = value;
                 OnPropertyChanged("TrainDays");
             }
         }
@@ -88,11 +88,11 @@ namespace GymBL.Entities
         {
             get
             {
-                return _subscriptions;
+                return m_subscriptions;
             }
             set
             {
-                _subscriptions = value;
+                m_subscriptions = value;
                 OnPropertyChanged("Subscriptions");
             }
         }

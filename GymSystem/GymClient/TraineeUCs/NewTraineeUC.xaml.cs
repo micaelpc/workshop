@@ -71,7 +71,7 @@ namespace GymClient.TraineeUCs
         {
            Response res =   AddNewTrainee(NewTrainee);
 
-            if (res.ResponseStatus== ResponseStatusType.Success)
+            if (res.ResponseStatus== ResponseStatusEnum.Success)
             {
                 MessageBox.Show("המתאמן הוכנס בהצלחה");
                 RaiseEvent(new RoutedEventArgs(NewTraineeUC.NavToTraineeRetriveEvent, new Trainee()));
@@ -87,7 +87,7 @@ namespace GymClient.TraineeUCs
             try
             {
                 Database.GetInstance().Insert(newTrainee);
-                return new Response { ResponseStatus = ResponseStatusType.Success };
+                return new Response { ResponseStatus = ResponseStatusEnum.Success };
             }
             catch (Exception e) {
                 return Response.FromException(e);

@@ -10,19 +10,19 @@ namespace GymBL.Contract
    public class ReportRequest : ObservableObject
 
     {
-        private DateTime _start;
-        private DateTime _end;
-        private ReportType _reportType;
+        private DateTime m_start;
+        private DateTime m_end;
+        private ReportType m_reportType;
 
         public DateTime Start
         {
             get
             {
-                return _start;
+                return m_start;
             }
             set
             {
-                _start = value;
+                m_start = value;
                 OnPropertyChanged("Start");
             }
         }
@@ -31,11 +31,11 @@ namespace GymBL.Contract
         {
             get
             {
-                return _end;
+                return m_end;
             }
             set
             {
-                _start = value;
+                m_end = value;
                 OnPropertyChanged("End");
             }
         }
@@ -44,11 +44,11 @@ namespace GymBL.Contract
         {
             get
             {
-                return _reportType;
+                return m_reportType;
             }
             set
             {
-                _reportType = value;
+                m_reportType = value;
                 OnPropertyChanged("ReportType");
             }
         }

@@ -37,12 +37,12 @@ namespace GymClient
 
         #endregion
 
-        private Trainer _retrivalTrainer;
+        private Trainer m_retrivalTrainer;
 
 
         public Trainer RetrivalTrainer {
-            get { return _retrivalTrainer; }
-            set { _retrivalTrainer = value;
+            get { return m_retrivalTrainer; }
+            set { m_retrivalTrainer = value;
                 OnPropertyChanged("RetrivalTrainer");
             } }
 
@@ -59,12 +59,12 @@ namespace GymClient
             ActiveTrainers = new ObservableCollection<Trainer> (Database.GetInstance().GetAll<Trainer>());
         }
 
-        private ObservableCollection<Trainer> _activeTrainers = new ObservableCollection<Trainer>();
+        private ObservableCollection<Trainer> m_activeTrainers = new ObservableCollection<Trainer>();
 
         public ObservableCollection<Trainer> ActiveTrainers {
-            get { return _activeTrainers; }
+            get { return m_activeTrainers; }
             set {
-                _activeTrainers = value;
+                m_activeTrainers = value;
                 OnPropertyChanged("ActiveTrainers");
             }
 

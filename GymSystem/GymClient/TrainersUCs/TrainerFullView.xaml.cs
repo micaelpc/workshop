@@ -2,21 +2,11 @@
 using GymBL.Entities;
 using GymClient.Resources.Utils;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GymClient.TrainersUCs
 {
@@ -30,26 +20,26 @@ namespace GymClient.TrainersUCs
                 EventManager.RegisterRoutedEvent("NavToTrainerRetriveEvent", RoutingStrategy.Bubble,
                 typeof(RoutedEventHandler), typeof(TrainerFullView));
 
-        private ObservableCollection<TimeSpanOfWeek> _workDays = new ObservableCollection<TimeSpanOfWeek>();
+        private ObservableCollection<TimeSpanOfWeek> m_workDays = new ObservableCollection<TimeSpanOfWeek>();
 
         public ObservableCollection<TimeSpanOfWeek> WorkDays
         {
-            get { return _workDays; }
+            get { return m_workDays; }
             set
             {
-                _workDays = value;
+                m_workDays = value;
                 OnPropertyChanged("WorkDays");
             }
         }
 
-        private DayOfWeek _day;
+        private DayOfWeek m_day;
 
         public DayOfWeek Day
         {
-            get { return _day; }
+            get { return m_day; }
             set
             {
-                _day = value;
+                m_day = value;
                 OnPropertyChanged("Day");
             }
         }
@@ -63,7 +53,7 @@ namespace GymClient.TrainersUCs
             {
                 WorkDays.Add(day);
             }
-                
+
 
             InitializeComponent();
         }
@@ -77,11 +67,17 @@ namespace GymClient.TrainersUCs
         }
         #endregion
 
-        private Trainer _trainer;
-        public Trainer Trainer { get { return _trainer; } set { _trainer = value;
+        private Trainer m_trainer;
+        public Trainer Trainer
+        {
+            get { return m_trainer; }
+            set
+            {
+                m_trainer = value;
                 OnPropertyChanged("Trainer");
 
-            } }
+            }
+        }
 
         private void UpdateChangesBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -106,14 +102,14 @@ namespace GymClient.TrainersUCs
 
         private void AddDayOfWorkBtn_Click(object sender, RoutedEventArgs e)
         {
-                if (!WorkDays.Any(x => x.Day == Day))
-                {
-                    WorkDays.Add(new TimeSpanOfWeek { Day = Day });
-                }
-                else
-                {
-                    MessageBox.Show("יום זה כבר קיים בזמינויות של המאמן");
-                }
+            if (!WorkDays.Any(x => x.Day == Day))
+            {
+                WorkDays.Add(new TimeSpanOfWeek { Day = Day });
+            }
+            else
+            {
+                MessageBox.Show("יום זה כבר קיים בזמינויות של המאמן");
+            }
         }
     }
 }

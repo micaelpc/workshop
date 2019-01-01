@@ -34,14 +34,14 @@ namespace GymClient.PrivateTrainingsUC
             PrivateTraining = new ObservableCollection<PrivateTraining>(privateTrainings);
         }
 
-        private ObservableCollection<PrivateTraining> _privateTrainings = new ObservableCollection<PrivateTraining>();
+        private ObservableCollection<PrivateTraining> m_privateTrainings = new ObservableCollection<PrivateTraining>();
 
         public ObservableCollection<PrivateTraining> PrivateTraining
         {
-            get { return _privateTrainings; }
+            get { return m_privateTrainings; }
             set
             {
-                _privateTrainings = value;
+                m_privateTrainings = value;
                 NotifyPropertyChanged("PrivateTraining");
             }
         }

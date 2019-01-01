@@ -41,15 +41,15 @@ namespace GymClient
         #endregion
 
 
-        private ObservableCollection<Trainee> _trainees = new ObservableCollection<Trainee>();
-        private Trainee _selectedTrainee = new Trainee();
+        private ObservableCollection<Trainee> m_trainees = new ObservableCollection<Trainee>();
+        private Trainee m_selectedTrainee = new Trainee();
 
         public ObservableCollection<Trainee> Trainees
         {
-            get { return _trainees; }
+            get { return m_trainees; }
             set
             {
-                _trainees = value;
+                m_trainees = value;
                 NotifyPropertyChanged("Trainees");
             }
         }
@@ -57,10 +57,10 @@ namespace GymClient
 
         public Trainee SelectedTrainee
         {
-            get { return _selectedTrainee; }
+            get { return m_selectedTrainee; }
             set
             {
-                _selectedTrainee = value;
+                m_selectedTrainee = value;
                 NotifyPropertyChanged("SelectedTrainee");
             }
         }
