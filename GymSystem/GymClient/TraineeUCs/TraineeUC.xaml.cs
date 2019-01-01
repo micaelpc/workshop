@@ -41,7 +41,7 @@ namespace GymClient
         #endregion
 
 
-        private ObservableCollection<Trainee> _trainees = new ObservableCollection<Trainee>();
+        private ObservableCollection<Trainee> m_trainees = new ObservableCollection<Trainee>();
         private Trainee m_selectedTrainee = new Trainee();
 
         public ObservableCollection<Trainee> Trainees

@@ -106,7 +106,7 @@ namespace GymClient
                  new RoutedEventHandler(ViewTrainerEvent_handler));
 
 
-            // ViewTrainerEvent
+
 
             #endregion
 
@@ -114,10 +114,10 @@ namespace GymClient
             AddHandler(TraineeUC.NewTraineetEvent,
                         new RoutedEventHandler(NewTraineetEvent_handler));
 
-                    AddHandler(NewTraineeUC.NavToTraineeRetriveEvent,
+            AddHandler(NewTraineeUC.NavToTraineeRetriveEvent,
                          new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
 
-                    AddHandler(TraineeUC.ViewTraineeEvent,
+            AddHandler(TraineeUC.ViewTraineeEvent,
                         new RoutedEventHandler(ViewTraineeEvent_handler));
 
             AddHandler(TraineeFullView.NavToPrivateTraining,
@@ -132,7 +132,6 @@ namespace GymClient
             AddHandler(PrivateTrainingUC.NavToTraineeRetriveEvent,
                     new RoutedEventHandler(NavToTraineeRetriveEvent_handler));
 
-            //
             #endregion
         }
 
