@@ -157,6 +157,7 @@ namespace GymClient
         {
             if (SelectedTrainee!=null)
             {
+                Database.GetInstance().DeleteAll<Subscription>($"Trainee = '{SelectedTrainee.GetId()}'");
                 Database.GetInstance().Delete<Trainee>(SelectedTrainee.GetId());
                 MessageBox.Show("המתאמן נמחק בהצלחה");
                 SelectedTrainee = null;

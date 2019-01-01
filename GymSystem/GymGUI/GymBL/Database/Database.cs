@@ -22,14 +22,8 @@ namespace GymBL.Database
         /// </summary>
         /// <returns>The connection string to the db</returns>
         public static string GetConnectionString() {
-            if (System.Environment.MachineName == "SHALTIPC")
-                return @"
-Data Source=(LocalDB)\MSSQLLocalDB;
-AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;
-Integrated Security=True";
-            else
-                return @"
-Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\GymGUI\GymBL\Gym.mdf;Integrated Security=True"; // TODO: Michael. Change connection string here
+            string startupPath = System.IO.Directory.GetCurrentDirectory();
+            return $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={startupPath}\Gym.mdf;Integrated Security=True";
         }
 
         /// <summary>
@@ -137,6 +131,16 @@ Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\dev\workshop\GymSystem\Gy
             ExecuteNonQuery($"DELETE FROM {name} where id={id}");
         }
 
+
+        /// <summary>
+        /// Deletes all the objects of a specific type.
+        /// </summary>
+        /// <typeparam name="T">The type of object to be deleted</typeparam>
+        public void DeleteAll<T>(string condition) where T : IDatabaseSerializable, new()
+        {
+            var name = typeof(T).Name;
+            ExecuteNonQuery($"DELETE FROM {name} where {condition}");
+        }
 
         /// <summary>
         /// Deletes all the objects of a specific type.
