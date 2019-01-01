@@ -31,6 +31,7 @@ namespace GymClient.TraineeUCs
         public NewTraineeUC()
         {
             InitializeComponent();
+            NewTrainee = new Trainee();
         }
 
         public static readonly RoutedEvent NavToTraineeRetriveEvent =

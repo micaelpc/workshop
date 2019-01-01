@@ -127,14 +127,13 @@
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Header="סוף" Width="SizeToCells">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <DatePicker SelectedDate="{Binding End}"/>
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTextColumn Header="תשלום חודשי" Binding="{Binding MonthlyPayment}" />
+                <DataGridTemplateColumn Header="סוף" Width="SizeToCells">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding End}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
 
 
