@@ -26,8 +26,17 @@
 
             <Button x:Name="SearchBtn" Click="SearchBtn_Click" >חפש</Button>
         </StackPanel>
-        <DataGrid Grid.Row="3" x:Name="PrivateTrainingDG" AutoGenerateColumns="True" SelectedItem="{Binding SelectedPrivateTraining,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"   ItemsSource="{Binding PrivateTraining,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
-            
+        <DataGrid Grid.Row="3" x:Name="PrivateTrainingDG" AutoGenerateColumns="False" SelectedItem="{Binding SelectedPrivateTraining,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"   ItemsSource="{Binding PrivateTraining,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="מתאמן" Binding="{Binding Trainee}" />
+                <DataGridTextColumn Header="תאריך ושעה" Binding="{Binding Date}" />
+                <DataGridTextColumn Header="מאמן" Binding="{Binding Trainer}" />
+            </DataGrid.Columns>
+
+
+            <!--this.Trainer = trainer;
+            this.Trainee = trainee;
+            this.Date = date;-->
         </DataGrid>
         <Button Background="LightGreen" Margin="10" HorizontalAlignment="Center" Grid.Row="4" x:Name="ExportExcelBtn" Click="ExportExcelBtn_Click">פתח באקסל</Button>
     </Grid>

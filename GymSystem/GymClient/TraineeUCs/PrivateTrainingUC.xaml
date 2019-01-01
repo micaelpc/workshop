@@ -27,11 +27,13 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <TextBlock  Grid.Column="1" Grid.Row="1" FontSize="30"  Grid.ColumnSpan="20" HorizontalAlignment="Center">
             <TextBlock.Text>
@@ -47,12 +49,12 @@
         <DatePicker Grid.Row="3" Grid.Column="2" SelectedDate="{Binding SelectedDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></DatePicker>
 
         <TextBlock FontSize="12" Grid.Row="3" Grid.Column="3">שעה:</TextBlock>
-        <!--<ComboBox ItemsSource="{Binding Numbers}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" SelectedValue="{Binding Hour,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+        <ComboBox x:Name="HourCmb"  Grid.Row="3" Grid.Column="4" SelectedValue="{Binding Hour,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
 
-        </ComboBox>-->
+        </ComboBox>
 
         <TextBlock  FontSize="20" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4"  >מאמנים פנויים לפי התאריך והשעה:</TextBlock>
-        <DataGrid x:Name="TrainersDG" IsReadOnly="True"    Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" 
+        <DataGrid x:Name="TrainersDG" IsReadOnly="True"    Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="6" 
                   VerticalAlignment="Stretch" SelectedItem="{Binding SelectedTrainer}"
                   HorizontalAlignment="Stretch" 
                   ItemsSource="{Binding AvailableTrainers,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"

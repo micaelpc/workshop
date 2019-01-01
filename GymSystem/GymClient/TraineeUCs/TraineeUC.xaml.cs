@@ -41,7 +41,7 @@ namespace GymClient
         #endregion
 
 
-        private ObservableCollection<Trainee> m_trainees = new ObservableCollection<Trainee>();
+        private ObservableCollection<Trainee> _trainees = new ObservableCollection<Trainee>();
         private Trainee m_selectedTrainee = new Trainee();
 
         public ObservableCollection<Trainee> Trainees
@@ -155,10 +155,18 @@ namespace GymClient
 
         private void DeleteTraineeBtn_Click(object sender, RoutedEventArgs e)
         {
-            Database.GetInstance().Delete<Trainee>(SelectedTrainee.GetId());
-            MessageBox.Show("המתאמן נמחק בהצלחה");
-            SelectedTrainee = null;
-            InitTrainees();
+            if (SelectedTrainee!=null)
+            {
+                Database.GetInstance().Delete<Trainee>(SelectedTrainee.GetId());
+                MessageBox.Show("המתאמן נמחק בהצלחה");
+                SelectedTrainee = null;
+                InitTrainees();
+            }
+            else
+            {
+                MessageBox.Show("סמן מאמן למחיקה");
+            }
+
         }
     }
 }
